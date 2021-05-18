@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="826.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="826.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <ImageView fx:id="arrowAdmin" fitHeight="150.0" fitWidth="30.0" layoutX="58.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,19 +26,19 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Separator opacity="0.0" prefWidth="200.0" />
-                  <ImageView fx:id="imageAdmin" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageAdmin" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#onAdminButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/administrador.png" />
                      </image>
                   </ImageView>
                   <Separator opacity="0.0" prefWidth="200.0" />
-                  <ImageView fx:id="imageRecepcionist" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageRecepcionist" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#onRecepcionistButtonCliked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/recepcionist.png" />
                      </image>
                   </ImageView>
                   <Separator opacity="0.0" prefWidth="200.0" />
-                  <ImageView fx:id="imageClient" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageClient" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#onClientButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/client.png" />
                      </image>
@@ -69,7 +78,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="ADMINISTRADOR" textFill="#fffefe">
                <font>
@@ -89,6 +98,7 @@
                </font>
             </Label>
             <PasswordField layoutX="397.0" layoutY="127.0" />
+            <Button layoutX="447.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#onAdminPassButtonCliked" text="Entrar" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneManejoRecepcionist" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -99,8 +109,8 @@
                </font>
             </Label>
             <Separator layoutX="274.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="543.0" />
-            <Button layoutX="346.0" layoutY="139.0" mnemonicParsing="false" text="AGREGAR RECEPCIONISTA" />
-            <Button layoutX="341.0" layoutY="207.0" mnemonicParsing="false" text="MODIFICAR RECEPCIONISTA" />
+            <Button layoutX="346.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#onAgregarRecepcionistButtonCliked" text="AGREGAR RECEPCIONISTA" />
+            <Button layoutX="341.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#onModificarRecepcionistuttonCliked" text="MODIFICAR RECEPCIONISTA" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneAgregarRecepcionist" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -260,7 +270,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneAgregarClient" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneAgregarClient" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="AGREGAR CLIENTE" textFill="WHITE">
                <font>
@@ -371,8 +381,8 @@
                </font>
             </Label>
             <Separator layoutX="196.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="621.0" />
-            <Button layoutX="346.0" layoutY="139.0" mnemonicParsing="false" text="AGREGAR CLIENTE" />
-            <Button layoutX="341.0" layoutY="207.0" mnemonicParsing="false" text="MODIFICAR CLIENTE" />
+            <Button layoutX="346.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#onAgregarClientButtonCliked" text="AGREGAR CLIENTE" />
+            <Button layoutX="341.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#onModificarClientButtonCliked" text="MODIFICAR CLIENTE" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
@@ -507,6 +517,16 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneAccesoPermitido" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="ACCESO PERMITIDO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="196.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="621.0" />
          </children>
       </AnchorPane>
    </children>
