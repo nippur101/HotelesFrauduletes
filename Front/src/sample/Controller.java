@@ -334,7 +334,6 @@ public class Controller {
     }
 
 
-
     public void onHabitacionButtonClicked(MouseEvent event){
 
     }
