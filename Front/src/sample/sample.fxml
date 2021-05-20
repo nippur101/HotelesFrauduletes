@@ -283,7 +283,7 @@
                </font>
             </Label>
             <Separator layoutX="189.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="628.0" />
-            <GridPane prefHeight="201.0" prefWidth="339.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+            <GridPane layoutX="244.0" layoutY="45.0" prefHeight="201.0" prefWidth="339.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="45.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -311,11 +311,6 @@
                   </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Password:" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Localidad" GridPane.rowIndex="2">
                      <font>
@@ -339,36 +334,12 @@
                      </font>
                   </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-               </children>
-            </GridPane>
-            <GridPane alignment="TOP_RIGHT" layoutX="439.0" layoutY="50.0" prefHeight="201.0" prefWidth="267.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="DNI:" textAlignment="RIGHT">
+                  <Label text="DNI:" textAlignment="RIGHT" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" />
-                  <Label text="Password:" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <Button layoutX="634.0" layoutY="328.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Guardar">
@@ -429,7 +400,7 @@
                </font>
             </Label>
             <Separator layoutX="189.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="628.0" />
-            <GridPane prefHeight="201.0" prefWidth="339.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+            <GridPane layoutX="244.0" layoutY="45.0" prefHeight="201.0" prefWidth="339.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="45.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -457,11 +428,6 @@
                   </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Password:" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Localidad" GridPane.rowIndex="2">
                      <font>
@@ -485,36 +451,12 @@
                      </font>
                   </Label>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-               </children>
-            </GridPane>
-            <GridPane alignment="TOP_RIGHT" layoutX="439.0" layoutY="50.0" prefHeight="201.0" prefWidth="267.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="DNI:" textAlignment="RIGHT">
+                  <Label text="DNI:" textAlignment="RIGHT" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" />
-                  <Label text="Password:" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <Button layoutX="634.0" layoutY="328.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Guardar">
@@ -534,7 +476,7 @@
             <Separator layoutX="196.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="621.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneReserva" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+      <AnchorPane fx:id="paneReserva" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="RESERVA" textFill="WHITE">
                <font>

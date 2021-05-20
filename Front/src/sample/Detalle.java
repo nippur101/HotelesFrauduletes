@@ -1,5 +1,6 @@
 package sample;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Detalle {
@@ -13,6 +14,7 @@ public class Detalle {
     private boolean estado;
 
     public Detalle() {
+
     }
 
     public Detalle(String fecha, int cuenta, String  nombreCuenta, int referencia, String descripcion, double cargos, double abono, boolean estado) {

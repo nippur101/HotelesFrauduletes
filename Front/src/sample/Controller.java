@@ -109,227 +109,196 @@ public class Controller {
             Platform.exit();
             System.exit(0);
     }
+    public void mostrarPaneX(String pane){
+        if(pane.equals(PaneElegido.paneAdminPass)){
+            paneAdminPass.setVisible(true);
+        }else{
+            paneAdminPass.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido.paneAgregarClient)){
+            paneAgregarClient.setVisible(true);
+        }else{
+            paneAgregarClient.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido. paneModificarClient)){
+            paneModificarClient.setVisible(true);
+        }else{
+            paneModificarClient.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido.paneManejoRecepcionist)){
+            paneManejoRecepcionist.setVisible(true);
+        }else{
+            paneManejoRecepcionist.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido.paneAgregarRecepcionist)){
+            paneAgregarRecepcionist.setVisible(true);
+        }else{
+            paneAgregarRecepcionist.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido.paneManejoClient)){
+            paneManejoClient.setVisible(true);
+        }else{
+            paneManejoClient.setVisible(false);
+        }
+
+        if(pane.equals(PaneElegido.paneModificarRecepcionist)){
+            paneModificarRecepcionist.setVisible(true);
+        }else{
+            paneModificarRecepcionist.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneAccesoPermitido)){
+            paneAccesoPermitido.setVisible(true);
+        }else{
+            paneAccesoPermitido.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneReserva)){
+            paneReserva.setVisible(true);
+        }else{
+            paneReserva.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneRegistro)){
+            paneRegistro.setVisible(true);
+        }else{
+            paneRegistro.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.panePago)){
+            panePago.setVisible(true);
+        }else{
+            panePago.setVisible(false);
+        }
+
+
+    }
+    public void mostrarFlechaX(String flecha){
+        if(flecha.equals(FlechaElegida.arrowAdmin)){
+            arrowAdmin.setVisible(true);
+        }else{
+            arrowAdmin.setVisible(false);
+        }
+
+        if(flecha.equals(FlechaElegida.arrowClient)){
+            arrowClient.setVisible(true);
+        }else{
+            arrowClient.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowHabitacion)){
+            arrowHabitacion.setVisible(true);
+        }else{
+            arrowHabitacion.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowPago)){
+            arrowPago.setVisible(true);
+        }else{
+            arrowPago.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowRecepcionista)){
+            arrowRecepcionista.setVisible(true);
+        }else{
+            arrowRecepcionista.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowRegistro)){
+            arrowRegistro.setVisible(true);
+        }else{
+            arrowRegistro.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowReserva)){
+            arrowReserva.setVisible(true);
+        }else{
+            arrowReserva.setVisible(false);
+        }
+
+
+
+    }
+
 
     public void onAdminButtonClicked(MouseEvent event){
-        paneAdminPass.setVisible(true);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
-        arrowAdmin.setVisible(true);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneAdminPass);
 
+        this.mostrarFlechaX(FlechaElegida.arrowAdmin);
 
     }
     public void onAgregarClientButtonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(true);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(true);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneAgregarClient);
+        this.mostrarFlechaX(FlechaElegida.arrowClient);
+
+
     }
 
     public void onModificarClientButtonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(true);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(true);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneModificarClient);
+
+        this.mostrarFlechaX(FlechaElegida.arrowClient);
+
+
     }
     public void onAgregarRecepcionistButtonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(true);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(true);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneAgregarRecepcionist);
+
+        this.mostrarFlechaX(FlechaElegida.arrowRecepcionista);
+
     }
 
     public void onModificarRecepcionistuttonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(true);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(true);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneModificarRecepcionist);
+
+        this.mostrarFlechaX(FlechaElegida.arrowRecepcionista);
+
+
     }
 
     public void onAdminPassButtonCliked(MouseEvent event){
         // SE DEBE PONER EL PASSWORD CORRECTO!!!!!!!!!!!!!!!
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(true);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(true);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
+
+        this.mostrarFlechaX(FlechaElegida.arrowAdmin);
+
+
     }
 
     public void onRecepcionistButtonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(true);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(true);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneManejoRecepcionist);
+
+        this.mostrarFlechaX(FlechaElegida.arrowRecepcionista);
+
 
     }
 
     public void onClientButtonClicked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(true);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(true);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneManejoClient);
+
+        this.mostrarFlechaX(FlechaElegida.arrowClient);
+
 
     }
 
     public void onReservaButtonCliked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(true);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(true);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(true);
+        this.mostrarPaneX(PaneElegido.paneReserva);
+
+        this.mostrarFlechaX(FlechaElegida.arrowReserva);
+
+
     }
 
     public void onRegistroButtonClicked(MouseEvent event){
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(true);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(true);
-        panePago.setVisible(false);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(false);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(true);
-        arrowReserva.setVisible(false);
+        this.mostrarPaneX(PaneElegido.paneRegistro);
+
+        this.mostrarFlechaX(FlechaElegida.arrowRegistro);
+
 
     }
 
