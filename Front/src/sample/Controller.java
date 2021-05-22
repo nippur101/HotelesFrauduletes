@@ -59,26 +59,10 @@ public class Controller {
     @FXML private TableColumn<Detalle,Boolean > columEstado;
 
     public void onPagoButtonClicked(MouseEvent event){
+        this.mostrarPaneX(PaneElegido.panePago);
 
-        paneAdminPass.setVisible(false);
-        paneAgregarClient.setVisible(false);
-        paneModificarClient.setVisible(false);
-        paneManejoRecepcionist.setVisible(false);
-        paneAgregarRecepcionist.setVisible(false);
-        paneManejoClient.setVisible(false);
-        paneModificarRecepcionist.setVisible(false);
-        paneAccesoPermitido.setVisible(false);
-        paneReserva.setVisible(false);
-        paneRegistro.setVisible(false);
-        panePago.setVisible(true);
+        this.mostrarFlechaX(FlechaElegida.arrowPago);
 
-        arrowAdmin.setVisible(false);
-        arrowClient.setVisible(false);
-        arrowHabitacion.setVisible(false);
-        arrowPago.setVisible(true);
-        arrowRecepcionista.setVisible(false);
-        arrowRegistro.setVisible(false);
-        arrowReserva.setVisible(false);
 
         columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
         columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
@@ -93,6 +77,7 @@ public class Controller {
 
 
     }
+
 
 
     public ObservableList<Detalle>getDetalle(){
