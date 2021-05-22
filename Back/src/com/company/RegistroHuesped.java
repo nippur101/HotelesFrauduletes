@@ -1,8 +1,9 @@
 package com.company;
 
 import java.util.Date;
+import java.util.Objects;
 
-public class RegistroHuesped {
+public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
     ///Atributos
     private int id;
@@ -21,5 +22,23 @@ public class RegistroHuesped {
         this.idHabitacion = idHabitacion;
         this.fechaIngreso = fechaIngreso;
 
+    }
+    ///Metodos
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegistroHuesped)) return false;
+        RegistroHuesped that = (RegistroHuesped) o;
+        return id == that.id && idHabitacion == that.idHabitacion && idCliente.equals(that.idCliente) && fechaIngreso.equals(that.fechaIngreso) && fechaEgreso.equals(that.fechaEgreso);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, idCliente, idHabitacion, fechaIngreso, fechaEgreso);
+    }
+
+    @Override
+    public int compareTo(RegistroHuesped o) {
+            int result = Integer.compare(id, o.id);
+            return result;
     }
 }
