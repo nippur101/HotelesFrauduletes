@@ -7,8 +7,7 @@ public class Cliente extends Usuario{
     private String provincia;
     private String localidad;
 
-    ///Costructor
-
+    ///Constructor
     public Cliente(String id, String nombreYapellido, String direccion, String correoElectronico, String telefono, String pais, String provincia, String localidad) {
         super(id, nombreYapellido, direccion, correoElectronico, telefono);
         this.pais = pais;

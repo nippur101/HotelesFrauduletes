@@ -10,9 +10,15 @@ public class Reserva {
     private Date fechaIngreso;
     private Date fechaEgreso;
     private double pagoReserva;
+    private static int contadorReservas = 0; ///Para generar el ID único
 
-    ///Costructor
-
-
-
+    ///Constructor
+    public Reserva(String idCliente, Date fechaIngreso, Date fechaEgreso, double pagoReserva) {
+        contadorReservas++;
+        this.id = contadorReservas;
+        this.idCliente = idCliente;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaEgreso = fechaEgreso;
+        this.pagoReserva = pagoReserva;
+    }
 }

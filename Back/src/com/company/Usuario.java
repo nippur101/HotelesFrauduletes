@@ -9,7 +9,7 @@ public abstract class Usuario {
     protected String correoElectronico;
     protected String telefono;
 
-    ///Contructor
+    ///Constructor
     public Usuario(String id, String nombreYapellido, String direccion, String correoElectronico, String telefono) {
         this.id = id;
         this.nombreYapellido = nombreYapellido;

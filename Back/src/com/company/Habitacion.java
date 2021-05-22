@@ -8,10 +8,13 @@ public class Habitacion {
     private String tipoHabitacion;
     private String caracteristicas;
     private double precio;
+    private static int contadorHabitaciones = 0; ///Para generar el ID único
 
-    ///Costructor
-    public Habitacion(int id, int numeroHabitacion, String tipoHabitacion, String caracteristicas, double precio) {
-        this.id = id;
+
+    ///Constructor
+    public Habitacion(int numeroHabitacion, String tipoHabitacion, String caracteristicas, double precio) {
+        contadorHabitaciones++;
+        this.id = contadorHabitaciones;
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         this.caracteristicas = caracteristicas;
