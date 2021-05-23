@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
@@ -24,21 +23,102 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
     }
     ///Metodos
+
+    ///Getter and Setters
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public int getIdHabitacion() {
+        return idHabitacion;
+    }
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Date getFechaEgreso() {
+        return fechaEgreso;
+    }
+    public void setFechaEgreso(Date fechaEgreso) {
+        this.fechaEgreso = fechaEgreso;
+    }
+
+    public static int getContadorRegHuesped() {
+        return contadorRegHuesped;
+    }
+    public static void setContadorRegHuesped(int contadorRegHuesped) {
+        RegistroHuesped.contadorRegHuesped = contadorRegHuesped;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof RegistroHuesped)) return false;
         RegistroHuesped that = (RegistroHuesped) o;
-        return id == that.id && idHabitacion == that.idHabitacion && idCliente.equals(that.idCliente) && fechaIngreso.equals(that.fechaIngreso) && fechaEgreso.equals(that.fechaEgreso);
+        return (id == that.id);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, idCliente, idHabitacion, fechaIngreso, fechaEgreso);
+        return Integer.hashCode(id);
+    }
+    /*
+    @Override
+    /// compareTo por ID cliente para probar
+    public int compareTo(RegistroHuesped o) {
+            int resultado;
+
+            if (o.getIdCliente().compareToIgnoreCase(this.idCliente)>0){
+                resultado = -1;
+            }else if (o.getIdCliente().compareToIgnoreCase(this.idCliente)<0){
+                resultado = 1;
+            }else{
+                resultado = 0;
+            }
+
+            return resultado;
+    }
+    */
+    @Override
+    /// compareTo por ID
+    public int compareTo(RegistroHuesped o) {
+            int resultado;
+
+            if (Integer.compare(this.id,o.getId())<0){
+                resultado = -1;
+            }else if (Integer.compare(this.id,o.getId())>0){
+                resultado = 1;
+            }else{
+                resultado = 0;
+            }
+
+            return resultado;
     }
 
     @Override
-    public int compareTo(RegistroHuesped o) {
-            int result = Integer.compare(id, o.id);
-            return result;
+    public String toString() {
+        return "RegistroHuesped{" +
+                "id=" + id +
+                ", idCliente='" + idCliente + '\'' +
+                ", idHabitacion=" + idHabitacion +
+                ", fechaIngreso=" + fechaIngreso +
+                ", fechaEgreso=" + fechaEgreso +
+                '}';
     }
 }
