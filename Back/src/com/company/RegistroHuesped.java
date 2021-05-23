@@ -10,6 +10,7 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
     private int idHabitacion;
     private LocalDate fechaIngreso;
     private LocalDate fechaEgreso;
+    private String estado;
     private static int contadorRegHuesped = 0; ///Para generar el ID único
 
     ///Constructor
@@ -21,6 +22,7 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
         this.idHabitacion = idHabitacion;
         this.fechaIngreso = fechaIngreso;
         this.fechaEgreso = fechaEgreso;
+        this.estado = "Abierto";
 
     }
     ///Metodos
@@ -61,12 +63,17 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
         this.fechaEgreso = fechaEgreso;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public static int getContadorRegHuesped() {
         return contadorRegHuesped;
     }
-    public static void setContadorRegHuesped(int contadorRegHuesped) {
-        RegistroHuesped.contadorRegHuesped = contadorRegHuesped;
-    }
+
 
     @Override
     public boolean equals(Object o) {

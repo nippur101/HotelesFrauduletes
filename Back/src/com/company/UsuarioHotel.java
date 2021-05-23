@@ -39,13 +39,6 @@ public abstract class UsuarioHotel extends Usuario {
 
         return registro;
     }
-    /*
-    /// Genera una instancia de Registro Huesped y lo retorna.
-    public RegistroHuesped aperturaRegistroHuesped(String idCliente, int idHabitacion, Date fechaIngreso, Date fechaEgreso){
-        RegistroHuesped a = new RegistroHuesped(idCliente, idHabitacion, fechaIngreso, fechaEgreso);
-        return a;
-    }
-    */
     /// Genera una instancia de Consumo y lo retorna.
     public Consumo generaConsumo(LocalDate fechaConsumo, String detalleConsumo, double monto, double pago){
         Consumo a = new Consumo (fechaConsumo, detalleConsumo, monto, pago);
@@ -53,8 +46,18 @@ public abstract class UsuarioHotel extends Usuario {
     }
 
     /// ---------------------- CHECK OUT ----------------------
-    public void checkOut (RegistroHuesped r){
-        
+    public void checkOut (RegistroHuesped r, Cliente c){
+
+        if (c.calculoSaldo()>0){
+            System.out.println("El Cliente tiene saldos pendientes de abono.");
+        }else{
+            if(r.getFechaEgreso().equals(LocalDate.now())) {
+                r.setFechaEgreso(LocalDate.now());
+            }
+            r.setEstado("Cerrado");
+        }
     }
+
+    /// ---------------------- CLIENTE ----------------------
 
 }

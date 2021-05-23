@@ -22,4 +22,44 @@ public class Consumo {
         this.monto = monto;
         this.pagoConsumo = pagoConsumo;
     }
+
+    ///Metodos
+    /// Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+
+    public LocalDate getFechaConsumo() {
+        return fechaConsumo;
+    }
+    public void setFechaConsumo(LocalDate fechaConsumo) {
+        this.fechaConsumo = fechaConsumo;
+    }
+
+    public String getDetalleConsumo() {
+        return detalleConsumo;
+    }
+    public void setDetalleConsumo(String detalleConsumo) {
+        this.detalleConsumo = detalleConsumo;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public double getPagoConsumo() {
+        return pagoConsumo;
+    }
+    public void setPagoConsumo(double pagoConsumo) {
+        this.pagoConsumo = pagoConsumo;
+    }
+
+    public static int getContadorConsumos() {
+        return contadorConsumos;
+    }
+
 }

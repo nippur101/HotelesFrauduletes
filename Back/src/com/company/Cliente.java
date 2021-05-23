@@ -49,4 +49,26 @@ public class Cliente extends Usuario{
     public void setConsumos(Consumo a) {
         this.consumos.add(a);
     }
+
+
+
+    /// ---------------------- SALDO ----------------------
+    public double sumatoriaCargos (){
+        double resultado=0;
+        for (Consumo a : this.consumos) {
+            resultado = resultado + a.getMonto();
+        }
+        return resultado;
+    }
+    public double sumatoriaPagos (){
+        double resultado=0;
+        for (Consumo a : this.consumos) {
+            resultado = resultado + a.getPagoConsumo();
+        }
+        return resultado;
+    }
+    public double calculoSaldo(){
+        double resultado = sumatoriaCargos() - sumatoriaPagos();
+        return resultado;
+    }
 }
