@@ -516,8 +516,14 @@
             </Label>
             <TextField layoutX="195.0" layoutY="199.0" />
             <TextField layoutX="197.0" layoutY="252.0" prefHeight="26.0" prefWidth="328.0" />
-            <Button layoutX="552.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onAdminPassButtonCliked" text="Pagar Adelanto" />
+            <Button layoutX="472.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onPagoButtonClicked" text="Pagar Adelanto" />
             <Button layoutX="726.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onAdminPassButtonCliked" text="Reservar" />
+            <Label layoutX="75.0" layoutY="320.0" text="Abono Adelanto:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="264.0" layoutY="321.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
