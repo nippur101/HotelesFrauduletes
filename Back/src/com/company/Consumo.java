@@ -1,13 +1,12 @@
 package com.company;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Consumo {
 
     ///Atributos
     private int id;
-    private int idReserva;
-    private Date fechaConsumo;
+    private LocalDate fechaConsumo;
     private String detalleConsumo;
     private double monto;
     private double pagoConsumo;
@@ -15,12 +14,12 @@ public class Consumo {
 
     ///Constructor
     ///El recepcionista genera el Consumo, y luego registra su pago.
-    public Consumo(int idReserva, Date fechaConsumo, String detalleConsumo, double monto) {
+    public Consumo(LocalDate fechaConsumo, String detalleConsumo, double monto, double pagoConsumo) {
         contadorConsumos++;
         this.id = contadorConsumos;
-        this.idReserva = idReserva;
         this.fechaConsumo = fechaConsumo;
         this.detalleConsumo = detalleConsumo;
         this.monto = monto;
+        this.pagoConsumo = pagoConsumo;
     }
 }

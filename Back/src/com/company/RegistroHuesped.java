@@ -1,6 +1,6 @@
 package com.company;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
@@ -8,18 +8,19 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
     private int id;
     private String idCliente;
     private int idHabitacion;
-    private Date fechaIngreso;
-    private Date fechaEgreso;
+    private LocalDate fechaIngreso;
+    private LocalDate fechaEgreso;
     private static int contadorRegHuesped = 0; ///Para generar el ID único
 
     ///Constructor
     ///Con el CheckIn se instancia con la fecha de ingreso, con el CheckOut se ingresarà la fecha de egreso.
-    public RegistroHuesped(String idCliente, int idHabitacion, Date fechaIngreso) {
+    public RegistroHuesped(String idCliente, int idHabitacion, LocalDate fechaIngreso, LocalDate fechaEgreso) {
         contadorRegHuesped++;
         this.id = contadorRegHuesped;
         this.idCliente = idCliente;
         this.idHabitacion = idHabitacion;
         this.fechaIngreso = fechaIngreso;
+        this.fechaEgreso = fechaEgreso;
 
     }
     ///Metodos
@@ -46,17 +47,17 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
         this.idHabitacion = idHabitacion;
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getFechaEgreso() {
+    public LocalDate getFechaEgreso() {
         return fechaEgreso;
     }
-    public void setFechaEgreso(Date fechaEgreso) {
+    public void setFechaEgreso(LocalDate fechaEgreso) {
         this.fechaEgreso = fechaEgreso;
     }
 
