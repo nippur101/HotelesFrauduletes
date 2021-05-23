@@ -71,4 +71,18 @@ public class Cliente extends Usuario{
         double resultado = sumatoriaCargos() - sumatoriaPagos();
         return resultado;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id='" + id + '\'' +
+                ", pais='" + pais + '\'' +
+                ", nombreYapellido='" + nombreYapellido + '\'' +
+                ", provincia='" + provincia + '\'' +
+                ", localidad='" + localidad + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
 }

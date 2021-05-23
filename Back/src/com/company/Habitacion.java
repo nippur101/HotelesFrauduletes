@@ -59,4 +59,15 @@ public class Habitacion {
     public static int getContadorHabitaciones() {
         return contadorHabitaciones;
     }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" +
+                "id=" + id +
+                ", numeroHabitacion=" + numeroHabitacion +
+                ", tipoHabitacion='" + tipoHabitacion + '\'' +
+                ", caracteristicas='" + caracteristicas + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
 }

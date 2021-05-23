@@ -84,4 +84,17 @@ public class Reserva {
     public static void setContadorReservas(int contadorReservas) {
         Reserva.contadorReservas = contadorReservas;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", idHabitacion=" + idHabitacion +
+                ", idCliente='" + idCliente + '\'' +
+                ", fechaIngreso=" + fechaIngreso +
+                ", fechaEgreso=" + fechaEgreso +
+                ", pagoReserva=" + pagoReserva +
+                ", borradoLogico=" + borradoLogico +
+                '}';
+    }
 }

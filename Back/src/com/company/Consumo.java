@@ -62,4 +62,14 @@ public class Consumo {
         return contadorConsumos;
     }
 
+    @Override
+    public String toString() {
+        return "Consumo{" +
+                "id=" + id +
+                ", fechaConsumo=" + fechaConsumo +
+                ", detalleConsumo='" + detalleConsumo + '\'' +
+                ", monto=" + monto +
+                ", pagoConsumo=" + pagoConsumo +
+                '}';
+    }
 }

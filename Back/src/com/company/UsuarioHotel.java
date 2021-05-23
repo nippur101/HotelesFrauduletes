@@ -59,5 +59,13 @@ public abstract class UsuarioHotel extends Usuario {
     }
 
     /// ---------------------- CLIENTE ----------------------
+    public Cliente generaCliente (String id, String nombreYapellido, String direccion, String correoElectronico, String telefono, String pais, String provincia, String localidad) {
+        Cliente a = new Cliente(id,nombreYapellido,direccion,correoElectronico,telefono,pais,provincia,localidad);
+        return a;
+    }
+
+
+
 
 }
+
