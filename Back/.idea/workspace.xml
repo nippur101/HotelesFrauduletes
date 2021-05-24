@@ -83,6 +83,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.company" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
@@ -120,6 +125,7 @@
       <option name="presentableId" value="Default" />
       <updated>1621460617526</updated>
       <workItem from="1621460619122" duration="198000" />
+      <workItem from="1621875406822" duration="152000" />
     </task>
     <servers />
   </component>

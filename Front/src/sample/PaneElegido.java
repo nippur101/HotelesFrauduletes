@@ -12,7 +12,8 @@ public final class PaneElegido {
     public static final String paneReserva="paneReserva";
     public static final String panePago="panePago";
     public static final String paneRegistro="paneRegistro";
-    public static final String arrowAdmin="arrowAdmin";
+    public static final String paneClienteCargado="paneClienteCargado";
+    public static final String paneRecepcionistaCargado="paneRecepcionistaCargado";
 
 
 

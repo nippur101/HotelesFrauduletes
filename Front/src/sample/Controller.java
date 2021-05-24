@@ -8,18 +8,36 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.back.*;
+
 
 import java.net.URL;
-import java.util.Date;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.Callable;
 
 
 public class Controller {
+    @FXML private TextField clienteCorreoElectronico;
+    @FXML private TextField clienteLocalidad;
+    @FXML private TextField clienteProvincia;
+    @FXML private TextField clientePais;
+    @FXML private TextField clienteDNI;
+    @FXML private TextField clienteTelefono;
+    @FXML private TextField clienteDireccion;
+    @FXML private TextField clienteNombreApellido;
+
+    @FXML private TextField recepcionistaCorreoElectronico;
+    @FXML private TextField recepcionistaPassword;
+    @FXML private TextField recepcionistaDNI;
+    @FXML private TextField recepcionistaTelefono;
+    @FXML private TextField recepcionistaDireccion;
+    @FXML private TextField recepcionistaNombreApellido;
+
     @FXML private ImageView imageAdmin;
     @FXML private ImageView imageRecepcionist;
     @FXML private ImageView imageReserv;
@@ -46,6 +64,8 @@ public class Controller {
     @FXML private AnchorPane paneReserva;
     @FXML private AnchorPane paneModificarClient;
     @FXML private AnchorPane panePago;
+    @FXML private AnchorPane paneRecepcionistaCargado;
+    @FXML private AnchorPane paneClienteCargado;
 
     @FXML private TableView<Detalle> tableViewDetalle;
 
@@ -57,6 +77,19 @@ public class Controller {
     @FXML private TableColumn<Detalle,Double > columCargos;
     @FXML private TableColumn<Detalle,Double > columAbono;
     @FXML private TableColumn<Detalle,Boolean > columEstado;
+    List<Administrador> listaAdministrador=new ArrayList<>();
+    List<Cliente> listaCliente=new ArrayList<>();
+    List<Consumo> listaConsumo=new ArrayList<>();
+    List<Habitacion> listaHabitacion=new ArrayList<>();
+    List<Recepcionista> listaRececpcionista=new ArrayList<>();
+    List<Reserva> listaReserva=new ArrayList<>();
+    List<Usuario> listaUsuario=new ArrayList<>();
+    List<RegistroHuesped> listaRegistroHuespedes=new ArrayList<>();
+
+
+
+
+    private Hotel hotel=new Hotel(listaAdministrador,listaRececpcionista,listaCliente,listaHabitacion,listaReserva,listaRegistroHuespedes);
 
     public void onPagoButtonClicked(MouseEvent event){
         this.mostrarPaneX(PaneElegido.panePago);
@@ -155,6 +188,16 @@ public class Controller {
             panePago.setVisible(true);
         }else{
             panePago.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneRecepcionistaCargado)){
+            paneRecepcionistaCargado.setVisible(true);
+        }else{
+            paneRecepcionistaCargado.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneClienteCargado)){
+            paneClienteCargado.setVisible(true);
+        }else{
+            paneClienteCargado.setVisible(false);
         }
 
 
@@ -292,7 +335,20 @@ public class Controller {
 
     }
 
+    public void guardarRecepcionista(MouseEvent event){
+        Recepcionista recepcionistaNuevo=new Recepcionista(recepcionistaDNI.getText(), recepcionistaNombreApellido.getText(),recepcionistaDireccion.getText(),recepcionistaCorreoElectronico.getText(),recepcionistaTelefono.getText(),recepcionistaPassword.getText());
+        listaRececpcionista.add(recepcionistaNuevo);
+        mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
 
+
+    }
+    public void guardarCliente(MouseEvent event){
+        Cliente clienteNuevo=new Cliente(clienteDNI.getText(), clienteNombreApellido.getText(),clienteDireccion.getText(),clienteCorreoElectronico.getText(),clienteTelefono.getText(),clientePais.getText(),clienteProvincia.getText(),clienteLocalidad.getText());
+        listaCliente.add(clienteNuevo);
+        mostrarPaneX(PaneElegido.paneClienteCargado);
+        System.out.println(clienteNuevo);
+
+    }
 
 
 
