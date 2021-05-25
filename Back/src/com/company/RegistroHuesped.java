@@ -1,6 +1,7 @@
 package com.company;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
@@ -78,31 +79,33 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RegistroHuesped)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         RegistroHuesped that = (RegistroHuesped) o;
-        return (id == that.id);
+        return Objects.equals(id,that.id);
     }
+
     @Override
     public int hashCode() {
-        return Integer.hashCode(id);
+        return Objects.hash(id);
     }
+
     /*
-    @Override
-    /// compareTo por ID cliente para probar
-    public int compareTo(RegistroHuesped o) {
-            int resultado;
+        @Override
+        /// compareTo por ID cliente para probar
+        public int compareTo(RegistroHuesped o) {
+                int resultado;
 
-            if (o.getIdCliente().compareToIgnoreCase(this.idCliente)>0){
-                resultado = -1;
-            }else if (o.getIdCliente().compareToIgnoreCase(this.idCliente)<0){
-                resultado = 1;
-            }else{
-                resultado = 0;
-            }
+                if (o.getIdCliente().compareToIgnoreCase(this.idCliente)>0){
+                    resultado = -1;
+                }else if (o.getIdCliente().compareToIgnoreCase(this.idCliente)<0){
+                    resultado = 1;
+                }else{
+                    resultado = 0;
+                }
 
-            return resultado;
-    }
-    */
+                return resultado;
+        }
+        */
     @Override
     /// compareTo por ID
     public int compareTo(RegistroHuesped o) {
