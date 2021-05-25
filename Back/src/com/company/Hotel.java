@@ -67,11 +67,11 @@ public class Hotel {
     }
 
 
-    ///Busca un Usuario por ID (String) retorna el indice de donde se encuentra
+    ///Busca un Cliente por ID (String) retorna el indice de donde se encuentra
     /// retorna -1 si no se encontró.
     public int buscarIdCliente(String id){
         boolean busqueda = false;
-        int i=(this.listaUsuarioHotel.size()-1);;
+        int i=(this.listaCliente.size()-1);;
         while ((i>-1)&&(!busqueda)) {
             if (this.listaCliente.get(i).getId().equals(id)) {
                 busqueda = true;
