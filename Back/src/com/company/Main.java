@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) {
 
         /// Prueba ordenamiento RegistroHuesped por id y por idCliente
-        RegistroHuesped h1 = new RegistroHuesped("35140802", 201, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 06, 10));
-        RegistroHuesped h2 = new RegistroHuesped("34185634", 203, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 06, 01));
-        RegistroHuesped h3 = new RegistroHuesped("38140802", 205, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
-        RegistroHuesped h4 = new RegistroHuesped("37415963", 301, LocalDate.of(2021, 05, 24),LocalDate.of(2021, 06, 20));
+        RegistroHuesped h1 = new RegistroHuesped("35140802", 3, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 06, 10));
+        RegistroHuesped h2 = new RegistroHuesped("34185634", 4, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 06, 01));
+        RegistroHuesped h3 = new RegistroHuesped("38140802", 10, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
+        RegistroHuesped h4 = new RegistroHuesped("37415963", 20, LocalDate.of(2021, 05, 24),LocalDate.of(2021, 06, 20));
 
 
 
@@ -22,6 +22,10 @@ public class Main {
         Reserva r2=new Reserva(3,"46432210",LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 12),0.0);
         Reserva r3=new Reserva(3,"5345656",LocalDate.of(2021, 07, 15),LocalDate.of(2021, 07, 22),0.0);
         Reserva r4=new Reserva(4,"32222963",LocalDate.of(2021, 07, 05),LocalDate.of(2021, 07, 15),1000.0);
+        Reserva r5=new Reserva(5,"35140802",LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 12),0.0);
+        Reserva r6=new Reserva(6,"34185634",LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 12),0.0);
+        Reserva r7=new Reserva(7,"32222963",LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 12),0.0);
+
 
         Cliente c1=new Cliente("35140802","Norberto Alonzo","Corriente 3421","alonzo@gmail.com","011-5897587","Argentina","Buenos Aires","Capial Federal");
         Cliente c2=new Cliente("34185634","Osvaldo Ardiles","General Paz 3221","ardiles@gmail.com","011-3244587","Argentina","Buenos Aires","Capial Federal");
@@ -87,6 +91,9 @@ public class Main {
         reservas.add(r2);
         reservas.add(r3);
         reservas.add(r4);
+        reservas.add(r5);
+        reservas.add(r6);
+        reservas.add(r7);
         List<Cliente> clientes=new ArrayList<>();
         clientes.add(c1);
         clientes.add(c2);
@@ -106,8 +113,8 @@ public class Main {
         Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros);
 
         //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12), (ArrayList<Reserva>) hotel.getListaReserva(),(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes(),(ArrayList<Habitacion>) hotel.getListaHabitacion());
-        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 8, 01),LocalDate.of(2021, 8, 15));
-
+        //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 8, 01),LocalDate.of(2021, 8, 15));
+        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12));
         for(Habitacion ha : habitacionesLibres)
         {
             System.out.println(ha.toString());

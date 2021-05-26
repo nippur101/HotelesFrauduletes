@@ -134,28 +134,32 @@ public class Hotel {
     */
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
     public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso, Habitacion habitacion){
-        boolean validacion=false;
-        for(Reserva r:this.listaReserva){
-            if((habitacion.getId() == r.getIdHabitacion()) &&
-                    (((r.getFechaIngreso().compareTo(fechaIngreso)<0)&&(r.getFechaEgreso().compareTo(fechaEgreso)<0)) ||
-                            (((r.getFechaIngreso().compareTo(fechaIngreso)>0)&&(r.getFechaEgreso().compareTo(fechaEgreso)>0))))) {
-                validacion=true;
-            }else{
-                validacion=false;
-                return validacion;
+        boolean validacion=true;
+
+        for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
+            if(habitacion.getId() == this.listaReserva.get(i).getIdHabitacion()){
+                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso)<0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso)<0)) ||
+                            (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso)>0)))) {
+                 validacion=true;
+             }else{
+                  validacion=false;
+                }
             }
         }
         return validacion;
     }
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en RegistroHuesped
     public boolean habitacionLibreRegistro(LocalDate fechaIngreso,LocalDate fechaEgreso,Habitacion habitacion){
-        boolean validacion=false;
-        for(RegistroHuesped r:this.registroHuespedes){
-            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
-                validacion=true;
-            }else{
-                validacion=false;
-                return validacion;
+        boolean validacion=true;
+
+        for(int i=0; (i<this.registroHuespedes.size()&&validacion);i++){
+            if(habitacion.getId() == this.registroHuespedes.get(i).getIdHabitacion()){
+                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso)<0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso)<0)) ||
+                        (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso)>0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso)>0)))) {
+                    validacion=true;
+                }else{
+                    validacion=false;
+                }
             }
         }
         return validacion;
