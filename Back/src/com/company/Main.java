@@ -105,6 +105,14 @@ public class Main {
         usuariosHotel.add(recep3);
         Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros);
 
+        //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12), (ArrayList<Reserva>) hotel.getListaReserva(),(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes(),(ArrayList<Habitacion>) hotel.getListaHabitacion());
+        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 8, 01),LocalDate.of(2021, 8, 15));
+
+        for(Habitacion ha : habitacionesLibres)
+        {
+            System.out.println(ha.toString());
+        }
+
         /*
 
         for (RegistroHuesped a : registro) {

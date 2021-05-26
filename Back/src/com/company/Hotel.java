@@ -30,9 +30,20 @@ public class Hotel {
     public List<UsuarioHotel> getListaUsuarioHotel() {
         return listaUsuarioHotel;
     }
-
     public void agregarUsuarioHotel(UsuarioHotel a){
         this.listaUsuarioHotel.add(a);
+    }
+
+    public List<Habitacion> getListaHabitacion() {
+        return listaHabitacion;
+    }
+
+    public List<Reserva> getListaReserva() {
+        return listaReserva;
+    }
+
+    public List<RegistroHuesped> getRegistroHuespedes() {
+        return registroHuespedes;
     }
 
     /// Corrobora si un Usuario Hotel existe y coincide con la clave registrada.
@@ -83,7 +94,7 @@ public class Hotel {
         }
         return i;
     }
-
+/*
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
     public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,Habitacion habitacion){
         boolean validacion=false;
@@ -115,6 +126,45 @@ public class Hotel {
         List<Habitacion> habitacionesLibres=new ArrayList<>();
         for(Habitacion h:habitaciones){
             if(habitacionLibreReserva(fechaIngreso,fechaEgreso,reservas,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,registros,h)){
+                habitacionesLibres.add(h);
+            }
+        }
+        return (ArrayList<Habitacion>) habitacionesLibres;
+    }
+    */
+    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
+    public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso, Habitacion habitacion){
+        boolean validacion=false;
+        for(Reserva r:this.listaReserva){
+            if((habitacion.getId() == r.getIdHabitacion()) &&
+                    (((r.getFechaIngreso().compareTo(fechaIngreso)<0)&&(r.getFechaEgreso().compareTo(fechaEgreso)<0)) ||
+                            (((r.getFechaIngreso().compareTo(fechaIngreso)>0)&&(r.getFechaEgreso().compareTo(fechaEgreso)>0))))) {
+                validacion=true;
+            }else{
+                validacion=false;
+                return validacion;
+            }
+        }
+        return validacion;
+    }
+    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en RegistroHuesped
+    public boolean habitacionLibreRegistro(LocalDate fechaIngreso,LocalDate fechaEgreso,Habitacion habitacion){
+        boolean validacion=false;
+        for(RegistroHuesped r:this.registroHuespedes){
+            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
+                validacion=true;
+            }else{
+                validacion=false;
+                return validacion;
+            }
+        }
+        return validacion;
+    }
+    //Agrupamiento de todas las habitaciones libres en un periodo de tiempo
+    public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso){
+        List<Habitacion> habitacionesLibres=new ArrayList<>();
+        for(Habitacion h:this.listaHabitacion){
+            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,h)){
                 habitacionesLibres.add(h);
             }
         }
