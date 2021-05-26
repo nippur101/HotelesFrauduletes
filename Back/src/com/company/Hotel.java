@@ -85,11 +85,14 @@ public class Hotel {
     }
 
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
-    public boolean habitacionLibreReserva(LocalDate fechaIngreso, LocalDate fechaEgreso, ArrayList<Reserva> reservas, Habitacion habitacion){
+    public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,Habitacion habitacion){
         boolean validacion=false;
         for(Reserva r:reservas){
-            if(habitacion.getId() == r.getIdHabitacion() && r.getFechaEgreso().isBefore(fechaIngreso) && r.getFechaIngreso().isAfter(fechaEgreso)){
+            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
                 validacion=true;
+            }else{
+                validacion=false;
+                return validacion;
             }
         }
         return validacion;
@@ -98,13 +101,16 @@ public class Hotel {
     public boolean habitacionLibreRegistro(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<RegistroHuesped> registros,Habitacion habitacion){
         boolean validacion=false;
         for(RegistroHuesped r:registros){
-            if(habitacion.getId() == r.getIdHabitacion() && r.getFechaEgreso().isBefore(fechaIngreso) && r.getFechaIngreso().isAfter(fechaEgreso)){
+            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
                 validacion=true;
+            }else{
+                validacion=false;
+                return validacion;
             }
         }
         return validacion;
     }
-    //Agrupamiento de todas las habitaciones libres en un periodo de toempo
+    //Agrupamiento de todas las habitaciones libres en un periodo de tiempo
     public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,ArrayList<RegistroHuesped> registros,ArrayList<Habitacion> habitaciones){
         List<Habitacion> habitacionesLibres=new ArrayList<>();
         for(Habitacion h:habitaciones){
