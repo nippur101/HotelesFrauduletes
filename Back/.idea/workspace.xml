@@ -90,6 +90,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -124,7 +125,8 @@
       <workItem from="1621460619122" duration="198000" />
       <workItem from="1621875406822" duration="152000" />
       <workItem from="1622025311210" duration="150000" />
-      <workItem from="1622034058545" duration="32000" />
+      <workItem from="1622034058545" duration="634000" />
+      <workItem from="1622037312542" duration="1297000" />
     </task>
     <servers />
   </component>
