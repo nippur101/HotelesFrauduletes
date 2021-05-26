@@ -97,17 +97,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="Back" />
@@ -134,6 +123,7 @@
       <updated>1621460617526</updated>
       <workItem from="1621460619122" duration="198000" />
       <workItem from="1621875406822" duration="152000" />
+      <workItem from="1622025311210" duration="48000" />
     </task>
     <servers />
   </component>

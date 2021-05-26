@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +84,35 @@ public class Hotel {
         return i;
     }
 
-
+    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
+    public boolean habitacionLibreReserva(LocalDate fechaIngreso, LocalDate fechaEgreso, ArrayList<Reserva> reservas, Habitacion habitacion){
+        boolean validacion=false;
+        for(Reserva r:reservas){
+            if(habitacion.getId() == r.getIdHabitacion() && r.getFechaEgreso().isBefore(fechaIngreso) && r.getFechaIngreso().isAfter(fechaEgreso)){
+                validacion=true;
+            }
+        }
+        return validacion;
+    }
+    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en RegistroHuesped
+    public boolean habitacionLibreRegistro(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<RegistroHuesped> registros,Habitacion habitacion){
+        boolean validacion=false;
+        for(RegistroHuesped r:registros){
+            if(habitacion.getId() == r.getIdHabitacion() && r.getFechaEgreso().isBefore(fechaIngreso) && r.getFechaIngreso().isAfter(fechaEgreso)){
+                validacion=true;
+            }
+        }
+        return validacion;
+    }
+    //Agrupamiento de todas las habitaciones libres en un periodo de toempo
+    public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,ArrayList<RegistroHuesped> registros,ArrayList<Habitacion> habitaciones){
+        List<Habitacion> habitacionesLibres=new ArrayList<>();
+        for(Habitacion h:habitaciones){
+            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,reservas,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,registros,h)){
+                habitacionesLibres.add(h);
+            }
+        }
+        return (ArrayList<Habitacion>) habitacionesLibres;
+    }
 
 }
