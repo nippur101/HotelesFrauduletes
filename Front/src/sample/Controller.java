@@ -21,6 +21,12 @@ import java.util.concurrent.Callable;
 
 
 public class Controller implements Initializable {
+    @FXML private TextField busquedaIdRececionista;
+    @FXML private TextField mRecepcionistaNomebreyAppellido;
+    @FXML private TextField mRecepcionistaDireccion;
+    @FXML private TextField mRecepcionistaTelefono;
+    @FXML private TextField mRecepcionistaDni;
+    @FXML private TextField mRecepcionistaPassword;
 
     @FXML private TextField identificadorUsuario;
     @FXML private PasswordField passIdentificadorUsuario;
@@ -105,6 +111,8 @@ public class Controller implements Initializable {
     List<Reserva> listaReserva=new ArrayList<>();
 
     List<RegistroHuesped> listaRegistroHuespedes=new ArrayList<>();
+    Hotel hotel=new Hotel();
+
 
 
 
@@ -183,53 +191,59 @@ public class Controller implements Initializable {
         Habitacion habita16=new Habitacion(304,"Triple","Cuatro personas",3500);
         Habitacion habita17=new Habitacion(305,"Triple","Cuatro personas",3500);
         Habitacion habita18=new Habitacion(306,"Triple","Cuatro personas",3500);
-        List<RegistroHuesped> registros=new ArrayList<>();
-        registros.add(h1);
-        registros.add(h2);
-        registros.add(h3);
-        registros.add(h4);
-        List<Habitacion> habitaciones=new ArrayList<>();
-        habitaciones.add(habita1);
-        habitaciones.add(habita2);
-        habitaciones.add(habita3);
-        habitaciones.add(habita4);
-        habitaciones.add(habita5);
-        habitaciones.add(habita6);
-        habitaciones.add(habita7);
-        habitaciones.add(habita8);
-        habitaciones.add(habita9);
-        habitaciones.add(habita10);
-        habitaciones.add(habita11);
-        habitaciones.add(habita12);
-        habitaciones.add(habita13);
-        habitaciones.add(habita14);
-        habitaciones.add(habita15);
-        habitaciones.add(habita16);
-        habitaciones.add(habita17);
-        habitaciones.add(habita18);
+        //List<RegistroHuesped> registros=new ArrayList<>();
 
-        List<Reserva> reservas=new ArrayList<>();
-        reservas.add(r1);
-        reservas.add(r2);
-        reservas.add(r3);
-        reservas.add(r4);
-        List<Cliente> clientes=new ArrayList<>();
-        clientes.add(c1);
-        clientes.add(c2);
-        clientes.add(c3);
-        clientes.add(c4);
-        clientes.add(c5);
-        clientes.add(c6);
-        clientes.add(c7);
-        clientes.add(c8);
-        List<UsuarioHotel> usuariosHotel=new ArrayList<>();
-        usuariosHotel.add(admin);
-        usuariosHotel.add(admin2);
+        listaRegistroHuespedes.add(h1);
+        listaRegistroHuespedes.add(h2);
+        listaRegistroHuespedes.add(h3);
+        listaRegistroHuespedes.add(h4);
+        //List<Habitacion> habitaciones=new ArrayList<>();
+        listaHabitacion.add(habita1);
+        listaHabitacion.add(habita2);
+        listaHabitacion.add(habita3);
+        listaHabitacion.add(habita4);
+        listaHabitacion.add(habita5);
+        listaHabitacion.add(habita6);
+        listaHabitacion.add(habita7);
+        listaHabitacion.add(habita8);
+        listaHabitacion.add(habita9);
+        listaHabitacion.add(habita10);
+        listaHabitacion.add(habita11);
+        listaHabitacion.add(habita12);
+        listaHabitacion.add(habita13);
+        listaHabitacion.add(habita14);
+        listaHabitacion.add(habita15);
+        listaHabitacion.add(habita16);
+        listaHabitacion.add(habita17);
+        listaHabitacion.add(habita18);
 
-        usuariosHotel.add(recep1);
-        usuariosHotel.add(recep2);
-        usuariosHotel.add(recep3);
-        Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros);
+        //List<Reserva> reservas=new ArrayList<>();
+        listaReserva.add(r1);
+        listaReserva.add(r2);
+        listaReserva.add(r3);
+        listaReserva.add(r4);
+        //List<Cliente> clientes=new ArrayList<>();
+        listaCliente.add(c1);
+        listaCliente.add(c2);
+        listaCliente.add(c3);
+        listaCliente.add(c4);
+        listaCliente.add(c5);
+        listaCliente.add(c6);
+        listaCliente.add(c7);
+        listaCliente.add(c8);
+        //List<UsuarioHotel> usuariosHotel=new ArrayList<>();
+        listaUsuarioHotel.add(admin);
+        listaUsuarioHotel.add(admin2);
+
+        listaUsuarioHotel.add(recep1);
+        listaUsuarioHotel.add(recep2);
+        listaUsuarioHotel.add(recep3);
+        hotel.setListaCliente(listaCliente);
+        hotel.setListaHabitacion(listaHabitacion);
+        hotel.setListaReserva(listaReserva);
+        hotel.setListaUsuarioHotel(listaUsuarioHotel);
+        hotel.setRegistroHuespedes(listaRegistroHuespedes);
+        //Hotel hotel=new Hotel(listaUsuarioHotel,listaCliente,listaHabitacion,listaReserva,listaRegistroHuespedes);
         return hotel;
     }
     public void onPasswordErrorButtonClicked(MouseEvent event){
@@ -461,7 +475,12 @@ public class Controller implements Initializable {
     }
 
     public void onModificarRecepcionistuttonCliked(MouseEvent event){
-
+        busquedaIdRececionista.clear();
+        mRecepcionistaDni.clear();
+        mRecepcionistaNomebreyAppellido.clear();
+        mRecepcionistaDireccion.clear();
+        mRecepcionistaTelefono.clear();
+        mRecepcionistaPassword.clear();
         this.mostrarPaneX(PaneElegido.paneModificarRecepcionist);
 
         this.mostrarFlechaX(FlechaElegida.arrowRecepcionista);
@@ -477,7 +496,7 @@ public class Controller implements Initializable {
         boolean validacion=false;
         int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(identificadorUsuario.getText());
 
-        if (indiceUsuarioHotel!=-1    &&    hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getClave().equals(passIdentificadorUsuario.getText())){
+        if (indiceUsuarioHotel!=-1    &&    listaUsuarioHotel.get(indiceUsuarioHotel).getClave().equals(passIdentificadorUsuario.getText())){
             this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
 
             this.mostrarFlechaX(FlechaElegida.arrowAdmin);
@@ -533,9 +552,11 @@ public class Controller implements Initializable {
     }
 
     public void guardarRecepcionista(MouseEvent event){
+
         Recepcionista recepcionistaNuevo=new Recepcionista(recepcionistaDNI.getText(), recepcionistaNombreApellido.getText(),recepcionistaDireccion.getText(),recepcionistaCorreoElectronico.getText(),recepcionistaTelefono.getText(),recepcionistaPassword.getText());
         listaRececpcionista.add(recepcionistaNuevo);
         mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
+        hotel.getListaUsuarioHotel().add(recepcionistaNuevo);
 
 
     }
@@ -543,17 +564,48 @@ public class Controller implements Initializable {
         Cliente clienteNuevo=new Cliente(clienteDNI.getText(), clienteNombreApellido.getText(),clienteDireccion.getText(),clienteCorreoElectronico.getText(),clienteTelefono.getText(),clientePais.getText(),clienteProvincia.getText(),clienteLocalidad.getText());
         listaCliente.add(clienteNuevo);
         mostrarPaneX(PaneElegido.paneClienteCargado);
+        hotel.getListaCliente().add(clienteNuevo);
 
 
     }
     public void guardarRegistro(MouseEvent event){
         RegistroHuesped regitroNuevo=new RegistroHuesped(registroIDCliente.getText(),(int)registroNroHabitacion.getValue(),registroFechaIngreso.getValue(),registroFechaEgreso.getValue());
         listaRegistroHuespedes.add(regitroNuevo);
-
+        hotel.getRegistroHuespedes().add(regitroNuevo);
 
     }
 
+    public void onBuscarModificarRecepcionistaButtonClicked(MouseEvent event){
+        int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(busquedaIdRececionista.getText());
+        if(indiceUsuarioHotel!=-1){
+            busquedaIdRececionista.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getId());
+            mRecepcionistaNomebreyAppellido.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getNombreYapellido());
+            mRecepcionistaDireccion.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getDireccion());
+            mRecepcionistaTelefono.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getTelefono());
+            mRecepcionistaDni.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getId());
+            mRecepcionistaPassword.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getClave());
 
+        }
+
+    }
+    public void onGuardarModificarRecepcionistaButtonClicked(MouseEvent event){
+        /*busquedaIdRececionista.clear();
+        mRecepcionistaDni.clear();
+        mRecepcionistaNomebreyAppellido.clear();
+        mRecepcionistaDireccion.clear();
+        mRecepcionistaTelefono.clear();
+        mRecepcionistaPassword.clear();*/
+
+        int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(busquedaIdRececionista.getText());
+        listaUsuarioHotel.get(indiceUsuarioHotel).setId(mRecepcionistaDni.getText());
+        listaUsuarioHotel.get(indiceUsuarioHotel).setNombreYapellido(mRecepcionistaNomebreyAppellido.getText());
+        listaUsuarioHotel.get(indiceUsuarioHotel).setDireccion(mRecepcionistaDireccion.getText());
+        listaUsuarioHotel.get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
+        listaUsuarioHotel.get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
+        mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
+
+
+    }
 
 
 

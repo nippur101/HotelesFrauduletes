@@ -27,6 +27,30 @@ public class Hotel {
         this.registroHuespedes = registroHuespedes;
     }
 
+    public void setListaUsuarioHotel(List<UsuarioHotel> listaUsuarioHotel) {
+        this.listaUsuarioHotel = listaUsuarioHotel;
+    }
+
+    public List<Cliente> getListaCliente() {
+        return listaCliente;
+    }
+
+    public void setListaCliente(List<Cliente> listaCliente) {
+        this.listaCliente = listaCliente;
+    }
+
+    public void setListaHabitacion(List<Habitacion> listaHabitacion) {
+        this.listaHabitacion = listaHabitacion;
+    }
+
+    public void setListaReserva(List<Reserva> listaReserva) {
+        this.listaReserva = listaReserva;
+    }
+
+    public void setRegistroHuespedes(List<RegistroHuesped> registroHuespedes) {
+        this.registroHuespedes = registroHuespedes;
+    }
+
     public List<UsuarioHotel> getListaUsuarioHotel() {
         return listaUsuarioHotel;
     }
