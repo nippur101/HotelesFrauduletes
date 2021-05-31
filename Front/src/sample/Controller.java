@@ -471,13 +471,13 @@ public class Controller implements Initializable {
 
     public void onAdminPassButtonCliked(MouseEvent event){
         // SE DEBE PONER EL PASSWORD CORRECTO!!!!!!!!!!!!!!!
-        listaUsuarioHotel= hotel2.getListaUsuarioHotel();
+        Hotel hotel;
+        hotel= cargarDatos();
+
         boolean validacion=false;
-        System.out.println("Encontro : "+cargarDatos().buscarIdUsuarioHotel(identificadorUsuario.getText()));
-        System.out.println();
-        //&& listaUsuarioHotel.get(hotel.buscarIdUsuarioHotel(identificadorUsuario.getText())).getClave().equals(passIdentificadorUsuario.getText())
-        System.out.println(listaUsuarioHotel.size());
-        if (cargarDatos().buscarIdUsuarioHotel(identificadorUsuario.getText())!=-1 ){
+        int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(identificadorUsuario.getText());
+
+        if (indiceUsuarioHotel!=-1    &&    hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getClave().equals(passIdentificadorUsuario.getText())){
             this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
 
             this.mostrarFlechaX(FlechaElegida.arrowAdmin);
