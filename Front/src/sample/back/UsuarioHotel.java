@@ -14,6 +14,9 @@ public abstract class UsuarioHotel extends Usuario {
     }
 
     ///Metodos
+    public String getClave() {
+        return clave;
+    }
 
     /// ---------------------- RESERVA ----------------------
     /// Toma 4 datos , genera instancia de reservay la devuelve.
@@ -62,6 +65,7 @@ public abstract class UsuarioHotel extends Usuario {
         Cliente a = new Cliente(id,nombreYapellido,direccion,correoElectronico,telefono,pais,provincia,localidad);
         return a;
     }
+
 
 
 

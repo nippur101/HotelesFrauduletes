@@ -1,5 +1,7 @@
 package sample.back;
 
+import java.time.LocalDate;
+
 public class Habitacion {
 
     ///Atributos
@@ -9,9 +11,15 @@ public class Habitacion {
     private String caracteristicas;
     private double precio;
     private static int contadorHabitaciones = 0; ///Para generar el ID único
+    private String estadoHabitacion=EstadoHabitacion.LIBRE;
+
 
 
     ///Constructor
+
+    public Habitacion() {
+    }
+
     public Habitacion(int numeroHabitacion, String tipoHabitacion, String caracteristicas, double precio) {
         contadorHabitaciones++;
         this.id = contadorHabitaciones;
@@ -19,6 +27,8 @@ public class Habitacion {
         this.tipoHabitacion = tipoHabitacion;
         this.caracteristicas = caracteristicas;
         this.precio = precio;
+
+
     }
 
     ///Metodos
@@ -59,6 +69,15 @@ public class Habitacion {
     public static int getContadorHabitaciones() {
         return contadorHabitaciones;
     }
+
+    public String getEstadoHabitacion() {
+        return estadoHabitacion;
+    }
+
+    public void setEstadoHabitacion(String estadoHabitacion) {
+        this.estadoHabitacion = estadoHabitacion;
+    }
+
 
     @Override
     public String toString() {
