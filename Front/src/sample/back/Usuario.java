@@ -17,4 +17,10 @@ public abstract class Usuario {
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
     }
+
+    ///Metodos
+    /// Getter and Setter
+    public String getId() {
+        return id;
+    }
 }

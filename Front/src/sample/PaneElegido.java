@@ -14,6 +14,7 @@ public final class PaneElegido {
     public static final String paneRegistro="paneRegistro";
     public static final String paneClienteCargado="paneClienteCargado";
     public static final String paneRecepcionistaCargado="paneRecepcionistaCargado";
+    public static final String paneErrorIngresoPassword="paneErrorIngresoPassword";
 
 
 

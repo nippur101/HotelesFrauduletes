@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3fda26f-148f-4c09-8675-c53073971289" name="Default Changelist" comment="" />
+    <list default="true" id="b3fda26f-148f-4c09-8675-c53073971289" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +91,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Hotel Back up/Front" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
@@ -127,6 +129,8 @@
       <workItem from="1622025311210" duration="150000" />
       <workItem from="1622034058545" duration="634000" />
       <workItem from="1622037312542" duration="1297000" />
+      <workItem from="1622413992934" duration="1033000" />
+      <workItem from="1622457756331" duration="620000" />
     </task>
     <servers />
   </component>
