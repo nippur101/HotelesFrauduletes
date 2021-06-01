@@ -196,7 +196,7 @@
                </font></Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneModificarRecepcionist" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneModificarRecepcionist" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="MODIFICAR RECEPCIONISTA" textFill="WHITE">
                <font>
@@ -401,23 +401,20 @@
             <Image url="@Images/arrow.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="paneModificarClient" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+      <AnchorPane fx:id="paneModificarClient" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
          <children>
-            <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="MODIFICAR CLIENTE" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="1.0" opacity="0.4" text="MODIFICAR CLIENTE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Separator layoutX="189.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="628.0" />
-            <GridPane layoutX="244.0" layoutY="45.0" prefHeight="201.0" prefWidth="339.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="45.0">
+            <Separator layoutX="190.0" layoutY="13.0" opacity="0.4" prefHeight="3.0" prefWidth="628.0" />
+            <GridPane layoutX="75.0" layoutY="93.0" prefHeight="215.0" prefWidth="328.0" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="93.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -429,50 +426,72 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" />
+                  <TextField fx:id="mClienteNomebreyAppellido" GridPane.columnIndex="1" />
                   <Label text="Direccion:" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="mClienteDireccion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="mClienteLocalidad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Localidad" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Telefono:" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="mClienteProvincia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Provincia/estado:" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Pais:" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="DNI:" textAlignment="RIGHT" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
-            <Button layoutX="634.0" layoutY="328.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Guardar">
+            <Button layoutX="634.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#onGuardarModificarClienteButtonClicked" prefHeight="43.0" prefWidth="119.0" text="Guardar">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <GridPane layoutX="461.0" layoutY="93.0" prefHeight="215.0" prefWidth="292.0" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="93.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Pais:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Telefono:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="DNI:" textAlignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="mClientePais" GridPane.columnIndex="1" />
+                  <TextField fx:id="mClienteTelefono" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="mClienteDni" prefHeight="20.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Label layoutX="218.0" layoutY="22.0" text="DNI:" textAlignment="RIGHT">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="busquedaIdCliente" layoutX="319.0" layoutY="25.0" prefHeight="20.0" prefWidth="144.0" />
+            <Button layoutX="524.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onBuscarModificarClienteButtonClicked" text="BUSCAR" />
+            <Separator layoutX="15.0" layoutY="59.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneAccesoPermitido" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">

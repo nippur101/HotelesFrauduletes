@@ -9,5 +9,6 @@ public final class FlechaElegida {
     public static final String arrowRecepcionista="arrowRecepcionista";
     public static final String arrowRegistro="arrowRegistro";
     public static final String arrowReserva="arrowReserva";
+    public static final String arrowNinguna="arrowNinguna";
 
 }

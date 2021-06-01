@@ -21,6 +21,15 @@ import java.util.concurrent.Callable;
 
 
 public class Controller implements Initializable {
+    @FXML private TextField busquedaIdCliente;
+    @FXML private TextField mClienteNomebreyAppellido;
+    @FXML private TextField mClienteDireccion;
+    @FXML private TextField mClienteTelefono;
+    @FXML private TextField mClienteDni;
+    @FXML private TextField mClienteLocalidad;
+    @FXML private TextField mClienteProvincia;
+    @FXML private TextField mClientePais;
+
     @FXML private TextField busquedaIdRececionista;
     @FXML private TextField mRecepcionistaNomebreyAppellido;
     @FXML private TextField mRecepcionistaDireccion;
@@ -140,7 +149,8 @@ public class Controller implements Initializable {
     public void initialize(URL location,ResourceBundle resource){
         registroNroHabitacion.setItems(comboNroHabitaciones);
         this.mostrarPaneX(PaneElegido.paneAdminPass);
-
+        bloquearAccesoImegenesSup();
+        mostrarFlechaX(FlechaElegida.arrowNinguna);
 
     }
 
@@ -439,8 +449,6 @@ public class Controller implements Initializable {
             arrowReserva.setVisible(false);
         }
 
-
-
     }
 
 
@@ -459,7 +467,14 @@ public class Controller implements Initializable {
     }
 
     public void onModificarClientButtonCliked(MouseEvent event){
-
+        busquedaIdCliente.clear();
+        mClienteDni.clear();
+        mClienteNomebreyAppellido.clear();
+        mClienteDireccion.clear();
+        mClienteTelefono.clear();
+        mClienteLocalidad.clear();
+        mClienteProvincia.clear();
+        mClientePais.clear();
         this.mostrarPaneX(PaneElegido.paneModificarClient);
 
         this.mostrarFlechaX(FlechaElegida.arrowClient);
@@ -589,24 +604,49 @@ public class Controller implements Initializable {
 
     }
     public void onGuardarModificarRecepcionistaButtonClicked(MouseEvent event){
-        /*busquedaIdRececionista.clear();
-        mRecepcionistaDni.clear();
-        mRecepcionistaNomebreyAppellido.clear();
-        mRecepcionistaDireccion.clear();
-        mRecepcionistaTelefono.clear();
-        mRecepcionistaPassword.clear();*/
+
 
         int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(busquedaIdRececionista.getText());
-        listaUsuarioHotel.get(indiceUsuarioHotel).setId(mRecepcionistaDni.getText());
-        listaUsuarioHotel.get(indiceUsuarioHotel).setNombreYapellido(mRecepcionistaNomebreyAppellido.getText());
-        listaUsuarioHotel.get(indiceUsuarioHotel).setDireccion(mRecepcionistaDireccion.getText());
-        listaUsuarioHotel.get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
-        listaUsuarioHotel.get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
-        mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
-
+        if(indiceUsuarioHotel!=-1) {
+            listaUsuarioHotel.get(indiceUsuarioHotel).setId(mRecepcionistaDni.getText());
+            listaUsuarioHotel.get(indiceUsuarioHotel).setNombreYapellido(mRecepcionistaNomebreyAppellido.getText());
+            listaUsuarioHotel.get(indiceUsuarioHotel).setDireccion(mRecepcionistaDireccion.getText());
+            listaUsuarioHotel.get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
+            listaUsuarioHotel.get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
+            mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
+        }
 
     }
 
+    public void onBuscarModificarClienteButtonClicked(MouseEvent event){
+        int indiceCliente=hotel.buscarIdCliente(busquedaIdCliente.getText());
+        if(indiceCliente!=-1){
+            busquedaIdCliente.setText(listaCliente.get(indiceCliente).getId());
+            mClienteNomebreyAppellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+            mClienteDireccion.setText(listaCliente.get(indiceCliente).getDireccion());
+            mClienteTelefono.setText(listaCliente.get(indiceCliente).getTelefono());
+            mClienteDni.setText(listaCliente.get(indiceCliente).getId());
+            mClienteLocalidad.setText(listaCliente.get(indiceCliente).getLocalidad());
+            mClienteProvincia.setText(listaCliente.get(indiceCliente).getProvincia());
+            mClientePais.setText(listaCliente.get(indiceCliente).getPais());
 
+        }
+
+    }
+    public void onGuardarModificarClienteButtonClicked(MouseEvent event){
+
+        int indiceCliente=hotel.buscarIdCliente(busquedaIdCliente.getText());
+        if(indiceCliente!=-1) {
+            listaCliente.get(indiceCliente).setId(mClienteDni.getText());
+            listaCliente.get(indiceCliente).setNombreYapellido(mClienteNomebreyAppellido.getText());
+            listaCliente.get(indiceCliente).setDireccion(mClienteDireccion.getText());
+            listaCliente.get(indiceCliente).setTelefono(mClienteTelefono.getText());
+            listaCliente.get(indiceCliente).setLocalidad(mClienteLocalidad.getText());
+            listaCliente.get(indiceCliente).setProvincia(mClienteProvincia.getText());
+            listaCliente.get(indiceCliente).setPais(mClientePais.getText());
+            mostrarPaneX(PaneElegido.paneClienteCargado);
+        }
+
+    }
 
 }
