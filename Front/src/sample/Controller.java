@@ -21,6 +21,14 @@ import java.util.concurrent.Callable;
 
 
 public class Controller implements Initializable {
+    @FXML private TextField reservaAbonoAdelanto;
+    @FXML private ComboBox reservaNroHabitacion;
+    @FXML private DatePicker reservaFechaIngreso;
+    @FXML private DatePicker reservaFechaEgreso;
+    @FXML private TextField reservaBusquedaIdCliente;
+    @FXML private TextField reservaClienteNomebreyApellido;
+
+
     @FXML private TextField busquedaIdCliente;
     @FXML private TextField mClienteNomebreyAppellido;
     @FXML private TextField mClienteDireccion;
@@ -126,6 +134,7 @@ public class Controller implements Initializable {
 
 
 
+
     private Hotel hotel2=new Hotel(listaUsuarioHotel,listaCliente,listaHabitacion,listaReserva,listaRegistroHuespedes);
     /*public ArrayList<Integer> listaHabitacionesLibres(){
         ArrayList<Integer> i=new ArrayList<>();
@@ -142,7 +151,7 @@ public class Controller implements Initializable {
     }*/
     //100,101,102,103,104,105,106,200,201,202,203,204,205,206,300,301,302,303,304,305,306
 
-    ObservableList<Integer> comboNroHabitaciones=FXCollections.observableArrayList(100,101,102,103,104,105,106,200,201,202,203,204,205,206,300,301,302,303,304,305,306);
+    ObservableList<Integer> comboNroHabitaciones=FXCollections.observableArrayList();
 
 
     @Override
@@ -151,10 +160,11 @@ public class Controller implements Initializable {
         this.mostrarPaneX(PaneElegido.paneAdminPass);
         bloquearAccesoImegenesSup();
         mostrarFlechaX(FlechaElegida.arrowNinguna);
+        cargarDatos();
 
     }
 
-    public Hotel cargarDatos(){
+    public void cargarDatos(){
         RegistroHuesped h1 = new RegistroHuesped("35140802", 201, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 06, 10));
         RegistroHuesped h2 = new RegistroHuesped("34185634", 203, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 06, 01));
         RegistroHuesped h3 = new RegistroHuesped("38140802", 205, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
@@ -253,8 +263,8 @@ public class Controller implements Initializable {
         hotel.setListaReserva(listaReserva);
         hotel.setListaUsuarioHotel(listaUsuarioHotel);
         hotel.setRegistroHuespedes(listaRegistroHuespedes);
-        //Hotel hotel=new Hotel(listaUsuarioHotel,listaCliente,listaHabitacion,listaReserva,listaRegistroHuespedes);
-        return hotel;
+
+
     }
     public void onPasswordErrorButtonClicked(MouseEvent event){
         this.mostrarPaneX(PaneElegido.paneAdminPass);
@@ -262,7 +272,7 @@ public class Controller implements Initializable {
     public void onPasswordEntrarButtonClicked(MouseEvent event){
         // SE DEBE PONER EL PASSWORD CORRECTO!!!!!!!!!!!!!!!
         boolean validacion=false;
-        if (cargarDatos().buscarIdUsuarioHotel(identificadorUsuario.getText())!=-1 && listaUsuarioHotel.get(cargarDatos().buscarIdUsuarioHotel(identificadorUsuario.getText())).getClave().equals(passIdentificadorUsuario.getText())){
+        if (hotel.buscarIdUsuarioHotel(identificadorUsuario.getText())!=-1 && listaUsuarioHotel.get(hotel.buscarIdUsuarioHotel(identificadorUsuario.getText())).getClave().equals(passIdentificadorUsuario.getText())){
             this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
 
             this.mostrarFlechaX(FlechaElegida.arrowAdmin);
@@ -505,8 +515,7 @@ public class Controller implements Initializable {
 
     public void onAdminPassButtonCliked(MouseEvent event){
         // SE DEBE PONER EL PASSWORD CORRECTO!!!!!!!!!!!!!!!
-        Hotel hotel;
-        hotel= cargarDatos();
+
 
         boolean validacion=false;
         int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(identificadorUsuario.getText());
@@ -543,14 +552,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void onReservaButtonCliked(MouseEvent event){
 
-        this.mostrarPaneX(PaneElegido.paneReserva);
-
-        this.mostrarFlechaX(FlechaElegida.arrowReserva);
-
-
-    }
 
     public void onRegistroButtonClicked(MouseEvent event){
 
@@ -649,4 +651,59 @@ public class Controller implements Initializable {
 
     }
 
+    public void onReservaButtonCliked(MouseEvent event){
+        reservaClienteNomebreyApellido.setDisable(false);
+        reservaAbonoAdelanto.setDisable(false);
+        reservaBusquedaIdCliente.clear();
+        reservaClienteNomebreyApellido.clear();
+        reservaNroHabitacion.setDisable(true);
+        reservaFechaIngreso.setDisable(true);
+        reservaFechaEgreso.setDisable(true);
+        this.mostrarPaneX(PaneElegido.paneReserva);
+
+        this.mostrarFlechaX(FlechaElegida.arrowReserva);
+
+
+    }
+
+    public void onBuscarReservaClienteButtonClicked(MouseEvent event){
+        int indiceCliente=hotel.buscarIdCliente(reservaBusquedaIdCliente.getText());
+        if(indiceCliente!=-1) {
+           reservaClienteNomebreyApellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+        }else{
+            reservaClienteNomebreyApellido.setText("Cliente no registrado");
+        }
+    }
+
+    public void onSeleccionarReservaClienteButtonClicked(MouseEvent event){
+        reservaClienteNomebreyApellido.setDisable(true);
+        reservaFechaIngreso.setDisable(false);
+        reservaFechaEgreso.setDisable(false);
+    }
+
+    public void onBuscarFechasReservaButtonClicked(MouseEvent event){
+        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue());
+        ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
+        
+        for(int i=0;i<habitacionesLibres.size();i++){
+
+            comboSoloHabitacionesLibres.add(habitacionesLibres.get(i).getNumeroHabitacion());
+
+        }
+        reservaNroHabitacion.setItems(comboSoloHabitacionesLibres);
+        reservaNroHabitacion.setDisable(false);
+
+    }
+
+    public void onReservarClienteButtonClicked(MouseEvent event){
+        double adelanto=Double.parseDouble(reservaAbonoAdelanto.getText());
+        Reserva reservaNueva=new Reserva(hotel.buscarIdPorNumeroDeHabitacion((int)reservaNroHabitacion.getValue()),reservaBusquedaIdCliente.getText(),reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue(),adelanto);
+        listaReserva.add(reservaNueva);
+        hotel.getListaReserva().add(reservaNueva);
+
+
+    }
+    public void pagarAdelantoReservaButtonClicked(MouseEvent event){
+        reservaAbonoAdelanto.setDisable(true);
+    }
 }

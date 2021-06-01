@@ -167,6 +167,7 @@ public class Hotel {
                     validacion=true;
                 }else{
                     validacion=false;
+
                 }
             }
         }
@@ -198,5 +199,14 @@ public class Hotel {
         }
         return (ArrayList<Habitacion>) habitacionesLibres;
     }
-
+//busca y retona Id de habitacion ingresando el numero de la habitacion
+    public int buscarIdPorNumeroDeHabitacion(int nroHabitacion){
+        int idHabitacion=-1;
+        for(int i=0;i<listaHabitacion.size();i++){
+            if(listaHabitacion.get(i).getNumeroHabitacion()==nroHabitacion){
+                idHabitacion=listaHabitacion.get(i).getId();
+            }
+        }
+        return  idHabitacion;
+    }
 }
