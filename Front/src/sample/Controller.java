@@ -21,6 +21,11 @@ import java.util.concurrent.Callable;
 
 
 public class Controller implements Initializable {
+    @FXML private Button buttonConfirmarReserva;
+    @FXML private Label labelReservaGuardadaExitosamente;
+    @FXML private Label labelHabitacionMuestra;
+    @FXML private Label labelFechaEgresoMuestra;
+    @FXML private Label labelFechaIngresoMuestra;
     @FXML private TextField reservaAbonoAdelanto;
     @FXML private ComboBox reservaNroHabitacion;
     @FXML private DatePicker reservaFechaIngreso;
@@ -94,6 +99,7 @@ public class Controller implements Initializable {
     @FXML private ImageView arrowHabitacion;
     @FXML private ImageView arrowReserva;
     //====================PANELES
+    @FXML private AnchorPane paneReservaCargada;
     @FXML private AnchorPane paneErrorIngresoPassword;
     @FXML private AnchorPane paneAdminPass;
     @FXML private AnchorPane paneAccesoPermitido;
@@ -185,6 +191,7 @@ public class Controller implements Initializable {
         Cliente c6=new Cliente("46432210","Americo Gallego","Chile 323","gallego@gmail.com","011-345856","Argentina","Cordoba","Cordoba");
         Cliente c7=new Cliente("5345656","Luis Galvan","Ilia 3223","galvan@gmail.com","011-653546","Argentina","Buenos Aires","Balcarce");
         Cliente c8=new Cliente("32222963","rene Houseman","Libertad 387","rene@gmail.com","011-64545856","Argentina","Buenos Aires","La Plata");
+        Cliente c9=new Cliente("11111111","rene Houseman","Libertad 387","rene@gmail.com","011-64545856","Argentina","Buenos Aires","La Plata");
 
         Administrador admin = new Administrador("35140802", "Mariano Lopez", "3 de Febrero 4070","mariano@gmail.com", "2235-166113","1234");
         Administrador admin2=new Administrador("1111","admin","adminDir","admin@gmail.com","0800-admin","1234");
@@ -251,6 +258,7 @@ public class Controller implements Initializable {
         listaCliente.add(c6);
         listaCliente.add(c7);
         listaCliente.add(c8);
+        listaCliente.add(c9);
         //List<UsuarioHotel> usuariosHotel=new ArrayList<>();
         listaUsuarioHotel.add(admin);
         listaUsuarioHotel.add(admin2);
@@ -416,6 +424,11 @@ public class Controller implements Initializable {
             paneErrorIngresoPassword.setVisible(true);
         }else{
             paneErrorIngresoPassword.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneReservaCargada)){
+            paneReservaCargada.setVisible(true);
+        }else{
+            paneReservaCargada.setVisible(false);
         }
 
 
@@ -684,7 +697,7 @@ public class Controller implements Initializable {
     public void onBuscarFechasReservaButtonClicked(MouseEvent event){
         List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue());
         ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
-        
+
         for(int i=0;i<habitacionesLibres.size();i++){
 
             comboSoloHabitacionesLibres.add(habitacionesLibres.get(i).getNumeroHabitacion());
@@ -696,13 +709,23 @@ public class Controller implements Initializable {
     }
 
     public void onReservarClienteButtonClicked(MouseEvent event){
+        buttonConfirmarReserva.setDisable(false);
+        labelReservaGuardadaExitosamente.setText("VERIFICAR FECHAS Y HABITACION");
+        mostrarPaneX(PaneElegido.paneReservaCargada);
+        labelHabitacionMuestra.setText(reservaNroHabitacion.getValue().toString());
+        labelFechaEgresoMuestra.setText(reservaFechaEgreso.getValue().toString());
+        labelFechaIngresoMuestra.setText(reservaFechaIngreso.getValue().toString());
+
+    }
+    public void onConfirmarReservaButtonClicked(MouseEvent event){
+        labelReservaGuardadaExitosamente.setText("RESERVA CARGADA EXITOSAMENTE");
         double adelanto=Double.parseDouble(reservaAbonoAdelanto.getText());
         Reserva reservaNueva=new Reserva(hotel.buscarIdPorNumeroDeHabitacion((int)reservaNroHabitacion.getValue()),reservaBusquedaIdCliente.getText(),reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue(),adelanto);
         listaReserva.add(reservaNueva);
         hotel.getListaReserva().add(reservaNueva);
-
-
+        buttonConfirmarReserva.setDisable(true);
     }
+
     public void pagarAdelantoReservaButtonClicked(MouseEvent event){
         reservaAbonoAdelanto.setDisable(true);
     }

@@ -504,7 +504,7 @@
             <Separator layoutX="196.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="621.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneReserva" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneReserva" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label layoutX="10.0" layoutY="1.0" opacity="0.4" text="RESERVA" textFill="WHITE">
                <font>
@@ -799,6 +799,48 @@
                </font>
             </Label>
             <Button fx:id="botonVolverErrorPass" layoutX="397.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#onPasswordErrorButtonClicked" text="VOLVER" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneReservaCargada" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+         <children>
+            <Label fx:id="labelReservaGuardadaExitosamente" layoutX="197.0" layoutY="41.0" opacity="0.4" text="RESERVA GUARDADA EXITOSAMENTE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
+            <Label layoutX="95.0" layoutY="119.0" text="Fecha de Ingreso:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFechaIngresoMuestra" layoutX="278.0" layoutY="119.0" prefHeight="27.0" prefWidth="162.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="451.0" layoutY="119.0" text="Fecha de Egreso:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFechaEgresoMuestra" layoutX="617.0" layoutY="119.0" prefHeight="17.0" prefWidth="148.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="278.0" layoutY="214.0" text="Habitacion:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelHabitacionMuestra" layoutX="403.0" layoutY="214.0" prefHeight="27.0" prefWidth="119.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonConfirmarReserva" layoutX="617.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onConfirmarReservaButtonClicked" text="CONFIRMAR RESERVA" />
+            <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onReservaButtonCliked" text="VOLVER" />
          </children>
       </AnchorPane>
    </children>
