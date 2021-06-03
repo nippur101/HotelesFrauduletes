@@ -184,6 +184,23 @@ public class Hotel {
         }
         return  idHabitacion;
     }
+    public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,double precioHabitacionDia){
+        double costo=1;
+        int cont=0;
+        if(fechaIngreso.isBefore(fechaEgreso)){
+            while(fechaIngreso.isBefore(fechaEgreso)){
+                fechaIngreso=fechaIngreso.plusDays(1);
+                cont++;
+            }
+        }else{
+            costo=-1;
+            return costo;
+        }
+
+        costo=precioHabitacionDia*cont;
+
+        return costo;
+    }
 }
 
-}
+
