@@ -247,6 +247,16 @@ public class Hotel {
         }
         return  idHabitacion;
     }
+//Busca y retorna Nro de la habitacion teniendo el id de la habitacion
+    public int buscarNumeroHabitacionPorId(int idHabitacion){
+        int nroHabitacion=-1;
+        for(int i=0;i<listaHabitacion.size();i++){
+            if(listaHabitacion.get(i).getId()==idHabitacion){
+                nroHabitacion=listaHabitacion.get(i).getNumeroHabitacion();
+            }
+        }
+        return  nroHabitacion;
+    }
     //Calcula de acuerdo la cantidad de dias de la estadia el total a pagar por la habitacion
     public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,int nroHabitacion){
         double costo=1;
