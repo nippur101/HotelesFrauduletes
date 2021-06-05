@@ -113,7 +113,21 @@ public class Hotel {
         return i;
     }
     ///Busca una Reserva por Id Cliente
+    public List<Reserva> buscarReservaPorIdCliente(String id){
+
+        List<Reserva> listaReservasCliente=new ArrayList<>();
+
+        int i=(this.listaReserva.size()-1);;
+        for(Reserva r:listaReserva) {
+            if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
+                listaReservasCliente.add(r);
+
+            }
+        }
+        return listaReservasCliente;
+    }
     /// retorna -1 si no se encontró.
+    /*
     public int buscarReservaPorIdCliente(String id){
         boolean busqueda = false;
         int i=(this.listaReserva.size()-1);;
@@ -126,6 +140,8 @@ public class Hotel {
         }
         return i;
     }
+
+     */
     ///Busca una Reserva por Id Reserva
     /// retorna -1 si no se encontró.
     public int buscarReservaPorId(int id){
