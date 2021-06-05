@@ -117,10 +117,10 @@ public class Hotel {
 
         List<Reserva> listaReservasCliente=new ArrayList<>();
 
-        int i=(this.listaReserva.size()-1);;
-        for(Reserva r:listaReserva) {
+
+        for(int i=0;i<listaReserva.size();i++) {
             if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
-                listaReservasCliente.add(r);
+                listaReservasCliente.add(listaReserva.get(i));
 
             }
         }
