@@ -28,7 +28,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-/*
+
         /// Prueba ordenamiento RegistroHuesped por id y por idCliente
         RegistroHuesped h1 = new RegistroHuesped("35140802", 201, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 06, 10));
         RegistroHuesped h2 = new RegistroHuesped("34185634", 203, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 06, 01));
@@ -127,8 +127,6 @@ public class Main extends Application {
         //System.out.println(habitaciones.get(0));
         System.out.println(hotel.montoHabitacionEstadia(LocalDate.of(2021,5,10),LocalDate.of(2021,5,20),101));
 
-
- */
         launch(args);// GUARDA CON ESTO!!!! NO BORRAR!!!
     }
 }
