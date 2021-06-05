@@ -184,9 +184,10 @@ public class Hotel {
         }
         return  idHabitacion;
     }
-    public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,double precioHabitacionDia){
+    //Calcula de acuerdo la cantidad de dias de la estadia el total a pagar por la habitacion
+    public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,int nroHabitacion){
         double costo=1;
-        int cont=0;
+        int cont=0,idhabit=0;
         if(fechaIngreso.isBefore(fechaEgreso)){
             while(fechaIngreso.isBefore(fechaEgreso)){
                 fechaIngreso=fechaIngreso.plusDays(1);
@@ -196,10 +197,23 @@ public class Hotel {
             costo=-1;
             return costo;
         }
-
-        costo=precioHabitacionDia*cont;
+        idhabit=buscarIdPorNumeroDeHabitacion(nroHabitacion);
+        costo= (listaHabitacion.get(idhabit-1).getPrecio())*cont;
 
         return costo;
+    }
+    //busca el id del cliente que esta registrado en la habitacion
+    public String idClientePorNroHabitacionRegistro(int nroHabitacion){
+        //REVISAR ESTADO DE LA HABITACION!!!!!
+        String  idCliente="";
+        int idHabitacion=buscarIdPorNumeroDeHabitacion(nroHabitacion);
+        for(int i=0;i<registroHuespedes.size();i++){
+            if(idHabitacion==registroHuespedes.get(i).getIdHabitacion() ){//&& registroHuespedes.get(i).getEstado().equals(EstadoHabitacion.OCUPADA)){
+                idCliente=registroHuespedes.get(i).getIdCliente();
+            }
+        }
+
+        return idCliente;
     }
 }
 
