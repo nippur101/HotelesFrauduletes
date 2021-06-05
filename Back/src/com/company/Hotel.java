@@ -10,6 +10,7 @@ public class Hotel {
     private List<Habitacion> listaHabitacion;
     private List<Reserva> listaReserva;
     private List<RegistroHuesped> registroHuespedes;
+    private List<Mantenimiento> listaMantenimiento;
 
     public Hotel() {
         this.listaUsuarioHotel = new ArrayList<UsuarioHotel>();
@@ -17,14 +18,16 @@ public class Hotel {
         this.listaHabitacion = new ArrayList<Habitacion>();
         this.listaReserva = new ArrayList<Reserva>();
         this.registroHuespedes = new ArrayList<RegistroHuesped>();
+        this.listaMantenimiento = new ArrayList<Mantenimiento>();
     }
 
-    public Hotel(List<UsuarioHotel> listaUsuarioHotel, List<Cliente> listaCliente, List<Habitacion> listaHabitacion, List<Reserva> listaReserva, List<RegistroHuesped> registroHuespedes) {
+    public Hotel(List<UsuarioHotel> listaUsuarioHotel, List<Cliente> listaCliente, List<Habitacion> listaHabitacion, List<Reserva> listaReserva, List<RegistroHuesped> registroHuespedes, List<Mantenimiento> listaMantenimiento) {
         this.listaUsuarioHotel = listaUsuarioHotel;
         this.listaCliente = listaCliente;
         this.listaHabitacion = listaHabitacion;
         this.listaReserva = listaReserva;
         this.registroHuespedes = registroHuespedes;
+        this.listaMantenimiento = listaMantenimiento;
     }
 
     /// Metodos
@@ -64,6 +67,7 @@ public class Hotel {
         this.registroHuespedes = registroHuespedes;
     }
 
+    /// ---------------------- LOGIN ----------------------
     /// Corrobora si un Usuario Hotel existe y coincide con la clave registrada.
     /// Si Existe y la clave es correcta devuelve el indice de la lista.
     /// Si No existe  o existe pero la clave es incorrecta, devuelve -1.
@@ -81,6 +85,7 @@ public class Hotel {
         }
         return respuesta;
     }
+    /// ---------------------- BUSUQEDAS ----------------------
     ///Busca un Usuario por ID (String) retorna el indice de donde se encuentra
     /// retorna -1 si no se encontró.
     public int buscarIdUsuarioHotel(String id){
@@ -113,21 +118,7 @@ public class Hotel {
         return i;
     }
     ///Busca una Reserva por Id Cliente
-    public List<Reserva> buscarReservaPorIdCliente(String id){
-
-        List<Reserva> listaReservasCliente=new ArrayList<>();
-
-
-        for(int i=0;i<listaReserva.size();i++) {
-            if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
-                listaReservasCliente.add(listaReserva.get(i));
-
-            }
-        }
-        return listaReservasCliente;
-    }
     /// retorna -1 si no se encontró.
-    /*
     public int buscarReservaPorIdCliente(String id){
         boolean busqueda = false;
         int i=(this.listaReserva.size()-1);;
@@ -140,8 +131,16 @@ public class Hotel {
         }
         return i;
     }
-
-     */
+    ///Arreglo de Reservas por Id de Cliente
+    public ArrayList<Reserva> arregloReservasPorCliente (String id){
+        List<Reserva> listaReservaPorCliente = new ArrayList<>();
+        for (Reserva h: this.listaReserva){
+                if ((h.getBorradoLogico())&&(h.getIdCliente().equals(id))){
+                    listaReservaPorCliente.add(h);
+                }
+        }
+        return (ArrayList<Reserva>) listaReservaPorCliente;
+    }
     ///Busca una Reserva por Id Reserva
     /// retorna -1 si no se encontró.
     public int buscarReservaPorId(int id){
@@ -157,55 +156,20 @@ public class Hotel {
         return i;
     }
 
-/*
-    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
-    public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,Habitacion habitacion){
-        boolean validacion=false;
-        for(Reserva r:reservas){
-            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
-                validacion=true;
-            }else{
-                validacion=false;
-                return validacion;
-            }
-        }
-        return validacion;
-    }
-    //Busqueda de UNA habitacion libre en un espacio de tiempo solo en RegistroHuesped
-    public boolean habitacionLibreRegistro(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<RegistroHuesped> registros,Habitacion habitacion){
-        boolean validacion=false;
-        for(RegistroHuesped r:registros){
-            if(habitacion.getId() == r.getIdHabitacion() && (r.getFechaEgreso().isBefore(fechaIngreso) || r.getFechaIngreso().isAfter(fechaEgreso))){
-                validacion=true;
-            }else{
-                validacion=false;
-                return validacion;
-            }
-        }
-        return validacion;
-    }
-    //Agrupamiento de todas las habitaciones libres en un periodo de tiempo
-    public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,ArrayList<RegistroHuesped> registros,ArrayList<Habitacion> habitaciones){
-        List<Habitacion> habitacionesLibres=new ArrayList<>();
-        for(Habitacion h:habitaciones){
-            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,reservas,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,registros,h)){
-                habitacionesLibres.add(h);
-            }
-        }
-        return (ArrayList<Habitacion>) habitacionesLibres;
-    }
-    */
+
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
     public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso, Habitacion habitacion){
         boolean validacion=true;
 
         for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
-            if(habitacion.getId() == this.listaReserva.get(i).getIdHabitacion()){
-                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso)<0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso)<0)) ||
-                            (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso)>0)))) {
-                 validacion=true;
-             }else{
-                  validacion=false;
+            if (this.listaReserva.get(i).getBorradoLogico()) {
+                if (habitacion.getId() == this.listaReserva.get(i).getIdHabitacion()) {
+                    if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso) < 0) && (this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso) < 0)) ||
+                            (((this.listaReserva.get(i).getFechaIngreso().compareTo(fechaIngreso) > 0) && (this.listaReserva.get(i).getFechaEgreso().compareTo(fechaEgreso) > 0)))) {
+                        validacion = true;
+                    } else {
+                        validacion = false;
+                    }
                 }
             }
         }
@@ -216,9 +180,25 @@ public class Hotel {
         boolean validacion=true;
 
         for(int i=0; (i<this.registroHuespedes.size()&&validacion);i++){
-            if(habitacion.getId() == this.registroHuespedes.get(i).getIdHabitacion()){
-                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso)<0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso)<0)) ||
-                        (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso)>0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso)>0)))) {
+            if (this.registroHuespedes.get(i).getEstado()=="Abierto") {
+                if (habitacion.getId() == this.registroHuespedes.get(i).getIdHabitacion()) {
+                    if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso) < 0) && (this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso) < 0)) ||
+                            (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fechaIngreso) > 0) && (this.registroHuespedes.get(i).getFechaEgreso().compareTo(fechaEgreso) > 0)))) {
+                        validacion = true;
+                    } else {
+                        validacion = false;
+                    }
+                }
+            }
+        }
+        return validacion;
+    }
+    ///Dada una fecha,
+    public boolean habitacionLibreMantenimiento (LocalDate fecha, Habitacion habitacion){
+        boolean validacion=true;
+        for(int i=0; (i<this.listaMantenimiento.size()&&validacion);i++){
+            if(habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()){
+                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)>0))) {
                     validacion=true;
                 }else{
                     validacion=false;
@@ -227,16 +207,26 @@ public class Hotel {
         }
         return validacion;
     }
-    //Agrupamiento de todas las habitaciones libres en un periodo de tiempo
-    public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso){
-        List<Habitacion> habitacionesLibres=new ArrayList<>();
-        for(Habitacion h:this.listaHabitacion){
-            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,h)){
-                habitacionesLibres.add(h);
+    ///Busca mantenimiento por fecha y habitacion.
+    public Mantenimiento buscarMantenimiento (LocalDate fecha, Habitacion habitacion){
+        boolean validacion=true;
+        Mantenimiento m = new Mantenimiento();
+        for(int i=0; (i<this.listaMantenimiento.size()&&validacion);i++){
+            if(habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()){
+                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                    validacion=true;
+                }else{
+                    validacion=false;
+                    m = this.listaMantenimiento.get(i);
+                }
             }
         }
-        return (ArrayList<Habitacion>) habitacionesLibres;
+        return m;
     }
+
+
+
+
     //busca y retona Id de habitacion ingresando el numero de la habitacion
     public int buscarIdPorNumeroDeHabitacion(int nroHabitacion){
         int idHabitacion=-1;
@@ -247,16 +237,40 @@ public class Hotel {
         }
         return  idHabitacion;
     }
-//Busca y retorna Nro de la habitacion teniendo el id de la habitacion
-    public int buscarNumeroHabitacionPorId(int idHabitacion){
-        int nroHabitacion=-1;
-        for(int i=0;i<listaHabitacion.size();i++){
-            if(listaHabitacion.get(i).getId()==idHabitacion){
-                nroHabitacion=listaHabitacion.get(i).getNumeroHabitacion();
+    /// ---------------------- AGRUPAMIENTOS ----------------------
+    //Agrupamiento de todas las habitaciones libres en un periodo de tiempo
+    public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso){
+        List<Habitacion> habitacionesLibres=new ArrayList<>();
+        for(Habitacion h:this.listaHabitacion){
+            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,h)){
+                habitacionesLibres.add(h);
             }
         }
-        return  nroHabitacion;
+        return (ArrayList<Habitacion>) habitacionesLibres;
     }
+
+    ///Agrupamiento de las habitaciones en un arry según su estado
+    public ArrayList<Habitacion> arryHabitacionesEstado(LocalDate fecha){
+        List<Habitacion> habitacionesPorEstado= new ArrayList<>();
+        for(Habitacion h:this.listaHabitacion){
+            if(!habitacionLibreReserva(fecha, fecha,h)){
+                h.setEstadoHabitacion(EstadoHabitacion.RESERVADA);
+                habitacionesPorEstado.add(h);
+            }else if (!habitacionLibreRegistro(fecha, fecha,h)) {
+                h.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+                habitacionesPorEstado.add(h);
+            }else if (!habitacionLibreMantenimiento(fecha, h)) {
+                Mantenimiento a = buscarMantenimiento(fecha, h);
+                h.setEstadoHabitacion(EstadoHabitacion.NODISPONIBLE + ' ' +'(' + (a.getDetalle()) + ')');
+                habitacionesPorEstado.add(h);
+            }else {
+                h.setEstadoHabitacion(EstadoHabitacion.LIBRE);
+                habitacionesPorEstado.add(h);
+                }
+            }
+        return (ArrayList<Habitacion>) habitacionesPorEstado;
+    }
+
     //Calcula de acuerdo la cantidad de dias de la estadia el total a pagar por la habitacion
     public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,int nroHabitacion){
         double costo=1;
@@ -287,13 +301,6 @@ public class Hotel {
         }
 
         return idCliente;
-    }
-    //busca cliente por ID, retona cliente
-    public Cliente buscarClientePorID(String idCliente){
-        int indice=this.buscarIdCliente(idCliente);
-        Cliente cliente=listaCliente.get(indice);
-        return cliente;
-
     }
 }
 

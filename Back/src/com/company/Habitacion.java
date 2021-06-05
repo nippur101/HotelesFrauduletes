@@ -9,6 +9,7 @@ public class Habitacion {
     private String caracteristicas;
     private double precio;
     private static int contadorHabitaciones = 0; ///Para generar el ID único
+    private String estadoHabitacion=EstadoHabitacion.LIBRE;
 
 
     ///Constructor
@@ -60,6 +61,13 @@ public class Habitacion {
         return contadorHabitaciones;
     }
 
+    public String getEstadoHabitacion() {
+        return estadoHabitacion;
+    }
+    public void setEstadoHabitacion(String estadoHabitacion) {
+        this.estadoHabitacion = estadoHabitacion;
+    }
+
     @Override
     public String toString() {
         return "Habitacion{" +
@@ -67,7 +75,8 @@ public class Habitacion {
                 ", numeroHabitacion=" + numeroHabitacion +
                 ", tipoHabitacion='" + tipoHabitacion + '\'' +
                 ", caracteristicas='" + caracteristicas + '\'' +
-                ", precio=" + precio +
+                ", estado= " + estadoHabitacion +
+                ", precio=" + precio + '\'' +
                 '}';
     }
 }

@@ -61,6 +61,9 @@ public class Main {
         Habitacion habita16=new Habitacion(304,"Triple","Cuatro personas",3500);
         Habitacion habita17=new Habitacion(305,"Triple","Cuatro personas",3500);
         Habitacion habita18=new Habitacion(306,"Triple","Cuatro personas",3500);
+
+        Mantenimiento mant1= new Mantenimiento(11, LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 01),"Arreglo Telefono");
+
         List<RegistroHuesped> registros=new ArrayList<>();
         registros.add(h1);
         registros.add(h2);
@@ -110,12 +113,29 @@ public class Main {
         usuariosHotel.add(recep1);
         usuariosHotel.add(recep2);
         usuariosHotel.add(recep3);
-        Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros);
+
+        List<Mantenimiento> mantenimientos = new ArrayList<>();
+        mantenimientos.add(mant1);
+
+        Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros,mantenimientos);
 
         //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12), (ArrayList<Reserva>) hotel.getListaReserva(),(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes(),(ArrayList<Habitacion>) hotel.getListaHabitacion());
         //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 8, 01),LocalDate.of(2021, 8, 15));
+       /*
         List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12));
         for(Habitacion ha : habitacionesLibres)
+        {
+            System.out.println(ha.toString());
+        }
+*/
+        System.out.println(hotel.getListaHabitacion().size());
+        for(Habitacion ha : hotel.getListaHabitacion())
+        {
+            System.out.println(ha.toString());
+        }
+        List<Habitacion> habitacionesEstado=hotel.arryHabitacionesEstado(LocalDate.of(2021, 7, 01));
+        System.out.println(habitacionesEstado.size());
+        for(Habitacion ha : habitacionesEstado)
         {
             System.out.println(ha.toString());
         }
