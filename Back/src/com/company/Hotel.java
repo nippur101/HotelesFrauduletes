@@ -118,7 +118,7 @@ public class Hotel {
         boolean busqueda = false;
         int i=(this.listaReserva.size()-1);;
         while ((i>-1)&&(!busqueda)) {
-            if (this.listaReserva.get(i).getIdCliente().equals(id)) {
+            if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
                 busqueda = true;
             }else{
                 i--;
@@ -132,7 +132,7 @@ public class Hotel {
         boolean busqueda = false;
         int i=(this.listaReserva.size()-1);;
         while ((i>-1)&&(!busqueda)) {
-            if (this.listaReserva.get(i).getId()==(id)) {
+            if (this.listaReserva.get(i).getId()==(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
                 busqueda = true;
             }else{
                 i--;
