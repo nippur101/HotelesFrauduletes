@@ -26,7 +26,7 @@
             <Image url="@Images/arrow.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="paneTopAdmin" layoutX="6.0" prefHeight="97.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="paneTopAdmin" layoutX="6.0" prefHeight="97.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -83,7 +83,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="USUARIO" textFill="#fffefe">
                <font>
@@ -555,7 +555,7 @@
             <Separator layoutX="8.0" layoutY="236.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
          <children>
             <Label layoutY="1.0" opacity="0.4" text="REGISTRO DE HUESPED" textFill="WHITE">
                <font>
@@ -563,23 +563,18 @@
                </font>
             </Label>
             <Separator layoutX="207.0" layoutY="13.0" opacity="0.4" prefHeight="3.0" prefWidth="597.0" />
-            <Label layoutX="21.0" layoutY="103.0" text="Fecha de Ingreso">
+            <Label layoutX="21.0" layoutY="103.0" text="Lista Reservas">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="282.0" layoutY="186.0" text="Habitacion:">
+            <Label layoutX="265.0" layoutY="199.0" text="Habitacion:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Button layoutX="729.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarRegistrarClienteButtonClicked" text="Seleccionar" />
-            <Label layoutX="379.0" layoutY="103.0" text="Fecha de Partida">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="registroNroHabitacion" layoutX="396.0" layoutY="187.0" prefWidth="150.0" promptText="Seleccionar" />
+            <ComboBox fx:id="registroNroHabitacion" layoutX="377.0" layoutY="200.0" prefWidth="150.0" promptText="Seleccionar" />
             <Label layoutX="10.0" layoutY="219.0" opacity="0.4" text="DATOS EXTRA DE CLIENTE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -613,10 +608,16 @@
             <TextField fx:id="registroPagoAdelanto" layoutX="554.0" layoutY="250.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" text="0.0" />
             <Separator layoutX="18.0" layoutY="79.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
             <Button layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarFechaButtonClicked" text="Confirmar" />
-            <Separator layoutX="8.0" layoutY="160.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
+            <Separator layoutX="9.0" layoutY="190.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
             <Button fx:id="registroBusquedaCliente" layoutX="359.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onBuscarRegistrarClienteButtonClicked" text="&gt;OK" />
-            <DatePicker fx:id="registroFechaIngreso" layoutX="177.0" layoutY="104.0" />
-            <DatePicker fx:id="registroFechaEgreso" layoutX="530.0" layoutY="104.0" />
+            <TableView fx:id="tableViewRegistroReservasCliente" layoutX="193.0" layoutY="82.0" prefHeight="104.0" prefWidth="481.0">
+              <columns>
+                <TableColumn fx:id="tablenReservaNroHabitacion" prefWidth="95.0" text="NroHabitacion" />
+                <TableColumn fx:id="tableReservaColumFechaIngreso" prefWidth="132.0" text="FechaIngreso" />
+                  <TableColumn fx:id="tableReservaColumFechaEngreso" prefWidth="122.0" text="FechaEgreso" />
+                  <TableColumn fx:id="tableReservaAbono" prefWidth="129.0" text="Abono" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panePago" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
@@ -688,7 +689,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneTopUsuario" prefHeight="79.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" layoutX="-22.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" layoutX="-22.0" prefHeight="100.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Separator opacity="0.0" prefWidth="200.0" />
                   <ImageView fx:id="imageRecepcionist1" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#onRecepcionistButtonCliked" pickOnBounds="true" preserveRatio="true">
@@ -772,7 +773,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneRecepcionistaCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
-            <Label layoutX="166.0" layoutY="183.0" opacity="0.4" text="RECEPCIONISTA CARGADO EXITOSAMENTE" textFill="WHITE">
+            <Label fx:id="labelRecepcionitaCargadoExitosamente" layoutX="166.0" layoutY="183.0" opacity="0.4" text="RECEPCIONISTA CARGADO EXITOSAMENTE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -782,7 +783,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneClienteCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
-            <Label layoutX="216.0" layoutY="183.0" opacity="0.4" text="CLIENTE CARGADO EXITOSAMENTE" textFill="WHITE">
+            <Label fx:id="labelPaneClienteCargadoExitosamente" layoutX="216.0" layoutY="183.0" opacity="0.4" text="CLIENTE CARGADO EXITOSAMENTE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
