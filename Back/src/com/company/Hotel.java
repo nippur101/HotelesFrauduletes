@@ -288,6 +288,13 @@ public class Hotel {
 
         return idCliente;
     }
+    //busca cliente por ID, retona cliente
+    public Cliente buscarClientePorID(String idCliente){
+        int indice=this.buscarIdCliente(idCliente);
+        Cliente cliente=listaCliente.get(indice);
+        return cliente;
+
+    }
 }
 
 
