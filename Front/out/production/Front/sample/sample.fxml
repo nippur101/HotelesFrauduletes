@@ -26,7 +26,7 @@
             <Image url="@Images/arrow.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="PaneTopAdmin" layoutX="6.0" prefHeight="97.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="paneTopAdmin" layoutX="6.0" prefHeight="97.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -83,7 +83,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="USUARIO" textFill="#fffefe">
                <font>
@@ -555,7 +555,7 @@
             <Separator layoutX="8.0" layoutY="236.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label layoutY="1.0" opacity="0.4" text="REGISTRO DE HUESPED" textFill="WHITE">
                <font>
@@ -610,7 +610,7 @@
                </font>
             </Label>
             <TextArea fx:id="registroObservaciones" layoutX="192.0" layoutY="292.0" prefHeight="79.0" prefWidth="443.0" />
-            <TextField fx:id="registroPagoAdelanto" layoutX="554.0" layoutY="250.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" />
+            <TextField fx:id="registroPagoAdelanto" layoutX="554.0" layoutY="250.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" text="0.0" />
             <Separator layoutX="18.0" layoutY="79.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
             <Button layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarFechaButtonClicked" text="Confirmar" />
             <Separator layoutX="8.0" layoutY="160.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
@@ -621,25 +621,25 @@
       </AnchorPane>
       <AnchorPane fx:id="panePago" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
-            <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="CAJA" textFill="#fffefe">
+            <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="CONSUMO" textFill="#fffefe">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Separator layoutX="83.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="734.0" />
+            <Separator layoutX="123.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="694.0" />
             <Label layoutX="25.0" layoutY="49.0" text="Habitación:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="430.0" layoutY="50.0" prefHeight="26.0" prefWidth="328.0" />
-            <Label layoutX="350.0" layoutY="49.0" text="Huesped:">
+            <TextField fx:id="consumoHuesped" layoutX="368.0" layoutY="50.0" prefHeight="26.0" prefWidth="112.0" />
+            <Label layoutX="284.0" layoutY="48.0" text="Huesped:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Button layoutX="715.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#onAdminPassButtonCliked" prefHeight="30.0" prefWidth="97.0" text="Realizar" />
-            <ComboBox layoutX="129.0" layoutY="49.0" prefWidth="150.0" promptText="Seleccionar" />
+            <ComboBox fx:id="consumoNroHabitacion" layoutX="129.0" layoutY="49.0" prefWidth="150.0" promptText="Seleccionar" />
             <Label layoutX="89.0" layoutY="117.0" text="Detalle:">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -662,28 +662,31 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="89.0" layoutY="90.0" prefHeight="26.0" prefWidth="85.0" />
+            <TextField fx:id="consumoCargo" layoutX="89.0" layoutY="90.0" prefHeight="26.0" prefWidth="85.0" />
             <Label layoutX="183.0" layoutY="93.0" text="Abonos:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="253.0" layoutY="92.0" prefHeight="26.0" prefWidth="102.0" />
+            <TextField fx:id="consumoAbono" layoutX="253.0" layoutY="92.0" prefHeight="26.0" prefWidth="102.0" />
             <Label layoutX="364.0" layoutY="93.0" text="Saldo:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="416.0" layoutY="93.0" prefHeight="26.0" prefWidth="119.0" />
+            <TextField fx:id="consumoSaldo" layoutX="423.0" layoutY="94.0" prefHeight="26.0" prefWidth="119.0" />
             <Label layoutX="542.0" layoutY="93.0" text="Accion:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" promptText="ChekOut" />
+            <ComboBox fx:id="consumoOperacion" layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" promptText="ChekOut" />
+            <Button layoutX="504.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoBuscarClienteClicked" text="OK" />
+            <TextField fx:id="consumoNombreHuesped" layoutX="557.0" layoutY="51.0" />
+            <Button layoutX="727.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoSeleccionarClienteButtonClicked" text="Seleccionar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneTopUsuario" prefHeight="79.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="paneTopUsuario" prefHeight="79.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" layoutX="-22.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
