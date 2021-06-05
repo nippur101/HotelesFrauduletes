@@ -27,23 +27,41 @@ public class Hotel {
         this.registroHuespedes = registroHuespedes;
     }
 
+    /// Metodos
+    /// Getters and Setters
     public List<UsuarioHotel> getListaUsuarioHotel() {
         return listaUsuarioHotel;
     }
-    public void agregarUsuarioHotel(UsuarioHotel a){
-        this.listaUsuarioHotel.add(a);
+    public void setListaUsuarioHotel(List<UsuarioHotel> listaUsuarioHotel) {
+        this.listaUsuarioHotel = listaUsuarioHotel;
+    }
+
+    public List<Cliente> getListaCliente() {
+        return listaCliente;
+    }
+    public void setListaCliente(List<Cliente> listaCliente) {
+        this.listaCliente = listaCliente;
     }
 
     public List<Habitacion> getListaHabitacion() {
         return listaHabitacion;
     }
+    public void setListaHabitacion(List<Habitacion> listaHabitacion) {
+        this.listaHabitacion = listaHabitacion;
+    }
 
     public List<Reserva> getListaReserva() {
         return listaReserva;
     }
+    public void setListaReserva(List<Reserva> listaReserva) {
+        this.listaReserva = listaReserva;
+    }
 
     public List<RegistroHuesped> getRegistroHuespedes() {
         return registroHuespedes;
+    }
+    public void setRegistroHuespedes(List<RegistroHuesped> registroHuespedes) {
+        this.registroHuespedes = registroHuespedes;
     }
 
     /// Corrobora si un Usuario Hotel existe y coincide con la clave registrada.

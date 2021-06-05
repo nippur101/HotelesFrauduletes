@@ -15,8 +15,12 @@ public abstract class UsuarioHotel extends Usuario {
     }
 
     ///Metodos
+    /// Getters and Setters
     public String getClave() {
         return clave;
+    }
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     /// ---------------------- RESERVA ----------------------

@@ -32,9 +32,6 @@ public class Reserva {
     public int getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getIdHabitacion() {
         return idHabitacion;
@@ -80,9 +77,6 @@ public class Reserva {
 
     public static int getContadorReservas() {
         return contadorReservas;
-    }
-    public static void setContadorReservas(int contadorReservas) {
-        Reserva.contadorReservas = contadorReservas;
     }
 
     @Override
