@@ -112,6 +112,35 @@ public class Hotel {
         }
         return i;
     }
+    ///Busca una Reserva por Id Cliente
+    /// retorna -1 si no se encontró.
+    public int buscarReservaPorIdCliente(String id){
+        boolean busqueda = false;
+        int i=(this.listaReserva.size()-1);;
+        while ((i>-1)&&(!busqueda)) {
+            if (this.listaReserva.get(i).getIdCliente().equals(id)) {
+                busqueda = true;
+            }else{
+                i--;
+            }
+        }
+        return i;
+    }
+    ///Busca una Reserva por Id Reserva
+    /// retorna -1 si no se encontró.
+    public int buscarReservaPorId(int id){
+        boolean busqueda = false;
+        int i=(this.listaReserva.size()-1);;
+        while ((i>-1)&&(!busqueda)) {
+            if (this.listaReserva.get(i).getId()==(id)) {
+                busqueda = true;
+            }else{
+                i--;
+            }
+        }
+        return i;
+    }
+
 /*
     //Busqueda de UNA habitacion libre en un espacio de tiempo solo en Reserva
     public boolean habitacionLibreReserva(LocalDate fechaIngreso,LocalDate fechaEgreso,ArrayList<Reserva> reservas,Habitacion habitacion){
