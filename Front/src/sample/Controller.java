@@ -33,10 +33,16 @@ public class Controller implements Initializable {
     @FXML private TableColumn<ReservaCliente,String > tableReservaColumFechaEngreso;
     @FXML private TableColumn<ReservaCliente,Integer > tablenReservaNroHabitacion;
     @FXML private TableColumn<ReservaCliente,Double > tableReservaAbono;
+
+
     @FXML private TextField registroIDCliente;
-    @FXML private ComboBox registroNroHabitacion;
-    @FXML private DatePicker registroFechaIngreso;
-    @FXML private DatePicker registroFechaEgreso;
+
+    @FXML private CheckBox registroCheckBoxHabi0;
+    @FXML private CheckBox registroCheckBoxHabi1;
+    @FXML private CheckBox registroCheckBoxHabi2;
+    @FXML private CheckBox registroCheckBoxHabi3;
+    @FXML private CheckBox registroCheckBoxHabi4;
+
     @FXML private TextField registroClienteGrupo;
     @FXML private TextArea registroObservaciones;
     @FXML private TextField registroPagoAdelanto;
@@ -336,6 +342,7 @@ public class Controller implements Initializable {
                         this.mostrarFlechaX(FlechaElegida.arrowAdmin);
                         habilitarAccesoImegenesSup();
                     } else {
+
                         this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
                         this.mostrarPaneTopX(PaneElegido.paneTopUsuario);
                         this.mostrarFlechaX(FlechaElegida.arrowAdmin);
@@ -709,6 +716,7 @@ public class Controller implements Initializable {
             hotel.getListaCliente().add(clienteNuevo);
             labelPaneClienteCargadoExitosamente.setText("CLIENTE CARGADO EXITOSAMENTE");
 
+
         }else{
             labelPaneClienteCargadoExitosamente.setText("EL USUARIO YA SE ENCUENTRA REGISTRADO");
             mostrarPaneX(PaneElegido.paneClienteCargado);
@@ -751,8 +759,22 @@ public class Controller implements Initializable {
         tableViewRegistroReservasCliente.setItems(getReservaCliente(cliente));
 
     }
-    public void onRegistrarFechaButtonClicked(MouseEvent event){
+    public void onRegistrarConfirmarButtonClicked(MouseEvent event){
+        Cliente cliente=hotel.buscarClientePorID(registroIDCliente.getText());
 
+        List<CheckBox> comboHabita=new ArrayList<>();
+        comboHabita.add(registroCheckBoxHabi0);
+        comboHabita.add(registroCheckBoxHabi1);
+        comboHabita.add(registroCheckBoxHabi2);
+        comboHabita.add(registroCheckBoxHabi3);
+        comboHabita.add(registroCheckBoxHabi4);
+        ObservableList<ReservaCliente> listReservasCliente=getReservaCliente(cliente);
+        for(int i=0;i<listReservasCliente.size();i++){
+            comboHabita.get(i).setText(listReservasCliente.get(i).getNroHabitacion().toString());
+            comboHabita.get(i).setVisible(true);
+
+        }
+        /*
 
         List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(registroFechaIngreso.getValue(),registroFechaEgreso.getValue());
         ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
@@ -765,14 +787,21 @@ public class Controller implements Initializable {
         registroNroHabitacion.setItems(comboSoloHabitacionesLibres);
 
         registroButtonRegistrar.setDisable(false);
+
+         */
     }
 
 
     public void onRegistroButtonClicked(MouseEvent event){
         registroIDCliente.clear();
         registroClienteNomebreyApellido.clear();
-        registroNroHabitacion.setDisable(true);
+
         registroButtonRegistrar.setDisable(true);
+        registroCheckBoxHabi0.setVisible(false);
+        registroCheckBoxHabi1.setVisible(false);
+        registroCheckBoxHabi2.setVisible(false);
+        registroCheckBoxHabi3.setVisible(false);
+        registroCheckBoxHabi4.setVisible(false);
 
 
         this.mostrarPaneX(PaneElegido.paneRegistro);
@@ -785,18 +814,19 @@ public class Controller implements Initializable {
         buttonConfirmarRegistro.setDisable(false);
         labelRegistroGuardadoExitosamente.setText("VERIFICAR FECHAS Y HABITACION");
         mostrarPaneX(PaneElegido.paneRegistroCargado);
-        labelRegistroHabitacionMuestra.setText(registroNroHabitacion.getValue().toString());
-        labelRegistroFechaEgresoMuestra.setText(registroFechaEgreso.getValue().toString());
-        labelRegistroFechaIngresoMuestra.setText(registroFechaIngreso.getValue().toString());
+        //labelRegistroHabitacionMuestra.setText(registroNroHabitacion.getValue().toString());
+        //labelRegistroFechaEgresoMuestra.setText(registroFechaEgreso.getValue().toString());
+        //labelRegistroFechaIngresoMuestra.setText(registroFechaIngreso.getValue().toString());
 
     }
     public void onConfirmarRegistroButtonClicked(MouseEvent event){
 
         labelRegistroGuardadoExitosamente.setText("EL REGISTRO FUE CARGADO EXITOSAMENTE");
-        int nroHabitacion=Integer.valueOf(registroNroHabitacion.getValue().toString());
+        //int nroHabitacion=Integer.valueOf(registroNroHabitacion.getValue().toString());
 
-        int idHabitacion=hotel.buscarIdPorNumeroDeHabitacion(nroHabitacion);
+        //int idHabitacion=hotel.buscarIdPorNumeroDeHabitacion(nroHabitacion);
         double pagoAdelanto=Double.parseDouble(registroPagoAdelanto.getText());
+        /*
         //cambiar : sacar fechas y que tome de reserva, las reservas activas
         RegistroHuesped registroNuevo=new RegistroHuesped(registroIDCliente.getText(),idHabitacion,registroFechaIngreso.getValue(),registroFechaEgreso.getValue());
         listaRegistroHuespedes.add(registroNuevo);
@@ -820,6 +850,8 @@ public class Controller implements Initializable {
        // System.out.println(nuevoConsumo.toString());
        // System.out.println(hotel.getListaCliente().get(hotel.buscarIdUsuarioHotel(registroIDCliente.getText())).getConsumos().toString());
 
+
+         */
     }
 
     public void onBuscarModificarRecepcionistaButtonClicked(MouseEvent event){

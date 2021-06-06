@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -568,13 +569,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="265.0" layoutY="199.0" text="Habitacion:">
+            <Label layoutX="21.0" layoutY="199.0" text="Habitacion:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Button layoutX="729.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarRegistrarClienteButtonClicked" text="Seleccionar" />
-            <ComboBox fx:id="registroNroHabitacion" layoutX="377.0" layoutY="200.0" prefWidth="150.0" promptText="Seleccionar" />
             <Label layoutX="10.0" layoutY="219.0" opacity="0.4" text="DATOS EXTRA DE CLIENTE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -607,7 +607,7 @@
             <TextArea fx:id="registroObservaciones" layoutX="192.0" layoutY="292.0" prefHeight="79.0" prefWidth="443.0" />
             <TextField fx:id="registroPagoAdelanto" layoutX="554.0" layoutY="250.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" text="0.0" />
             <Separator layoutX="18.0" layoutY="79.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
-            <Button layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarFechaButtonClicked" text="Confirmar" />
+            <Button layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarConfirmarButtonClicked" text="Confirmar" />
             <Separator layoutX="9.0" layoutY="190.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
             <Button fx:id="registroBusquedaCliente" layoutX="359.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onBuscarRegistrarClienteButtonClicked" text="&gt;OK" />
             <TableView fx:id="tableViewRegistroReservasCliente" layoutX="193.0" layoutY="82.0" prefHeight="104.0" prefWidth="481.0">
@@ -618,6 +618,22 @@
                   <TableColumn fx:id="tableReservaAbono" prefWidth="129.0" text="Abono" />
               </columns>
             </TableView>
+            <Button fx:id="buttonRegistroElegirHabi" layoutX="741.0" layoutY="200.0" mnemonicParsing="false" text="Elegir" />
+            <HBox alignment="CENTER" layoutX="120.0" layoutY="198.0" prefHeight="30.0" prefWidth="621.0">
+               <children>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="registroCheckBoxHabi0" ellipsisString="Habitacion" mnemonicParsing="false" prefHeight="17.0" prefWidth="65.0" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="registroCheckBoxHabi1" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="registroCheckBoxHabi2" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="registroCheckBoxHabi3" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="registroCheckBoxHabi4" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panePago" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
@@ -689,7 +705,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneTopUsuario" prefHeight="79.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" layoutX="-22.0" prefHeight="100.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" layoutX="-22.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Separator opacity="0.0" prefWidth="200.0" />
                   <ImageView fx:id="imageRecepcionist1" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#onRecepcionistButtonCliked" pickOnBounds="true" preserveRatio="true">
