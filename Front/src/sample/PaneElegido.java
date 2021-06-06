@@ -21,6 +21,8 @@ public final class PaneElegido {
     public static final String paneTopAdmin="paneTopAdmin";
     public static final String paneTopUsuario="paneTopUsuario";
 
+    public static final String paneListarCliente="paneListarCliente";
+
 
 
 

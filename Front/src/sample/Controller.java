@@ -34,7 +34,6 @@ public class Controller implements Initializable {
     @FXML private TableColumn<ReservaCliente,Integer > tablenReservaNroHabitacion;
     @FXML private TableColumn<ReservaCliente,Double > tableReservaAbono;
 
-
     @FXML private TextField registroIDCliente;
 
     @FXML private CheckBox registroCheckBoxHabi0;
@@ -88,6 +87,16 @@ public class Controller implements Initializable {
     @FXML private TextField identificadorUsuario;
     @FXML private PasswordField passIdentificadorUsuario;
     @FXML private Button botonAccesoUsuario;
+
+    @FXML private TableView<Cliente> listaClientes;
+    @FXML private TableColumn<Cliente, String> listaClienteColumDni;
+    @FXML private TableColumn<Cliente, String> listaClienteColumApellidoNombre;
+    @FXML private TableColumn<Cliente, String> listaClienteColumPais;
+    @FXML private TableColumn<Cliente, String> listaClienteColumProvincia;
+    @FXML private TableColumn<Cliente, String> listaClienteColumLocalidad;
+    @FXML private TableColumn<Cliente, String> listaClienteColumDomicilio;
+    @FXML private TableColumn<Cliente, String> listaClienteColumCorreoElect;
+    @FXML private TableColumn<Cliente, String> listaClienteColumTelefono;
 
 
 
@@ -149,6 +158,9 @@ public class Controller implements Initializable {
     @FXML private AnchorPane panePago;
     @FXML private AnchorPane paneRecepcionistaCargado;
     @FXML private AnchorPane paneClienteCargado;
+
+    @FXML private AnchorPane paneListarClientes;
+
     //====================TABLA DE DETALLE DE CONSUMOS
     @FXML private TableView<Detalle> tableViewDetalle;
     //====================COLUMNAS DE TABLA DETALLE CONSUMO
@@ -556,6 +568,12 @@ public class Controller implements Initializable {
             paneRegistroCargado.setVisible(false);
         }
 
+        if(pane.equals(PaneElegido.paneListarCliente)){
+            paneListarClientes.setVisible(true);
+        }else{
+            paneListarClientes.setVisible(false);
+        }
+
 
     }
     //====================SELECTOR DE FLECHAS
@@ -749,6 +767,13 @@ public class Controller implements Initializable {
 
         return reservaClientes;
     }
+
+    public ObservableList<Cliente> listaClientesTabla = FXCollections.observableArrayList(
+            hotel.getListaCliente()
+    );
+
+
+
     public void onSeleccionarRegistrarClienteButtonClicked(MouseEvent event){
         tablenReservaNroHabitacion.setCellValueFactory(new PropertyValueFactory<ReservaCliente,Integer>("NroHabitacion"));
         tableReservaColumFechaIngreso.setCellValueFactory(new PropertyValueFactory<ReservaCliente,String>("FechaIngreso"));
@@ -759,6 +784,25 @@ public class Controller implements Initializable {
         tableViewRegistroReservasCliente.setItems(getReservaCliente(cliente));
 
     }
+    public void onSeleccionarPaneListarClienteButtonClicked(MouseEvent event) {
+        this.mostrarPaneX(PaneElegido.paneListarCliente);
+    }
+
+    public void onSeleccionarListarClienteButtonClicked(MouseEvent event) {
+
+        listaClienteColumDni.setCellValueFactory(new PropertyValueFactory<Cliente,String>("id"));
+        listaClienteColumApellidoNombre.setCellValueFactory(new PropertyValueFactory<Cliente,String>("nombreYapellido"));
+        listaClienteColumPais.setCellValueFactory(new PropertyValueFactory<Cliente,String>("pais"));
+        listaClienteColumProvincia.setCellValueFactory(new PropertyValueFactory<Cliente,String>("provincia"));
+        listaClienteColumLocalidad.setCellValueFactory(new PropertyValueFactory<Cliente,String>("localidad"));
+        listaClienteColumDomicilio.setCellValueFactory(new PropertyValueFactory<Cliente,String>("direccion"));
+        listaClienteColumCorreoElect.setCellValueFactory(new PropertyValueFactory<Cliente,String>("correoElectronico"));
+        listaClienteColumTelefono.setCellValueFactory(new PropertyValueFactory<Cliente,String>("telefono"));
+
+
+    }
+
+
     public void onRegistrarConfirmarButtonClicked(MouseEvent event){
         Cliente cliente=hotel.buscarClientePorID(registroIDCliente.getText());
 
