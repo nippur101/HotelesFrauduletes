@@ -118,8 +118,10 @@ public class Hotel {
         return i;
     }
     ///Busca una Reserva por Id Cliente
+
+
     /// retorna -1 si no se encontró.
-    public int buscarReservaPorIdCliente(String id){
+    /*public int buscarReservaPorIdCliente(String id){
         boolean busqueda = false;
         int i=(this.listaReserva.size()-1);;
         while ((i>-1)&&(!busqueda)) {
@@ -131,8 +133,12 @@ public class Hotel {
         }
         return i;
     }
+
+     */
+
+
     ///Arreglo de Reservas por Id de Cliente
-    public ArrayList<Reserva> arregloReservasPorCliente (String id){
+    public ArrayList<Reserva> buscarReservaPorIdCliente (String id){
         List<Reserva> listaReservaPorCliente = new ArrayList<>();
         for (Reserva h: this.listaReserva){
                 if ((h.getBorradoLogico())&&(h.getIdCliente().equals(id))){
@@ -295,12 +301,28 @@ public class Hotel {
         String  idCliente="";
         int idHabitacion=buscarIdPorNumeroDeHabitacion(nroHabitacion);
         for(int i=0;i<registroHuespedes.size();i++){
-            if(idHabitacion==registroHuespedes.get(i).getIdHabitacion() ){//&& registroHuespedes.get(i).getEstado().equals(EstadoHabitacion.OCUPADA)){
+            if(idHabitacion==registroHuespedes.get(i).getIdHabitacion() && registroHuespedes.get(i).getEstado().equals(EstadoHabitacion.OCUPADA)){
                 idCliente=registroHuespedes.get(i).getIdCliente();
             }
         }
 
         return idCliente;
+    }
+    //busca cliente por ID, retona cliente
+    public Cliente buscarClientePorID(String idCliente){
+        int indice=this.buscarIdCliente(idCliente);
+        Cliente cliente=listaCliente.get(indice);
+        return cliente;
+
+    }
+    public int buscarNumeroHabitacionPorId(int idHabitacion){
+        int nroHabitacion=-1;
+        for(int i=0;i<listaHabitacion.size();i++){
+            if(listaHabitacion.get(i).getId()==idHabitacion){
+                nroHabitacion=listaHabitacion.get(i).getNumeroHabitacion();
+            }
+        }
+        return  nroHabitacion;
     }
 }
 
