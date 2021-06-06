@@ -147,15 +147,6 @@ public class Hotel {
         }
         return (ArrayList<Reserva>) listaReservaPorCliente;
     }
-    public void borrarReservaPorIdCliente (String id){
-
-        for (Reserva h: this.listaReserva){
-            if ((h.getBorradoLogico())&&(h.getIdCliente().equals(id))){
-                h.setBorradoLogico(false);
-            }
-        }
-
-    }
     ///Busca una Reserva por Id Reserva
     /// retorna -1 si no se encontró.
     public int buscarReservaPorId(int id){
@@ -301,9 +292,7 @@ public class Hotel {
         }
         idhabit=buscarIdPorNumeroDeHabitacion(nroHabitacion);
         costo= (listaHabitacion.get(idhabit-1).getPrecio())*cont;
-        System.out.println(costo);
-        System.out.println(fechaIngreso);
-        System.out.println(fechaEgreso);
+
         return costo;
     }
     //busca el id del cliente que esta registrado en la habitacion
@@ -335,6 +324,5 @@ public class Hotel {
         }
         return  nroHabitacion;
     }
-
 }
 
