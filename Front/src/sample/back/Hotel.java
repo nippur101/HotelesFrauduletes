@@ -209,6 +209,16 @@ public class Hotel {
         }
         return  idHabitacion;
     }
+
+    public int buscarNumeroHabitacionPorId(int idHabitacion){
+        int nroHabitacion=-1;
+        for(int i=0;i<listaHabitacion.size();i++){
+            if(listaHabitacion.get(i).getId()==idHabitacion){
+                nroHabitacion=listaHabitacion.get(i).getNumeroHabitacion();
+            }
+        }
+        return  nroHabitacion;
+    }
     //Calcula de acuerdo la cantidad de dias de la estadia el total a pagar por la habitacion
     public double montoHabitacionEstadia(LocalDate fechaIngreso,LocalDate fechaEgreso,int nroHabitacion){
         double costo=1;
@@ -223,6 +233,7 @@ public class Hotel {
             return costo;
         }
         idhabit=buscarIdPorNumeroDeHabitacion(nroHabitacion);
+        System.out.println(idhabit);
         costo= (listaHabitacion.get(idhabit-1).getPrecio())*cont;
 
         return costo;
@@ -239,6 +250,28 @@ public class Hotel {
         }
 
         return idCliente;
+    }
+    ///Busca una Reserva por Id Cliente
+    /// retorna -1 si no se encontró.
+    public List<Reserva> buscarReservaPorIdCliente(String id){
+
+        List<Reserva> listaReservasCliente=new ArrayList<>();
+
+
+        for(int i=0;i<listaReserva.size();i++) {
+            if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
+               listaReservasCliente.add(listaReserva.get(i));
+
+            }
+        }
+        return listaReservasCliente;
+    }
+    //busca cliente por ID, retona cliente
+    public Cliente buscarClientePorID(String idCliente){
+        int indice=this.buscarIdCliente(idCliente);
+        Cliente cliente=listaCliente.get(indice);
+        return cliente;
+
     }
 
 }
