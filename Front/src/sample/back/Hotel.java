@@ -147,6 +147,15 @@ public class Hotel {
         }
         return (ArrayList<Reserva>) listaReservaPorCliente;
     }
+    public void borrarReservaPorIdCliente (String id){
+
+        for (Reserva h: this.listaReserva){
+            if ((h.getBorradoLogico())&&(h.getIdCliente().equals(id))){
+                h.setBorradoLogico(false);
+            }
+        }
+
+    }
     ///Busca una Reserva por Id Reserva
     /// retorna -1 si no se encontró.
     public int buscarReservaPorId(int id){
@@ -322,7 +331,9 @@ public class Hotel {
                 nroHabitacion=listaHabitacion.get(i).getNumeroHabitacion();
             }
         }
+
         return  nroHabitacion;
     }
+
 }
 

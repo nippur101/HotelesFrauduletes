@@ -79,7 +79,6 @@ public class Habitacion {
     }
 
 
-
     @Override
     public String toString() {
         return "Habitacion{" +
@@ -88,6 +87,7 @@ public class Habitacion {
                 ", tipoHabitacion='" + tipoHabitacion + '\'' +
                 ", caracteristicas='" + caracteristicas + '\'' +
                 ", precio=" + precio +
+                ", estadoHabitacion='" + estadoHabitacion + '\'' +
                 '}';
     }
 }
