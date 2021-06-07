@@ -1027,6 +1027,7 @@ public class Controller implements Initializable {
         buttonConfirmarReserva.setDisable(true);
     }
 
+
     public void pagarAdelantoReservaButtonClicked(MouseEvent event){
         reservaAbonoAdelanto.setDisable(true);
     }
