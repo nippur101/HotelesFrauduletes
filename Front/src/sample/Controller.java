@@ -88,7 +88,7 @@ public class Controller implements Initializable {
     @FXML private PasswordField passIdentificadorUsuario;
     @FXML private Button botonAccesoUsuario;
 
-    @FXML private TableView<Cliente> tablelistaClientes;
+    @FXML private TableView<TableViewCliente> tableViewListadoClientes;
     @FXML private TableColumn<Cliente, String> listaClienteColumDni;
     @FXML private TableColumn<Cliente, String> listaClienteColumApellidoNombre;
     @FXML private TableColumn<Cliente, String> listaClienteColumPais;
@@ -786,8 +786,12 @@ public class Controller implements Initializable {
     public void onSeleccionarPaneListarClienteButtonClicked(MouseEvent event) {
         this.mostrarPaneX(PaneElegido.paneListarCliente);
     }
-    public ObservableList<Cliente> getListaClienteTabla(){
-        ObservableList<Cliente> listaClientesTabla = FXCollections.observableArrayList(hotel.getListaCliente());
+    public ObservableList<TableViewCliente> getListaClienteTabla(){
+        ObservableList<TableViewCliente> listaClientesTabla = FXCollections.observableArrayList();
+        for(Cliente cl:hotel.getListaCliente()){
+            //String id, String nombreYapellido, String direccion, String correoElectronico, String telefono, String pais, String provincia, String localidad
+            listaClientesTabla.add(new TableViewCliente(cl.getId(),cl.getNombreYapellido(),cl.getDireccion(),cl.getCorreoElectronico(),cl.getTelefono(),cl.getPais(),cl.getProvincia(),cl.getLocalidad()));
+        }
         return listaClientesTabla;
     }
     public void onSeleccionarListarClienteButtonClicked(MouseEvent event) {
@@ -801,7 +805,7 @@ public class Controller implements Initializable {
         listaClienteColumCorreoElect.setCellValueFactory(new PropertyValueFactory<Cliente,String>("correoElectronico"));
         listaClienteColumTelefono.setCellValueFactory(new PropertyValueFactory<Cliente,String>("telefono"));
 
-        tablelistaClientes.setItems(getListaClienteTabla());
+        tableViewListadoClientes.setItems(getListaClienteTabla());
 
     }
 

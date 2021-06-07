@@ -84,7 +84,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneAdminPass" layoutX="138.0" layoutY="155.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" opacity="0.4" text="USUARIO" textFill="#fffefe">
                <font>
@@ -913,7 +913,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onRegistroButtonClicked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneListarClientes" layoutX="-1.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneListarClientes" layoutX="-1.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutY="1.0" opacity="0.4" text="LISTADO CLIENTES" textFill="WHITE">
                <font>
@@ -921,7 +921,7 @@
                </font>
             </Label>
             <Separator fx:id="paneListaClientes" layoutX="168.0" layoutY="13.0" opacity="0.4" prefHeight="3.0" prefWidth="636.0" />
-            <TableView fx:id="listaClientes" layoutX="6.0" layoutY="35.0" prefHeight="338.0" prefWidth="816.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <TableView fx:id="tableViewListadoClientes" layoutX="6.0" layoutY="35.0" prefHeight="338.0" prefWidth="816.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <columns>
                   <TableColumn fx:id="listaClienteColumDni" prefWidth="76.0" text="Dni" />
                   <TableColumn fx:id="listaClienteColumApellidoNombre" prefWidth="125.0" text="ApellidoNombre" />
