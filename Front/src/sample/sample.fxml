@@ -647,8 +647,8 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="715.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#onAdminPassButtonCliked" prefHeight="30.0" prefWidth="97.0" text="Realizar" />
-            <ComboBox fx:id="consumoNroHabitacion" layoutX="129.0" layoutY="49.0" prefWidth="150.0" promptText="Seleccionar" />
+            <Button layoutX="715.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#onRealizarConsumoButtonClicked" prefHeight="30.0" prefWidth="97.0" text="Realizar" />
+            <ComboBox fx:id="comboConsumoNroHabitacion" layoutX="129.0" layoutY="49.0" prefWidth="150.0" promptText="Seleccionar" />
             <Label layoutX="383.0" layoutY="121.0" text="Detalle">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -688,7 +688,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="consumoOperacion" layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" promptText="ChekOut" />
+            <ComboBox fx:id="comboConsumoOperacion" layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" promptText="ChekOut" />
             <Button layoutX="504.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoBuscarClienteClicked" text="OK" />
             <TextField fx:id="consumoNombreHuesped" layoutX="557.0" layoutY="51.0" />
             <Button layoutX="727.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoSeleccionarClienteButtonClicked" text="Seleccionar" />
@@ -861,7 +861,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onReservaButtonCliked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistroCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneRegistroCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label fx:id="labelRegistroGuardadoExitosamente" layoutX="168.0" layoutY="40.0" opacity="0.4" text="EL REGISTRO SE COMPLETO EXITOSAMENTE" textFill="WHITE">
                <font>
@@ -896,6 +896,60 @@
             </TableView>
             <DatePicker fx:id="datePickerHabitacionesEstado" layoutX="245.0" layoutY="2.0" />
             <Button layoutX="467.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarFechaHabitacionesEstado" text="Seleccionar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneConsumo2" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="labelConsumo2" layoutX="181.0" layoutY="35.0" opacity="0.4" prefHeight="35.0" prefWidth="481.0" text="CONSUMO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
+            <GridPane alignment="CENTER" layoutX="61.0" layoutY="88.0" prefHeight="226.0" prefWidth="621.0" style="-fx-alignment: CENTER;">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="70.0" text="Valor" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="56.0" text="Detalle" textAlignment="CENTER" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="46.0" text="Abono" textAlignment="CENTER" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="valor00Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.rowIndex="1" />
+                  <TextField fx:id="valor01Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.rowIndex="2" />
+                  <TextField fx:id="valor02Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.rowIndex="3" />
+                  <TextField fx:id="valor03Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.rowIndex="4" />
+                  <TextField fx:id="detalle00Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="detalle01Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="detalle02Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="detalle03Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="abono00Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="abono01Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="abono02Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="abono03Consumo2" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <Button layoutX="696.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#onEjecutarConsumo2ButtonClicked" text="EJECUTAR" />
          </children>
       </AnchorPane>
    </children>

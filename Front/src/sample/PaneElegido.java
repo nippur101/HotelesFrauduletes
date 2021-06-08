@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+
 public final class PaneElegido {
     public static final String paneAdminPass="paneAdminPass";
     public static final String paneAgregarClient="paneAgregarClient";
@@ -21,6 +24,7 @@ public final class PaneElegido {
     public static final String paneTopAdmin="paneTopAdmin";
     public static final String paneTopUsuario="paneTopUsuario";
     public static final String paneListaHabitacionesEstado="paneListaHabitacionesEstado";
+    public static final String paneConsumo2="paneConsumo2";
 
 
 

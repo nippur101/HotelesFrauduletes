@@ -31,10 +31,24 @@ public class Controller implements Initializable {
     @FXML private TableColumn<TableViewHabEstado,String > fecha05;
     @FXML private TableColumn<TableViewHabEstado,String > fecha06;
 
+    @FXML private Label labelConsumo2;
+    @FXML private TextField valor00Consumo2;
+    @FXML private TextField valor01Consumo2;
+    @FXML private TextField valor02Consumo2;
+    @FXML private TextField valor03Consumo2;
+    @FXML private TextField detalle00Consumo2;
+    @FXML private TextField detalle01Consumo2;
+    @FXML private TextField detalle02Consumo2;
+    @FXML private TextField detalle03Consumo2;
+    @FXML private TextField abono00Consumo2;
+    @FXML private TextField abono01Consumo2;
+    @FXML private TextField abono02Consumo2;
+    @FXML private TextField abono03Consumo2;
+
 
     @FXML private TextField consumoHuesped;
-    @FXML private ComboBox consumoNroHabitacion;
-    @FXML private ComboBox consumoOperacion;
+    @FXML private ComboBox comboConsumoNroHabitacion;
+    @FXML private ComboBox comboConsumoOperacion;
     @FXML private TextField consumoCargo;
     @FXML private TextField consumoAbono;
     @FXML private TextField consumoSaldo;
@@ -149,6 +163,7 @@ public class Controller implements Initializable {
     @FXML private ImageView arrowHabitacion;
     @FXML private ImageView arrowReserva;
     //====================PANELES
+    @FXML private AnchorPane paneConsumo2;
     @FXML private AnchorPane paneListaHabitacionesEstado;
     @FXML private AnchorPane paneTopUsuario;
     @FXML private AnchorPane paneTopAdmin;
@@ -204,6 +219,13 @@ public class Controller implements Initializable {
         cargarDatos();
 
 
+    }
+    public Double doubleEnTexto(TextField textField){
+        Double numero=0.0;
+        if(!textField.getText().equals("")){
+            numero=Double.parseDouble(textField.getText());
+        }
+        return numero;
     }
 
     public void cargarDatos(){
@@ -396,7 +418,8 @@ public class Controller implements Initializable {
         }
         return detalles;
     }
-    public void onConsumoSeleccionarClienteButtonClicked(MouseEvent event){
+
+    public void actualizarConsumoCliente(){
         Cliente cliente=hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText()));
         columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
         columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
@@ -412,6 +435,17 @@ public class Controller implements Initializable {
         consumoAbono.setText(String.valueOf(cliente.sumatoriaPagos()));
         consumoSaldo.setText(String.valueOf(cliente.calculoSaldo()));
 
+        ObservableList<String> comboOpcionesPago=FXCollections.observableArrayList();
+        comboOpcionesPago.add("CheckOut");
+        comboOpcionesPago.add("Consumo");
+        comboOpcionesPago.add("Servicio");
+        comboOpcionesPago.add("Otro");
+        comboConsumoOperacion.setItems(comboOpcionesPago);
+
+    }
+    public void onConsumoSeleccionarClienteButtonClicked(MouseEvent event){
+
+        actualizarConsumoCliente();
 
     }
 
@@ -422,6 +456,58 @@ public class Controller implements Initializable {
         }else{
             consumoNombreHuesped.setText("Cliente no registrado");
         }
+    }
+
+
+    public void onRealizarConsumoButtonClicked(MouseEvent event){
+        valor00Consumo2.clear();
+        valor01Consumo2.clear();
+        valor02Consumo2.clear();
+        valor03Consumo2.clear();
+        detalle00Consumo2.clear();
+        detalle01Consumo2.clear();
+        detalle02Consumo2.clear();
+        detalle03Consumo2.clear();
+        abono00Consumo2.clear();
+        abono01Consumo2.clear();
+        abono02Consumo2.clear();
+        abono03Consumo2.clear();
+        try {
+            if (comboConsumoOperacion.getValue().equals("Consumo")) {
+                mostrarPaneX(PaneElegido.paneConsumo2);
+                mostrarFlechaX(FlechaElegida.arrowPago);
+                labelConsumo2.setText("COSUMO CLIENTE: " + consumoNombreHuesped.getText());
+            } else if (comboConsumoOperacion.getValue().equals("Servicio")) {
+
+            } else if (comboConsumoOperacion.getValue().equals("Otro")) {
+
+            } else {
+
+            }
+        }catch (Throwable e){
+            System.out.println(e);
+        }
+    }
+    public void onEjecutarConsumo2ButtonClicked(MouseEvent event){
+        if(!detalle00Consumo2.getText().equals("")) {
+            Consumo c0 = new Consumo(LocalDate.now(), detalle00Consumo2.getText(), doubleEnTexto(valor00Consumo2), doubleEnTexto(abono00Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c0);
+        }
+        if(!detalle01Consumo2.getText().equals("")) {
+            Consumo c1 = new Consumo(LocalDate.now(), detalle01Consumo2.getText(), doubleEnTexto(valor01Consumo2), doubleEnTexto(abono01Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c1);
+        }
+        if(!detalle02Consumo2.getText().equals("")) {
+            Consumo c2 = new Consumo(LocalDate.now(), detalle02Consumo2.getText(), doubleEnTexto(valor02Consumo2), doubleEnTexto(abono02Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c2);
+        }
+        if(!detalle03Consumo2.getText().equals("")) {
+            Consumo c3 = new Consumo(LocalDate.now(), detalle03Consumo2.getText(), doubleEnTexto(valor03Consumo2), doubleEnTexto(abono03Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c3);
+        }
+        this.mostrarPaneX(PaneElegido.panePago);
+        actualizarConsumoCliente();
+
     }
 
 
@@ -539,6 +625,11 @@ public class Controller implements Initializable {
             paneListaHabitacionesEstado.setVisible(true);
         }else{
             paneListaHabitacionesEstado.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneConsumo2)){
+            paneConsumo2.setVisible(true);
+        }else{
+            paneConsumo2.setVisible(false);
         }
 
     }
