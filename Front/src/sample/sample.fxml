@@ -560,7 +560,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
+      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
          <children>
             <Label layoutY="1.0" opacity="0.4" text="REGISTRO DE HUESPED" textFill="WHITE">
                <font>
@@ -656,14 +656,13 @@
             </Label>
             <TableView fx:id="tableViewDetalle" layoutX="10.0" layoutY="149.0" prefHeight="238.0" prefWidth="811.0">
               <columns>
-                <TableColumn fx:id="columFecha" prefWidth="91.0" text="Fecha" />
-                <TableColumn fx:id="columCuenta" prefWidth="59.0" text="Cuenta" />
-                  <TableColumn fx:id="columNombreDeCuenta" prefWidth="125.0" text="Nombre de Cuenta" />
-                  <TableColumn fx:id="columReferencia" prefWidth="161.0" text="Referencia" />
-                  <TableColumn fx:id="columDescripcion" prefWidth="181.0" text="Descripcion" />
-                  <TableColumn fx:id="columCargos" prefWidth="76.0" text="Cargos" />
-                  <TableColumn fx:id="columAbono" prefWidth="67.0" text="Abono" />
-                  <TableColumn fx:id="columEstado" prefWidth="50.0" text="Estado" />
+                <TableColumn fx:id="columFecha" prefWidth="110.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                <TableColumn fx:id="columCuenta" prefWidth="63.0" style="-fx-alignment: CENTER;" text="Cuenta" />
+                  <TableColumn fx:id="columReferencia" prefWidth="138.0" style="-fx-alignment: CENTER;" text="Referencia" />
+                  <TableColumn fx:id="columDescripcion" prefWidth="228.0" style="-fx-alignment: CENTER;" text="Descripcion" />
+                  <TableColumn fx:id="columCargos" prefWidth="107.0" style="-fx-alignment: CENTER;" text="Cargos" />
+                  <TableColumn fx:id="columAbono" prefWidth="101.0" style="-fx-alignment: CENTER;" text="Abono" />
+                  <TableColumn fx:id="columEstado" prefWidth="62.0" style="-fx-alignment: CENTER;" text="Estado" />
               </columns>
             </TableView>
             <Label layoutX="27.0" layoutY="93.0" text="Cargos:">
@@ -862,7 +861,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onReservaButtonCliked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistroCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+      <AnchorPane fx:id="paneRegistroCargado" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
          <children>
             <Label fx:id="labelRegistroGuardadoExitosamente" layoutX="168.0" layoutY="40.0" opacity="0.4" text="EL REGISTRO SE COMPLETO EXITOSAMENTE" textFill="WHITE">
                <font>
@@ -884,15 +883,15 @@
             <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
             <TableView fx:id="tableHabitacionesEstado" layoutX="13.0" layoutY="34.0" prefHeight="360.0" prefWidth="804.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0">
               <columns>
-                <TableColumn fx:id="columnaHabitacion" prefWidth="75.0" style="-fx-background-color: #fad4e8;" text="Habitacion" />
-                <TableColumn fx:id="fechaAnt" prefWidth="89.0" text="Fecha" />
-                  <TableColumn fx:id="fecha00" prefWidth="83.0" style="-fx-background-color: #ffe8b5;" text="ELEGIDA" />
-                  <TableColumn fx:id="fecha01" prefWidth="85.0" text="Fecha" />
-                  <TableColumn fx:id="fecha02" prefWidth="85.0" text="Fecha" />
-                  <TableColumn fx:id="fecha03" prefWidth="90.0" text="Fecha" />
-                  <TableColumn fx:id="fecha04" prefWidth="95.0" text="Fecha" />
-                  <TableColumn fx:id="fecha05" prefWidth="97.0" text="Fecha" />
-                  <TableColumn fx:id="fecha06" prefWidth="99.0" text="Fecha" />
+                <TableColumn fx:id="columnaHabitacion" prefWidth="75.0" style="-fx-background-color: #fad4e8; -fx-alignment: CENTER;" text="Habitacion" />
+                <TableColumn fx:id="fechaAnt" prefWidth="89.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha00" prefWidth="83.0" style="-fx-background-color: #ffe8b5; -fx-alignment: CENTER;" text="ELEGIDA" />
+                  <TableColumn fx:id="fecha01" prefWidth="95.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha02" prefWidth="89.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha03" prefWidth="90.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha04" prefWidth="93.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha05" prefWidth="93.0" style="-fx-alignment: CENTER;" text="Fecha" />
+                  <TableColumn fx:id="fecha06" prefWidth="91.0" style="-fx-alignment: CENTER;" text="Fecha" />
               </columns>
             </TableView>
             <DatePicker fx:id="datePickerHabitacionesEstado" layoutX="245.0" layoutY="2.0" />

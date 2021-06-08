@@ -174,7 +174,6 @@ public class Controller implements Initializable {
     //====================COLUMNAS DE TABLA DETALLE CONSUMO
     @FXML private TableColumn<Detalle,String > columFecha;
     @FXML private TableColumn<Detalle,Integer > columCuenta;
-    @FXML private TableColumn<Detalle,String > columNombreDeCuenta;
     @FXML private TableColumn<Detalle,Integer > columReferencia;
     @FXML private TableColumn<Detalle,String > columDescripcion;
     @FXML private TableColumn<Detalle,Double > columCargos;
@@ -208,10 +207,10 @@ public class Controller implements Initializable {
     }
 
     public void cargarDatos(){
-        RegistroHuesped h1 = new RegistroHuesped("35140802", 201, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 06, 10));
-        RegistroHuesped h2 = new RegistroHuesped("34185634", 203, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 06, 01));
-        RegistroHuesped h3 = new RegistroHuesped("38140802", 205, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
-        RegistroHuesped h4 = new RegistroHuesped("37415963", 301, LocalDate.of(2021, 05, 24),LocalDate.of(2021, 06, 20));
+        RegistroHuesped h1 = new RegistroHuesped("35140802", 1, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 07, 10));
+        RegistroHuesped h2 = new RegistroHuesped("34185634", 6, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 07, 01));
+        RegistroHuesped h3 = new RegistroHuesped("38140802", 8, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
+        RegistroHuesped h4 = new RegistroHuesped("37415963", 9, LocalDate.of(2021, 05, 24),LocalDate.of(2021, 06, 20));
 
 
 
@@ -401,7 +400,7 @@ public class Controller implements Initializable {
         Cliente cliente=listaCliente.get(hotel.buscarIdCliente(consumoHuesped.getText()));
         columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
         columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
-        columNombreDeCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Cuenta"));
+
         columReferencia.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Referencia"));
         columDescripcion.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Descripcion"));
         columCargos.setCellValueFactory(new PropertyValueFactory<Detalle,Double>("Cargos"));
@@ -894,8 +893,8 @@ public class Controller implements Initializable {
         for (int i=0;i<listReservasCliente.size();i++){
             if(comboRegistroHabitacion.get(i).isSelected()){
 
-                RegistroHuesped nuevoRegistro=new RegistroHuesped(cliente.getId(),listReservasCliente.get(i).getNroHabitacion(),listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso() );
-                listaRegistroHuespedes.add(nuevoRegistro);
+                RegistroHuesped nuevoRegistro=new RegistroHuesped(cliente.getId(),hotel.buscarIdPorNumeroDeHabitacion(listReservasCliente.get(i).getNroHabitacion()),listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso() );
+                hotel.getRegistroHuespedes().add(nuevoRegistro);
 
                 hotel.getListaCliente().get(posCliente).setConsumos(new Consumo(nuevoRegistro.getFechaIngreso(),"Renta habitacion",hotel.montoHabitacionEstadia(listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso(),listReservasCliente.get(i).getNroHabitacion()),0.0));
 
