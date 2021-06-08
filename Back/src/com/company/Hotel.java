@@ -1,10 +1,11 @@
 package com.company;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hotel {
+public class Hotel implements Serializable {
     private List<UsuarioHotel> listaUsuarioHotel;
     private List<Cliente> listaCliente;
     private List<Habitacion> listaHabitacion;

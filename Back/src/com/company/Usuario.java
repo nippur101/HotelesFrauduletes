@@ -1,6 +1,8 @@
 package com.company;
 
-public abstract class Usuario {
+import java.io.Serializable;
+
+public abstract class Usuario implements Serializable {
 
     ///Atributos
     protected String id;
@@ -54,4 +56,6 @@ public abstract class Usuario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+
 }

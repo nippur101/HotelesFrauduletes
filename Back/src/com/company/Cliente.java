@@ -1,9 +1,10 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable {
 
     ///Atributos
     private String pais;
@@ -46,10 +47,9 @@ public class Cliente extends Usuario{
     public List<Consumo> getConsumos() {
         return consumos;
     }
-    public void setConsumos(Consumo a) {
-        this.consumos.add(a);
+    public void setConsumos(List<Consumo> consumos) {
+        this.consumos = consumos;
     }
-
 
 
     /// ---------------------- SALDO ----------------------

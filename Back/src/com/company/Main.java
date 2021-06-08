@@ -1,10 +1,19 @@
 package com.company;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.lang.reflect.Type;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.time.LocalDate;
 import java.util.List;
+
 
 public class Main {
 
@@ -119,60 +128,110 @@ public class Main {
 
         Hotel hotel=new Hotel(usuariosHotel,clientes,habitaciones,reservas,registros,mantenimientos);
 
-        //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12), (ArrayList<Reserva>) hotel.getListaReserva(),(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes(),(ArrayList<Habitacion>) hotel.getListaHabitacion());
-        //List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 8, 01),LocalDate.of(2021, 8, 15));
-       /*
-        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(LocalDate.of(2021, 7, 01),LocalDate.of(2021, 7, 12));
-        for(Habitacion ha : habitacionesLibres)
-        {
-            System.out.println(ha.toString());
-        }
-*/
-        System.out.println(hotel.getListaHabitacion().size());
-        for(Habitacion ha : hotel.getListaHabitacion())
-        {
-            System.out.println(ha.toString());
-        }
-        List<Habitacion> habitacionesEstado=hotel.arryHabitacionesEstado(LocalDate.of(2021, 7, 01));
-        System.out.println(habitacionesEstado.size());
-        for(Habitacion ha : habitacionesEstado)
-        {
-            System.out.println(ha.toString());
+        Hotel hotel2 = new Hotel();
+
+
+
+
+        hotel.getListaCliente().get(0).getConsumos().add(new Consumo(LocalDate.of(2021, 07, 01), "habitacion",1000,1000));
+        hotel.getListaCliente().get(0).getConsumos().add(new Consumo(LocalDate.of(2021, 07, 01), "habitacion",1000,1000));
+/*
+        /// -------------------------------------------------- SERIALIZACION CLIENTES --------------------------------------------------
+        File file = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\Clientes.json");
+
+        try {
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+                Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                    .create();
+
+
+                Type listOfClienteObject = new TypeToken<ArrayList<Cliente>>() {}.getType();
+                gson.toJson(hotel.getListaCliente(), listOfClienteObject, bufferedWriter);
+
+                bufferedWriter.close();
+
+            } catch (IOException e){
+                System.out.println("ERROR al Escribir el archivo: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+        System.out.println(file.length());
+
+
+
+/// -------------------------------------------------- DESERIALIZACION CLIENTES --------------------------------------------------
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                @Override
+                public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                    return LocalDate.parse(json.getAsJsonPrimitive().getAsString());
+                }
+            }).create();
+
+            Type listOfClienteObject = new TypeToken<ArrayList<Cliente>>() {}.getType();
+
+            hotel2.setListaCliente(gson.fromJson(bufferedReader, listOfClienteObject));
+
+        } catch (IOException e){
+            System.out.println("ERROR al Leer el archivo: " + e.getMessage());
+            e.printStackTrace();
         }
 
-        /*
-
-        for (RegistroHuesped a : registro) {
-            System.out.println(a.toString());
-        }
-
-        Collections.sort(registro);
-
-        for (RegistroHuesped a : registro) {
-            System.out.println(a.toString());
-        }
-
-        for (RegistroHuesped a : registro) {
-            if(a.equals(h4)){
-                System.out.print(a.toString());
+        for(Cliente c : hotel2.getListaCliente()){
+            System.out.println(c.toString());
+            for(Consumo consum : c.getConsumos()){
+                System.out.println(consum.toString());
             }
         }
 
-        System.out.println(registro.indexOf(h1));
-
-
-        Hotel hotel = new Hotel();
-
-
-        hotel.agregarUsuarioHotel(admin);
-        hotel.agregarUsuarioHotel(recep1);
-        System.out.println(hotel.getListaUsuarioHotel().size());
-
-        System.out.println(hotel.getListaUsuarioHotel().get(0).toString());
-        System.out.println(hotel.getListaUsuarioHotel().get(1).toString());
-
-        hotel.logIn("35140802", "1234");
 */
+
+
+
+/// -------------------------------------------------- SERIALIZACION HABITACIONES --------------------------------------------------
+
+        File fileHabitaciones = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\habitaciones.json");
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileHabitaciones));
+
+            Gson gson = new Gson();
+
+            Type listOfHabitacionObject = new TypeToken<ArrayList<Habitacion>>() {}.getType();
+            gson.toJson(hotel.getListaHabitacion(), listOfHabitacionObject, bufferedWriter);
+
+            bufferedWriter.close();
+
+        } catch (IOException e){
+            System.out.println("ERROR al Escribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
+        /// -------------------------------------------------- DESERIALIZACION HABITACIONES --------------------------------------------------
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileHabitaciones));
+
+            Gson gson = new Gson();
+
+            Type listOfHabitacionObject = new TypeToken<ArrayList<Habitacion>>() {}.getType();
+
+            hotel2.setListaHabitacion(gson.fromJson(bufferedReader, listOfHabitacionObject));
+
+        } catch (IOException e){
+            System.out.println("ERROR al Leer el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        for(Habitacion h : hotel2.getListaHabitacion()){
+            System.out.println(h.toString());
+        }
+
+
+
 
     }
 }

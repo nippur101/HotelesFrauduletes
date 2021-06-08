@@ -39,7 +39,7 @@ public abstract class UsuarioHotel extends Usuario {
         ///Genera el consumo y lo agrega a la coleccion del cliente.
         int j= (int)r.getFechaEgreso().getDayOfYear()-(int)r.getFechaIngreso().getDayOfYear();
         double montoEstadia = j * h.getPrecio();
-        c.setConsumos(generaConsumo(LocalDate.now(),"Alojamiento", montoEstadia, r.getPagoReserva()));
+        c.getConsumos().add(generaConsumo(LocalDate.now(),"Alojamiento", montoEstadia, r.getPagoReserva()));
 
         ///baja logica de la Reserva
         r.setBorradoLogico(false);
