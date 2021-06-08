@@ -9,7 +9,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -523,7 +522,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="587.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarReservaClienteButtonClicked" text="Seleccionar" />
+            <Button fx:id="buttonSeleccionarReserva" layoutX="587.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarReservaClienteButtonClicked" text="Seleccionar" />
             <Label layoutX="368.0" layoutY="187.0" text="Fecha de Partida">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -540,8 +539,8 @@
             </Label>
             <TextField fx:id="reservaBusquedaIdCliente" layoutX="356.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" />
             <TextField fx:id="reservaClienteNomebreyApellido" layoutX="228.0" layoutY="101.0" prefHeight="26.0" prefWidth="328.0" />
-            <Button layoutX="527.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#pagarAdelantoReservaButtonClicked" text="Pagar Adelanto" />
-            <Button layoutX="594.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#onReservarClienteButtonClicked" text="RESERVAR">
+            <Button fx:id="buttonPagarAdelantoReserva" layoutX="527.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#pagarAdelantoReservaButtonClicked" text="Pagar Adelanto" />
+            <Button fx:id="buttonReservarReserva" layoutX="594.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#onReservarClienteButtonClicked" text="RESERVAR">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -552,11 +551,16 @@
             </Label>
             <TextField fx:id="reservaAbonoAdelanto" layoutX="368.0" layoutY="343.0" text="0.0" />
             <Button layoutX="587.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#onBuscarReservaClienteButtonClicked" text="BUSCAR" />
-            <Button layoutX="727.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onBuscarFechasReservaButtonClicked" text="BUSCAR" />
+            <Button fx:id="buttonBuscarFechaReserva" layoutX="727.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onBuscarFechasReservaButtonClicked" text="BUSCAR" />
             <Separator layoutX="8.0" layoutY="236.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
+            <Label fx:id="labelReservaErrorFechas" layoutX="271.0" layoutY="215.0" prefHeight="17.0" prefWidth="370.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
+      <AnchorPane fx:id="paneRegistro" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;">
          <children>
             <Label layoutY="1.0" opacity="0.4" text="REGISTRO DE HUESPED" textFill="WHITE">
                <font>
@@ -575,12 +579,7 @@
                </font>
             </Label>
             <Button layoutX="729.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarRegistrarClienteButtonClicked" text="Seleccionar" />
-            <Label layoutX="10.0" layoutY="219.0" opacity="0.4" text="DATOS EXTRA DE CLIENTE" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Separator layoutX="240.0" layoutY="231.0" opacity="0.4" prefHeight="3.0" prefWidth="579.0" />
+            <Separator layoutX="22.0" layoutY="231.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
             <Label layoutX="93.0" layoutY="41.0" text="Cliente DNI:">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -588,26 +587,14 @@
             </Label>
             <TextField fx:id="registroIDCliente" layoutX="208.0" layoutY="43.0" />
             <TextField fx:id="registroClienteNomebreyApellido" layoutX="458.0" layoutY="43.0" prefHeight="26.0" prefWidth="246.0" />
-            <Button layoutX="704.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#onPagoAdelantoRegistroButtonClicked" text="Pagar Adelanto" />
+            <Button fx:id="buttonPagarAdelantoRegistro" layoutX="424.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onPagoAdelantoRegistroButtonClicked" text="Pagar Adelanto" />
             <Button fx:id="registroButtonRegistrar" layoutX="672.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#guardarRegistro" text="REGISTRAR">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
-            <Label layoutX="126.0" layoutY="249.0" text="Grupo:">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="registroClienteGrupo" layoutX="192.0" layoutY="250.0" prefHeight="26.0" prefWidth="339.0" />
-            <Label layoutX="56.0" layoutY="292.0" text="Observaciones:">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="registroObservaciones" layoutX="192.0" layoutY="292.0" prefHeight="79.0" prefWidth="443.0" />
-            <TextField fx:id="registroPagoAdelanto" layoutX="554.0" layoutY="250.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" text="0.0" />
+            <TextField fx:id="registroPagoAdelanto" layoutX="252.0" layoutY="320.0" prefHeight="26.0" prefWidth="140.0" promptText="0.0" text="0.0" />
             <Separator layoutX="18.0" layoutY="79.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
-            <Button layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarConfirmarButtonClicked" text="Confirmar" />
+            <Button fx:id="buttonConfirmarListaRegistro" layoutX="732.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onRegistrarConfirmarButtonClicked" text="Confirmar" />
             <Separator layoutX="9.0" layoutY="190.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
             <Button fx:id="registroBusquedaCliente" layoutX="359.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#onBuscarRegistrarClienteButtonClicked" text="&gt;OK" />
             <TableView fx:id="tableViewRegistroReservasCliente" layoutX="193.0" layoutY="82.0" prefHeight="104.0" prefWidth="481.0">
@@ -634,6 +621,11 @@
                   <Separator prefWidth="200.0" visible="false" />
                </children>
             </HBox>
+            <Label fx:id="labelErrorRegistro" layoutX="269.0" layoutY="261.0" prefHeight="17.0" prefWidth="292.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panePago" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false">
@@ -887,7 +879,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onRegistroButtonClicked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
             <TableView fx:id="tableHabitacionesEstado" layoutX="13.0" layoutY="34.0" prefHeight="360.0" prefWidth="804.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0">

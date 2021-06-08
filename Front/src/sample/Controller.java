@@ -55,8 +55,10 @@ public class Controller implements Initializable {
     @FXML private CheckBox registroCheckBoxHabi3;
     @FXML private CheckBox registroCheckBoxHabi4;
 
-    @FXML private TextField registroClienteGrupo;
-    @FXML private TextArea registroObservaciones;
+    @FXML private Button buttonConfirmarListaRegistro;
+    @FXML private Button buttonRegistroElegirHabi;
+    @FXML private Button buttonPagarAdelantoRegistro;
+    @FXML private Label labelErrorRegistro;
     @FXML private TextField registroPagoAdelanto;
     @FXML private TextField registroClienteNomebreyApellido;
     @FXML private Button registroButtonRegistrar;
@@ -68,6 +70,11 @@ public class Controller implements Initializable {
     @FXML private Label labelRegistroFechaIngresoMuestra;
     @FXML private TextField registroAbonoAdelanto;
 
+    @FXML private Label labelReservaErrorFechas;
+    @FXML private Button buttonSeleccionarReserva;
+    @FXML private Button buttonBuscarFechaReserva;
+    @FXML private Button buttonReservarReserva;
+    @FXML private Button buttonPagarAdelantoReserva;
     @FXML private Button buttonConfirmarReserva;
     @FXML private Label labelReservaGuardadaExitosamente;
     @FXML private Label labelHabitacionMuestra;
@@ -315,8 +322,6 @@ public class Controller implements Initializable {
 
     }
     public void onAdminPassButtonCliked(MouseEvent event){
-        // SE DEBE PONER EL PASSWORD CORRECTO!!!!!!!!!!!!!!!
-
 
         boolean validacion=false;
 
@@ -664,6 +669,53 @@ public class Controller implements Initializable {
         this.mostrarFlechaX(FlechaElegida.arrowHabitacion);
     }
 
+    public ObservableList<TableViewHabEstado>getEstadosHabitFecha(LocalDate fecha){
+        LocalDate fechaAnt=fecha.plusDays(-1);
+        ObservableList<TableViewHabEstado> estadoHabitaciones= FXCollections.observableArrayList();
+
+
+        for (int j=0;j<hotel.getListaHabitacion().size();j++) {
+            TableViewHabEstado tvhe=new TableViewHabEstado();
+            tvhe.setNroHabitacion(hotel.arryHabitacionesEstado(fechaAnt).get(j).getNumeroHabitacion());
+            tvhe.setFechaAnt(hotel.arryHabitacionesEstado(fechaAnt).get(j).getEstadoHabitacion());
+            tvhe.setFecha00(hotel.arryHabitacionesEstado(fechaAnt.plusDays(1)).get(j).getEstadoHabitacion());
+            tvhe.setFecha01(hotel.arryHabitacionesEstado(fechaAnt.plusDays(2)).get(j).getEstadoHabitacion());
+            tvhe.setFecha02(hotel.arryHabitacionesEstado(fechaAnt.plusDays(3)).get(j).getEstadoHabitacion());
+            tvhe.setFecha03(hotel.arryHabitacionesEstado(fechaAnt.plusDays(4)).get(j).getEstadoHabitacion());
+            tvhe.setFecha04(hotel.arryHabitacionesEstado(fechaAnt.plusDays(5)).get(j).getEstadoHabitacion());
+            tvhe.setFecha05(hotel.arryHabitacionesEstado(fechaAnt.plusDays(6)).get(j).getEstadoHabitacion());
+            tvhe.setFecha06(hotel.arryHabitacionesEstado(fechaAnt.plusDays(7)).get(j).getEstadoHabitacion());
+            estadoHabitaciones.add(tvhe);
+
+        }
+
+        return  estadoHabitaciones;
+    }
+
+    public void onSeleccionarFechaHabitacionesEstado(MouseEvent event){
+
+
+        columnaHabitacion.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,Integer>("nroHabitacion"));
+        fechaAnt.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fechaAnt"));
+        fecha00.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha00"));
+        fecha01.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha01"));
+        fecha02.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha02"));
+        fecha03.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha03"));
+        fecha04.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha04"));
+        fecha05.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha05"));
+        fecha06.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha06"));
+        fechaAnt.setText(datePickerHabitacionesEstado.getValue().plusDays(-1).toString());
+        fecha00.setText(datePickerHabitacionesEstado.getValue().plusDays(0).toString());
+        fecha01.setText(datePickerHabitacionesEstado.getValue().plusDays(1).toString());
+        fecha02.setText(datePickerHabitacionesEstado.getValue().plusDays(2).toString());
+        fecha03.setText(datePickerHabitacionesEstado.getValue().plusDays(3).toString());
+        fecha04.setText(datePickerHabitacionesEstado.getValue().plusDays(4).toString());
+        fecha05.setText(datePickerHabitacionesEstado.getValue().plusDays(5).toString());
+        fecha06.setText(datePickerHabitacionesEstado.getValue().plusDays(6).toString());
+
+        tableHabitacionesEstado.setItems(getEstadosHabitFecha(datePickerHabitacionesEstado.getValue()));
+
+    }
 
 
 
@@ -711,63 +763,52 @@ public class Controller implements Initializable {
 
 
 
+    public void onRegistroButtonClicked(MouseEvent event){
+        registroIDCliente.clear();
+        registroClienteNomebreyApellido.clear();
+        registroPagoAdelanto.setDisable(false);
+        registroButtonRegistrar.setDisable(true);
+        registroCheckBoxHabi0.setVisible(false);
+        registroCheckBoxHabi1.setVisible(false);
+        registroCheckBoxHabi2.setVisible(false);
+        registroCheckBoxHabi3.setVisible(false);
+        registroCheckBoxHabi4.setVisible(false);
+        buttonConfirmarListaRegistro.setDisable(true);
+        buttonRegistroElegirHabi.setDisable(true);
+        buttonPagarAdelantoRegistro.setDisable(true);
 
+
+
+        this.mostrarPaneX(PaneElegido.paneRegistro);
+
+        this.mostrarFlechaX(FlechaElegida.arrowRegistro);
+
+    }
     public void onBuscarRegistrarClienteButtonClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(registroIDCliente.getText());
         if(indiceCliente!=-1) {
             registroClienteNomebreyApellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
 
+
         }else{
             registroClienteNomebreyApellido.setText("Cliente no registrado");
         }
     }
+    public void onRegistrarConfirmarButtonClicked(MouseEvent event) {
+        Cliente cliente = hotel.buscarClientePorID(registroIDCliente.getText());
 
-    public ObservableList<TableViewHabEstado>getEstadosHabitFecha(LocalDate fecha){
-        LocalDate fechaAnt=fecha.plusDays(-1);
-        ObservableList<TableViewHabEstado> estadoHabitaciones= FXCollections.observableArrayList();
-
-
-        for (int j=0;j<hotel.getListaHabitacion().size();j++) {
-                TableViewHabEstado tvhe=new TableViewHabEstado();
-                tvhe.setNroHabitacion(hotel.arryHabitacionesEstado(fechaAnt).get(j).getNumeroHabitacion());
-                tvhe.setFechaAnt(hotel.arryHabitacionesEstado(fechaAnt).get(j).getEstadoHabitacion());
-                tvhe.setFecha00(hotel.arryHabitacionesEstado(fechaAnt.plusDays(1)).get(j).getEstadoHabitacion());
-                tvhe.setFecha01(hotel.arryHabitacionesEstado(fechaAnt.plusDays(2)).get(j).getEstadoHabitacion());
-                tvhe.setFecha02(hotel.arryHabitacionesEstado(fechaAnt.plusDays(3)).get(j).getEstadoHabitacion());
-                tvhe.setFecha03(hotel.arryHabitacionesEstado(fechaAnt.plusDays(4)).get(j).getEstadoHabitacion());
-                tvhe.setFecha04(hotel.arryHabitacionesEstado(fechaAnt.plusDays(5)).get(j).getEstadoHabitacion());
-                tvhe.setFecha05(hotel.arryHabitacionesEstado(fechaAnt.plusDays(6)).get(j).getEstadoHabitacion());
-                tvhe.setFecha06(hotel.arryHabitacionesEstado(fechaAnt.plusDays(7)).get(j).getEstadoHabitacion());
-                estadoHabitaciones.add(tvhe);
+        buttonRegistroElegirHabi.setDisable(false);
+        comboRegistroHabitacion.add(registroCheckBoxHabi0);
+        comboRegistroHabitacion.add(registroCheckBoxHabi1);
+        comboRegistroHabitacion.add(registroCheckBoxHabi2);
+        comboRegistroHabitacion.add(registroCheckBoxHabi3);
+        comboRegistroHabitacion.add(registroCheckBoxHabi4);
+        ObservableList<ReservaCliente> listReservasCliente = getReservaCliente(cliente);
+        for (int i = 0; i < listReservasCliente.size(); i++) {
+            comboRegistroHabitacion.get(i).setText(listReservasCliente.get(i).getNroHabitacion().toString());
+            comboRegistroHabitacion.get(i).setVisible(true);
 
         }
-
-        return  estadoHabitaciones;
-    }
-
-    public void onSeleccionarFechaHabitacionesEstado(MouseEvent event){
-
-
-        columnaHabitacion.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,Integer>("nroHabitacion"));
-        fechaAnt.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fechaAnt"));
-        fecha00.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha00"));
-        fecha01.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha01"));
-        fecha02.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha02"));
-        fecha03.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha03"));
-        fecha04.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha04"));
-        fecha05.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha05"));
-        fecha06.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,String>("fecha06"));
-        fechaAnt.setText(datePickerHabitacionesEstado.getValue().plusDays(-1).toString());
-        fecha00.setText(datePickerHabitacionesEstado.getValue().plusDays(0).toString());
-        fecha01.setText(datePickerHabitacionesEstado.getValue().plusDays(1).toString());
-        fecha02.setText(datePickerHabitacionesEstado.getValue().plusDays(2).toString());
-        fecha03.setText(datePickerHabitacionesEstado.getValue().plusDays(3).toString());
-        fecha04.setText(datePickerHabitacionesEstado.getValue().plusDays(4).toString());
-        fecha05.setText(datePickerHabitacionesEstado.getValue().plusDays(5).toString());
-        fecha06.setText(datePickerHabitacionesEstado.getValue().plusDays(6).toString());
-
-        tableHabitacionesEstado.setItems(getEstadosHabitFecha(datePickerHabitacionesEstado.getValue()));
-
     }
 
     public ObservableList<ReservaCliente>getReservaCliente(Cliente cliente){
@@ -792,51 +833,33 @@ public class Controller implements Initializable {
         tableReservaColumFechaEngreso.setCellValueFactory(new PropertyValueFactory<ReservaCliente,String>("FechaEgreso"));
         tableReservaAbono.setCellValueFactory(new PropertyValueFactory<ReservaCliente,Double>("Abono"));
         Cliente cliente=hotel.buscarClientePorID(registroIDCliente.getText());
-
+        buttonConfirmarListaRegistro.setDisable(false);
         tableViewRegistroReservasCliente.setItems(getReservaCliente(cliente));
 
     }
-    public void onRegistrarConfirmarButtonClicked(MouseEvent event) {
-        Cliente cliente = hotel.buscarClientePorID(registroIDCliente.getText());
-        List<Reserva> listaReservaCliente = hotel.buscarReservaPorIdCliente(cliente.getId());
 
-        comboRegistroHabitacion.add(registroCheckBoxHabi0);
-        comboRegistroHabitacion.add(registroCheckBoxHabi1);
-        comboRegistroHabitacion.add(registroCheckBoxHabi2);
-        comboRegistroHabitacion.add(registroCheckBoxHabi3);
-        comboRegistroHabitacion.add(registroCheckBoxHabi4);
-        ObservableList<ReservaCliente> listReservasCliente = getReservaCliente(cliente);
-        for (int i = 0; i < listReservasCliente.size(); i++) {
-            comboRegistroHabitacion.get(i).setText(listReservasCliente.get(i).getNroHabitacion().toString());
-            comboRegistroHabitacion.get(i).setVisible(true);
-
-        }
-    }
 
     public void onRegistrarElegirHabiButtonClicked(MouseEvent event){
-        registroButtonRegistrar.setDisable(false);
-    }
+        boolean val=false;
+        for(CheckBox ch:comboRegistroHabitacion){
+            if(ch.isSelected())
+                val=true;
 
-
-
-
-    public void onRegistroButtonClicked(MouseEvent event){
-        registroIDCliente.clear();
-        registroClienteNomebreyApellido.clear();
-        registroPagoAdelanto.setDisable(false);
-        registroButtonRegistrar.setDisable(true);
-        registroCheckBoxHabi0.setVisible(false);
-        registroCheckBoxHabi1.setVisible(false);
-        registroCheckBoxHabi2.setVisible(false);
-        registroCheckBoxHabi3.setVisible(false);
-        registroCheckBoxHabi4.setVisible(false);
-
-
-        this.mostrarPaneX(PaneElegido.paneRegistro);
-
-        this.mostrarFlechaX(FlechaElegida.arrowRegistro);
+        }
+        if(val==true){
+            registroButtonRegistrar.setDisable(false);
+            labelErrorRegistro.setText("");
+            buttonPagarAdelantoRegistro.setDisable(false);
+        }else{
+            labelErrorRegistro.setText("INGRESE AL MENOS UNA HABITACION");
+        }
 
     }
+
+
+
+
+
     public void guardarRegistro(MouseEvent event){
         String labelTexto="";
         buttonConfirmarRegistro.setDisable(false);
@@ -960,6 +983,11 @@ public class Controller implements Initializable {
         reservaFechaEgreso.setDisable(true);
         reservaFechaIngreso.setValue(null);
         reservaFechaEgreso.setValue(null);
+        buttonSeleccionarReserva.setDisable(true);
+        buttonBuscarFechaReserva.setDisable(true);
+        buttonReservarReserva.setDisable(true);
+        buttonPagarAdelantoReserva.setDisable(true);
+
         this.mostrarPaneX(PaneElegido.paneReserva);
 
         this.mostrarFlechaX(FlechaElegida.arrowReserva);
@@ -971,6 +999,7 @@ public class Controller implements Initializable {
         int indiceCliente=hotel.buscarIdCliente(reservaBusquedaIdCliente.getText());
         if(indiceCliente!=-1) {
            reservaClienteNomebreyApellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+            buttonSeleccionarReserva.setDisable(false);
         }else{
             reservaClienteNomebreyApellido.setText("Cliente no registrado");
         }
@@ -980,29 +1009,46 @@ public class Controller implements Initializable {
         reservaClienteNomebreyApellido.setDisable(true);
         reservaFechaIngreso.setDisable(false);
         reservaFechaEgreso.setDisable(false);
+        buttonBuscarFechaReserva.setDisable(false);
     }
 
     public void onBuscarFechasReservaButtonClicked(MouseEvent event){
-        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue());
-        ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
+        try {
+            List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue());
+            ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
+            for(int i=0;i<habitacionesLibres.size();i++){
 
-        for(int i=0;i<habitacionesLibres.size();i++){
+                comboSoloHabitacionesLibres.add(habitacionesLibres.get(i).getNumeroHabitacion());
 
-            comboSoloHabitacionesLibres.add(habitacionesLibres.get(i).getNumeroHabitacion());
-
+            }
+            reservaNroHabitacion.setItems(comboSoloHabitacionesLibres);
+            reservaNroHabitacion.setDisable(false);
+            buttonReservarReserva.setDisable(false);
+            labelReservaErrorFechas.setText("");
+        }catch (NullPointerException e){
+            labelReservaErrorFechas.setText("INGRESE UN RANGO DE FECHAS");
         }
-        reservaNroHabitacion.setItems(comboSoloHabitacionesLibres);
-        reservaNroHabitacion.setDisable(false);
+
+
+
 
     }
 
     public void onReservarClienteButtonClicked(MouseEvent event){
-        buttonConfirmarReserva.setDisable(false);
-        labelReservaGuardadaExitosamente.setText("VERIFICAR FECHAS Y HABITACION");
-        mostrarPaneX(PaneElegido.paneReservaCargada);
-        labelHabitacionMuestra.setText(reservaNroHabitacion.getValue().toString());
-        labelFechaEgresoMuestra.setText(reservaFechaEgreso.getValue().toString());
-        labelFechaIngresoMuestra.setText(reservaFechaIngreso.getValue().toString());
+        try{
+            buttonConfirmarReserva.setDisable(false);
+            buttonPagarAdelantoReserva.setDisable(false);
+            labelReservaGuardadaExitosamente.setText("VERIFICAR FECHAS Y HABITACION");
+
+            labelHabitacionMuestra.setText(reservaNroHabitacion.getValue().toString());
+            labelFechaEgresoMuestra.setText(reservaFechaEgreso.getValue().toString());
+            labelFechaIngresoMuestra.setText(reservaFechaIngreso.getValue().toString());
+            labelReservaErrorFechas.setText("");
+            mostrarPaneX(PaneElegido.paneReservaCargada);
+        }catch (NullPointerException e){
+            labelReservaErrorFechas.setText("SELECCIONE UNA HABITACION");
+        }
+
 
     }
     public void onConfirmarReservaButtonClicked(MouseEvent event){
