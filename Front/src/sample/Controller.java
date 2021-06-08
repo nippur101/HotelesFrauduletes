@@ -330,9 +330,9 @@ public class Controller implements Initializable {
             if (indiceCliente != -1) {
                 mostrarPaneTopX(PaneElegido.paneTopCliente);
             } else {
-                if (indiceUsuarioHotel != -1 && listaUsuarioHotel.get(indiceUsuarioHotel).getClave().equals(passIdentificadorUsuario.getText())) {
+                if (indiceUsuarioHotel != -1 && hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getClave().equals(passIdentificadorUsuario.getText())) {
 
-                    if (listaUsuarioHotel.get(indiceUsuarioHotel) instanceof Administrador) {
+                    if (hotel.getListaUsuarioHotel().get(indiceUsuarioHotel) instanceof Administrador) {
 
                         this.mostrarPaneX(PaneElegido.paneAccesoPermitido);
 
@@ -397,7 +397,7 @@ public class Controller implements Initializable {
         return detalles;
     }
     public void onConsumoSeleccionarClienteButtonClicked(MouseEvent event){
-        Cliente cliente=listaCliente.get(hotel.buscarIdCliente(consumoHuesped.getText()));
+        Cliente cliente=hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText()));
         columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
         columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
 
@@ -418,7 +418,7 @@ public class Controller implements Initializable {
     public void onConsumoBuscarClienteClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(consumoHuesped.getText());
         if(indiceCliente!=-1) {
-           consumoNombreHuesped.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+           consumoNombreHuesped.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
         }else{
             consumoNombreHuesped.setText("Cliente no registrado");
         }
@@ -747,7 +747,7 @@ public class Controller implements Initializable {
         int idCliente= hotel.buscarIdCliente(clienteDNI.getText());
         if(idCliente==-1) {
             Cliente clienteNuevo = new Cliente(clienteDNI.getText(), clienteNombreApellido.getText(), clienteDireccion.getText(), clienteCorreoElectronico.getText(), clienteTelefono.getText(), clientePais.getText(), clienteProvincia.getText(), clienteLocalidad.getText());
-            listaCliente.add(clienteNuevo);
+            hotel.getListaCliente().add(clienteNuevo);
             mostrarPaneX(PaneElegido.paneClienteCargado);
             hotel.getListaCliente().add(clienteNuevo);
             labelPaneClienteCargadoExitosamente.setText("CLIENTE CARGADO EXITOSAMENTE");
@@ -786,7 +786,7 @@ public class Controller implements Initializable {
     public void onBuscarRegistrarClienteButtonClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(registroIDCliente.getText());
         if(indiceCliente!=-1) {
-            registroClienteNomebreyApellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+            registroClienteNomebreyApellido.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
 
 
         }else{
@@ -916,12 +916,12 @@ public class Controller implements Initializable {
     public void onBuscarModificarRecepcionistaButtonClicked(MouseEvent event){
         int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(busquedaIdRececionista.getText());
         if(indiceUsuarioHotel!=-1){
-            busquedaIdRececionista.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getId());
-            mRecepcionistaNomebreyAppellido.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getNombreYapellido());
-            mRecepcionistaDireccion.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getDireccion());
-            mRecepcionistaTelefono.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getTelefono());
-            mRecepcionistaDni.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getId());
-            mRecepcionistaPassword.setText(listaUsuarioHotel.get(indiceUsuarioHotel).getClave());
+            busquedaIdRececionista.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getId());
+            mRecepcionistaNomebreyAppellido.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getNombreYapellido());
+            mRecepcionistaDireccion.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getDireccion());
+            mRecepcionistaTelefono.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getTelefono());
+            mRecepcionistaDni.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getId());
+            mRecepcionistaPassword.setText(hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).getClave());
 
         }
 
@@ -931,11 +931,11 @@ public class Controller implements Initializable {
 
         int indiceUsuarioHotel=hotel.buscarIdUsuarioHotel(busquedaIdRececionista.getText());
         if(indiceUsuarioHotel!=-1) {
-            listaUsuarioHotel.get(indiceUsuarioHotel).setId(mRecepcionistaDni.getText());
-            listaUsuarioHotel.get(indiceUsuarioHotel).setNombreYapellido(mRecepcionistaNomebreyAppellido.getText());
-            listaUsuarioHotel.get(indiceUsuarioHotel).setDireccion(mRecepcionistaDireccion.getText());
-            listaUsuarioHotel.get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
-            listaUsuarioHotel.get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
+            hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setId(mRecepcionistaDni.getText());
+            hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setNombreYapellido(mRecepcionistaNomebreyAppellido.getText());
+            hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setDireccion(mRecepcionistaDireccion.getText());
+            hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
+            hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
             mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
         }
 
@@ -944,14 +944,14 @@ public class Controller implements Initializable {
     public void onBuscarModificarClienteButtonClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(busquedaIdCliente.getText());
         if(indiceCliente!=-1){
-            busquedaIdCliente.setText(listaCliente.get(indiceCliente).getId());
-            mClienteNomebreyAppellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
-            mClienteDireccion.setText(listaCliente.get(indiceCliente).getDireccion());
-            mClienteTelefono.setText(listaCliente.get(indiceCliente).getTelefono());
-            mClienteDni.setText(listaCliente.get(indiceCliente).getId());
-            mClienteLocalidad.setText(listaCliente.get(indiceCliente).getLocalidad());
-            mClienteProvincia.setText(listaCliente.get(indiceCliente).getProvincia());
-            mClientePais.setText(listaCliente.get(indiceCliente).getPais());
+            busquedaIdCliente.setText(hotel.getListaCliente().get(indiceCliente).getId());
+            mClienteNomebreyAppellido.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
+            mClienteDireccion.setText(hotel.getListaCliente().get(indiceCliente).getDireccion());
+            mClienteTelefono.setText(hotel.getListaCliente().get(indiceCliente).getTelefono());
+            mClienteDni.setText(hotel.getListaCliente().get(indiceCliente).getId());
+            mClienteLocalidad.setText(hotel.getListaCliente().get(indiceCliente).getLocalidad());
+            mClienteProvincia.setText(hotel.getListaCliente().get(indiceCliente).getProvincia());
+            mClientePais.setText(hotel.getListaCliente().get(indiceCliente).getPais());
 
         }
 
@@ -960,13 +960,13 @@ public class Controller implements Initializable {
 
         int indiceCliente=hotel.buscarIdCliente(busquedaIdCliente.getText());
         if(indiceCliente!=-1) {
-            listaCliente.get(indiceCliente).setId(mClienteDni.getText());
-            listaCliente.get(indiceCliente).setNombreYapellido(mClienteNomebreyAppellido.getText());
-            listaCliente.get(indiceCliente).setDireccion(mClienteDireccion.getText());
-            listaCliente.get(indiceCliente).setTelefono(mClienteTelefono.getText());
-            listaCliente.get(indiceCliente).setLocalidad(mClienteLocalidad.getText());
-            listaCliente.get(indiceCliente).setProvincia(mClienteProvincia.getText());
-            listaCliente.get(indiceCliente).setPais(mClientePais.getText());
+            hotel.getListaCliente().get(indiceCliente).setId(mClienteDni.getText());
+            hotel.getListaCliente().get(indiceCliente).setNombreYapellido(mClienteNomebreyAppellido.getText());
+            hotel.getListaCliente().get(indiceCliente).setDireccion(mClienteDireccion.getText());
+            hotel.getListaCliente().get(indiceCliente).setTelefono(mClienteTelefono.getText());
+            hotel.getListaCliente().get(indiceCliente).setLocalidad(mClienteLocalidad.getText());
+            hotel.getListaCliente().get(indiceCliente).setProvincia(mClienteProvincia.getText());
+            hotel.getListaCliente().get(indiceCliente).setPais(mClientePais.getText());
             mostrarPaneX(PaneElegido.paneClienteCargado);
         }
 
@@ -997,7 +997,7 @@ public class Controller implements Initializable {
     public void onBuscarReservaClienteButtonClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(reservaBusquedaIdCliente.getText());
         if(indiceCliente!=-1) {
-           reservaClienteNomebreyApellido.setText(listaCliente.get(indiceCliente).getNombreYapellido());
+           reservaClienteNomebreyApellido.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
             buttonSeleccionarReserva.setDisable(false);
         }else{
             reservaClienteNomebreyApellido.setText("Cliente no registrado");
@@ -1024,6 +1024,7 @@ public class Controller implements Initializable {
             reservaNroHabitacion.setDisable(false);
             buttonReservarReserva.setDisable(false);
             labelReservaErrorFechas.setText("");
+            buttonPagarAdelantoReserva.setDisable(false);
         }catch (NullPointerException e){
             labelReservaErrorFechas.setText("INGRESE UN RANGO DE FECHAS");
         }
