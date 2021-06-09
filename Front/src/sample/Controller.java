@@ -1,5 +1,7 @@
 package sample;
-
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,8 +75,6 @@ public class Controller implements Initializable {
     @FXML private Button buttonRegistroElegirHabi;
     @FXML private Button buttonPagarAdelantoRegistro;
     @FXML private Label labelErrorRegistro;
-    @FXML private TextField registroPagoAdelanto;
-    @FXML private TextField registroClienteNomebreyApellido;
     @FXML private Button registroButtonRegistrar;
     @FXML private Button registroFechasConfirmar;
     @FXML private Button buttonConfirmarRegistro;
@@ -83,6 +83,8 @@ public class Controller implements Initializable {
     @FXML private Label labelRegistroFechaEgresoMuestra;
     @FXML private Label labelRegistroFechaIngresoMuestra;
     @FXML private TextField registroAbonoAdelanto;
+    @FXML private TextField registroPagoAdelanto;
+    @FXML private TextField registroClienteNomebreyApellido;
 
     @FXML private Label labelReservaErrorFechas;
     @FXML private Button buttonSeleccionarReserva;
@@ -217,7 +219,68 @@ public class Controller implements Initializable {
         bloquearAccesoImegenesSup();
         mostrarFlechaX(FlechaElegida.arrowNinguna);
         cargarDatos();
+        initializeTextFieldOnlyText();
+        initializeTextFieldOnlyNumber();
+        initializeTextFieldOnlyDouble();
+    }
+    public void initializeTextFieldOnlyDouble(){
+        valor00Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        valor01Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        valor02Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        valor03Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        abono00Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        abono01Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        abono02Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        abono03Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
 
+        consumoCargo.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        consumoAbono.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        consumoSaldo.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        consumoNombreHuesped.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        registroPagoAdelanto.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+        reservaAbonoAdelanto.addEventFilter(KeyEvent.ANY,handelerdouble(12));
+    }
+    public void initializeTextFieldOnlyNumber() {
+        consumoHuesped.addEventFilter(KeyEvent.ANY,handelernumber());
+        registroIDCliente.addEventFilter(KeyEvent.ANY,handelernumber());
+        reservaBusquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber());
+        busquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber());
+        mRecepcionistaDni.addEventFilter(KeyEvent.ANY,handelernumber());
+        busquedaIdRececionista.addEventFilter(KeyEvent.ANY,handelernumber());
+        mClienteDni.addEventFilter(KeyEvent.ANY,handelernumber());
+        recepcionistaDNI.addEventFilter(KeyEvent.ANY,handelernumber());
+        clienteDNI.addEventFilter(KeyEvent.ANY,handelernumber());
+        identificadorUsuario.addEventFilter(KeyEvent.ANY,handelernumber());
+
+        comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber());
+        comboConsumoOperacion.addEventFilter(KeyEvent.ANY,handelernumber());
+
+
+
+    }
+
+
+    public void initializeTextFieldOnlyText() {
+
+        detalle00Consumo2.addEventFilter(KeyEvent.ANY,handelerletters);
+        detalle01Consumo2.addEventFilter(KeyEvent.ANY,handelerletters);
+        detalle02Consumo2.addEventFilter(KeyEvent.ANY,handelerletters);
+        detalle03Consumo2.addEventFilter(KeyEvent.ANY,handelerletters);
+        registroClienteNomebreyApellido.addEventFilter(KeyEvent.ANY,handelerletters);
+        mClienteNomebreyAppellido.addEventFilter(KeyEvent.ANY,handelerletters);
+        mClienteLocalidad.addEventFilter(KeyEvent.ANY,handelerletters);
+        mClienteProvincia.addEventFilter(KeyEvent.ANY,handelerletters);
+        mClientePais.addEventFilter(KeyEvent.ANY,handelerletters);
+        mRecepcionistaNomebreyAppellido.addEventFilter(KeyEvent.ANY,handelerletters);
+        clienteLocalidad.addEventFilter(KeyEvent.ANY,handelerletters);
+        clienteProvincia.addEventFilter(KeyEvent.ANY,handelerletters);
+        clientePais.addEventFilter(KeyEvent.ANY,handelerletters);
+        clienteNombreApellido.addEventFilter(KeyEvent.ANY,handelerletters);
+
+
+
+        recepcionistaDireccion.addEventFilter(KeyEvent.ANY,handelerletters);
+        recepcionistaNombreApellido.addEventFilter(KeyEvent.ANY,handelerletters);
 
     }
     public Double doubleEnTexto(TextField textField){
@@ -488,7 +551,69 @@ public class Controller implements Initializable {
             System.out.println(e);
         }
     }
+    //=====================================================================================================
+
+
+    EventHandler<KeyEvent> handelerletters = new EventHandler<KeyEvent>(){
+
+        private boolean willConsume = false;
+
+        @Override
+        public void handle(KeyEvent event){
+            Object tempO = event.getSource();
+            if (willConsume){
+                event.consume();
+            }
+            String temp = event.getCode().toString();
+            if ((!event.getCode().toString().matches("[a-zA-Z]")) &&
+                    (event.getCode() != KeyCode.BACK_SPACE) &&
+                    (event.getCode() != KeyCode.SHIFT)){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume=false;
+                }
+            }
+        }
+    };
+
+    public static EventHandler<KeyEvent> handelernumber() {
+
+        EventHandler<KeyEvent> aux = new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent keyEvent) {
+                if (!"0123456789".contains(keyEvent.getCharacter())) {
+                    keyEvent.consume();
+
+                }
+            }
+        };
+        return aux;
+    }
+
+    public EventHandler<KeyEvent> handelerdouble(final Integer max_Lengh) {
+        return new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                TextField txt_TextField = (TextField) e.getSource();
+                if (txt_TextField.getText().length() >= max_Lengh) {
+                    e.consume();
+                }
+                if(e.getCharacter().matches("[0-9.]")){
+                    if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
+                        e.consume();
+                    }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
+                        e.consume();
+                    }
+                }else{
+                    e.consume();
+                }
+            }
+        };
+    }
+    //=====================================================================================================
     public void onEjecutarConsumo2ButtonClicked(MouseEvent event){
+
+
         if(!detalle00Consumo2.getText().equals("")) {
             Consumo c0 = new Consumo(LocalDate.now(), detalle00Consumo2.getText(), doubleEnTexto(valor00Consumo2), doubleEnTexto(abono00Consumo2));
             hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c0);
