@@ -1,9 +1,10 @@
 package com.company;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class RegistroHuesped implements Comparable<RegistroHuesped>{
+public class RegistroHuesped implements Comparable<RegistroHuesped>, Serializable {
 
     ///Atributos
     private int id;
@@ -31,6 +32,9 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
     ///Getter and Setters
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdCliente() {
@@ -71,7 +75,9 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
     public static int getContadorRegHuesped() {
         return contadorRegHuesped;
     }
-
+    public static void setContadorRegHuesped(int contadorRegHuesped) {
+        RegistroHuesped.contadorRegHuesped = contadorRegHuesped;
+    }
 
     @Override
     public boolean equals(Object o) {

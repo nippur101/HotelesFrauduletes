@@ -1,8 +1,9 @@
 package com.company;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reserva {
+public class Reserva implements Serializable {
 
     ///Atributos
     private int id;
@@ -31,6 +32,9 @@ public class Reserva {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdHabitacion() {
@@ -74,10 +78,17 @@ public class Reserva {
     public void setBorradoLogico(boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
+    public boolean isBorradoLogico() {
+        return borradoLogico;
+    }
 
     public static int getContadorReservas() {
         return contadorReservas;
     }
+    public static void setContadorReservas(int contadorReservas) {
+        Reserva.contadorReservas = contadorReservas;
+    }
+
 
     @Override
     public String toString() {

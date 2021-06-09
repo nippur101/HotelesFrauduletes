@@ -1,8 +1,9 @@
 package com.company;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Mantenimiento {
+public class Mantenimiento implements Serializable {
 
     ///Atributos
     private int id;
@@ -31,6 +32,9 @@ public class Mantenimiento {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdHabitacion() {
@@ -63,6 +67,9 @@ public class Mantenimiento {
 
     public static int getContadorMantenimiento() {
         return contadorMantenimiento;
+    }
+    public static void setContadorMantenimiento(int contadorMantenimiento) {
+        Mantenimiento.contadorMantenimiento = contadorMantenimiento;
     }
 
     @Override

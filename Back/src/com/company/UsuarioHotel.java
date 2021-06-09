@@ -1,9 +1,10 @@
 package com.company;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public abstract class UsuarioHotel extends Usuario {
+public abstract class UsuarioHotel extends Usuario implements Serializable {
 
     ///Atributos
     protected String clave;

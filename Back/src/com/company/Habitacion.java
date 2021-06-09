@@ -1,6 +1,8 @@
 package com.company;
 
-public class Habitacion {
+import java.io.Serializable;
+
+public class Habitacion implements Serializable {
 
     ///Atributos
     private int id;
@@ -13,6 +15,10 @@ public class Habitacion {
 
 
     ///Constructor
+
+    public Habitacion() {
+    }
+
     public Habitacion(int numeroHabitacion, String tipoHabitacion, String caracteristicas, double precio) {
         contadorHabitaciones++;
         this.id = contadorHabitaciones;
@@ -27,6 +33,9 @@ public class Habitacion {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getNumeroHabitacion() {
@@ -59,6 +68,9 @@ public class Habitacion {
 
     public static int getContadorHabitaciones() {
         return contadorHabitaciones;
+    }
+    public static void setContadorHabitaciones(int contadorHabitaciones) {
+        Habitacion.contadorHabitaciones = contadorHabitaciones;
     }
 
     public String getEstadoHabitacion() {
