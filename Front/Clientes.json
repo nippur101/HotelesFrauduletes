@@ -1,0 +1,101 @@
+[
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "Capial Federal",
+    "consumos": [],
+    "id": "35140802",
+    "nombreYapellido": "Norberto Alonzo",
+    "direccion": "Corriente 3421",
+    "correoElectronico": "alonzo@gmail.com",
+    "telefono": "011-5897587"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "Capial Federal",
+    "consumos": [],
+    "id": "34185634",
+    "nombreYapellido": "Osvaldo Ardiles",
+    "direccion": "General Paz 3221",
+    "correoElectronico": "ardiles@gmail.com",
+    "telefono": "011-3244587"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "Capial Federal",
+    "consumos": [],
+    "id": "38140802",
+    "nombreYapellido": "Hector Baley",
+    "direccion": "Yrigoyen 1231",
+    "correoElectronico": "Baley@gmail.com",
+    "telefono": "011-3653433"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "La Plata",
+    "consumos": [],
+    "id": "37415963",
+    "nombreYapellido": "Daniel Bertoni",
+    "direccion": "Cordoba 4323",
+    "correoElectronico": "bertoni@gmail.com",
+    "telefono": "011-6586856"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "Necochea",
+    "consumos": [],
+    "id": "25546465",
+    "nombreYapellido": "Ubaldo Filiol",
+    "direccion": "Acha 623",
+    "correoElectronico": "filiol@gmail.com",
+    "telefono": "011-3286856"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Cordoba",
+    "localidad": "Cordoba",
+    "consumos": [],
+    "id": "46432210",
+    "nombreYapellido": "Americo Gallego",
+    "direccion": "Chile 323",
+    "correoElectronico": "gallego@gmail.com",
+    "telefono": "011-345856"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "Balcarce",
+    "consumos": [],
+    "id": "5345656",
+    "nombreYapellido": "Luis Galvan",
+    "direccion": "Ilia 3223",
+    "correoElectronico": "galvan@gmail.com",
+    "telefono": "011-653546"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "La Plata",
+    "consumos": [],
+    "id": "32222963",
+    "nombreYapellido": "rene Houseman",
+    "direccion": "Libertad 387",
+    "correoElectronico": "rene@gmail.com",
+    "telefono": "011-64545856"
+  },
+  {
+    "pais": "Argentina",
+    "provincia": "Buenos Aires",
+    "localidad": "La Plata",
+    "consumos": [],
+    "id": "11111111",
+    "nombreYapellido": "Nippur de Lagash",
+    "direccion": "Libertad 387",
+    "correoElectronico": "rene@gmail.com",
+    "telefono": "011-64545856"
+  }
+]

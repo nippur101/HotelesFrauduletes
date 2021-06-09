@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "idHabitacion": 2,
+    "idCliente": "25546465",
+    "fechaIngreso": "2021-06-25",
+    "fechaEgreso": "2021-06-29",
+    "pagoReserva": 0.0,
+    "borradoLogico": true
+  },
+  {
+    "id": 2,
+    "idHabitacion": 3,
+    "idCliente": "46432210",
+    "fechaIngreso": "2021-07-01",
+    "fechaEgreso": "2021-07-12",
+    "pagoReserva": 0.0,
+    "borradoLogico": true
+  },
+  {
+    "id": 3,
+    "idHabitacion": 3,
+    "idCliente": "5345656",
+    "fechaIngreso": "2021-07-15",
+    "fechaEgreso": "2021-07-22",
+    "pagoReserva": 0.0,
+    "borradoLogico": true
+  },
+  {
+    "id": 4,
+    "idHabitacion": 4,
+    "idCliente": "32222963",
+    "fechaIngreso": "2021-07-05",
+    "fechaEgreso": "2021-07-15",
+    "pagoReserva": 1000.0,
+    "borradoLogico": true
+  },
+  {
+    "id": 5,
+    "idHabitacion": 5,
+    "idCliente": "11111111",
+    "fechaIngreso": "2021-06-06",
+    "fechaEgreso": "2021-07-16",
+    "pagoReserva": 1000.0,
+    "borradoLogico": true
+  },
+  {
+    "id": 6,
+    "idHabitacion": 7,
+    "idCliente": "11111111",
+    "fechaIngreso": "2021-06-06",
+    "fechaEgreso": "2021-07-16",
+    "pagoReserva": 1000.0,
+    "borradoLogico": true
+  }
+]

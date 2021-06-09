@@ -1,8 +1,9 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reserva {
+public class Reserva implements Serializable {
 
     ///Atributos
     private int id;
@@ -74,6 +75,9 @@ public class Reserva {
     public boolean getBorradoLogico() {
         return borradoLogico;
     }
+    public boolean isBorradoLogico() {
+        return borradoLogico;
+    }
     public void setBorradoLogico(boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
@@ -84,6 +88,8 @@ public class Reserva {
     public static void setContadorReservas(int contadorReservas) {
         Reserva.contadorReservas = contadorReservas;
     }
+
+
 
     @Override
     public String toString() {

@@ -1,10 +1,11 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hotel {
+public class Hotel implements Serializable {
     private List<UsuarioHotel> listaUsuarioHotel;
     private List<Cliente> listaCliente;
     private List<Habitacion> listaHabitacion;
@@ -65,6 +66,13 @@ public class Hotel {
     }
     public void setRegistroHuespedes(List<RegistroHuesped> registroHuespedes) {
         this.registroHuespedes = registroHuespedes;
+    }
+
+    public List<Mantenimiento> getListaMantenimiento() {
+        return listaMantenimiento;
+    }
+    public void setListaMantenimiento(List<Mantenimiento> listaMantenimiento) {
+        this.listaMantenimiento = listaMantenimiento;
     }
 
     /// ---------------------- LOGIN ----------------------

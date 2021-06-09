@@ -1,8 +1,9 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Consumo {
+public class Consumo implements Serializable {
 
     ///Atributos
     private int id;
@@ -28,6 +29,9 @@ public class Consumo {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getFechaConsumo() {
@@ -60,6 +64,9 @@ public class Consumo {
 
     public static int getContadorConsumos() {
         return contadorConsumos;
+    }
+    public static void setContadorConsumos(int contadorConsumos) {
+        Consumo.contadorConsumos = contadorConsumos;
     }
 
     @Override

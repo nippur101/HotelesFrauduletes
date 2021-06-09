@@ -68,6 +68,13 @@ public class Hotel implements Serializable {
         this.registroHuespedes = registroHuespedes;
     }
 
+    public List<Mantenimiento> getListaMantenimiento() {
+        return listaMantenimiento;
+    }
+    public void setListaMantenimiento(List<Mantenimiento> listaMantenimiento) {
+        this.listaMantenimiento = listaMantenimiento;
+    }
+
     /// ---------------------- LOGIN ----------------------
     /// Corrobora si un Usuario Hotel existe y coincide con la clave registrada.
     /// Si Existe y la clave es correcta devuelve el indice de la lista.

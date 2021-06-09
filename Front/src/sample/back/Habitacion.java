@@ -1,8 +1,9 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Habitacion {
+public class Habitacion implements Serializable {
 
     ///Atributos
     private int id;
@@ -37,6 +38,9 @@ public class Habitacion {
     public int getId() {
         return id;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getNumeroHabitacion() {
         return numeroHabitacion;
@@ -69,11 +73,13 @@ public class Habitacion {
     public static int getContadorHabitaciones() {
         return contadorHabitaciones;
     }
+    public static void setContadorHabitaciones(int contadorHabitaciones) {
+        Habitacion.contadorHabitaciones = contadorHabitaciones;
+    }
 
     public String getEstadoHabitacion() {
         return estadoHabitacion;
     }
-
     public void setEstadoHabitacion(String estadoHabitacion) {
         this.estadoHabitacion = estadoHabitacion;
     }

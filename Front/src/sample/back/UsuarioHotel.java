@@ -1,8 +1,9 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class UsuarioHotel extends Usuario {
+public abstract class UsuarioHotel extends Usuario implements Serializable {
 
     ///Atributos
     protected String clave;

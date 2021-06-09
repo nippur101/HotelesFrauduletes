@@ -140,7 +140,7 @@ public class Main {
         Hotel hotel2 = new Hotel();
  /*
         /// --------------------------------------------------  CLIENTES --------------------------------------------------
-        File fileCliente = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\Clientes.json");
+        File fileCliente = new File("Clientes.json");
 
         Archivos.escribirArchivoClientes(fileCliente,(ArrayList<Cliente>) hotel.getListaCliente() );
 
@@ -162,7 +162,7 @@ public class Main {
 /*
         System.out.println(Habitacion.getContadorHabitaciones());
 
-        File fileHabitaciones = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\habitaciones.json");
+        File fileHabitaciones = new File("habitaciones.json");
 
        /// Archivos.escribirArchivoHabitacion(fileHabitaciones,(ArrayList<Habitacion>) hotel.getListaHabitacion());
 
@@ -181,7 +181,7 @@ public class Main {
 */
 
         /// --------------------------------------------------  USUARIOS --------------------------------------------------
-    /*    File fileUsuarioHotel = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\usuariohotel.json");
+    /*    File fileUsuarioHotel = new File("usuariohotel.json");
 
         Archivos.escribirArchivoUsuarioHotel(fileUsuarioHotel,(ArrayList<UsuarioHotel>) hotel.getListaUsuarioHotel());
 
@@ -193,7 +193,7 @@ public class Main {
         */
         /// --------------------------------------------------  RESERVAS --------------------------------------------------
 /*
-        File fileReservas = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\reservas.json");
+        File fileReservas = new File("reservas.json");
 
         Archivos.escribirArchivoReservas(fileReservas,(ArrayList<Reserva>) hotel.getListaReserva());
 
@@ -205,7 +205,7 @@ public class Main {
     */
         /// --------------------------------------------------  REGISTRO HUESPED --------------------------------------------------
        /*
-        File fileRegistroHuesped = new File("C:\\Users\\nicolas\\Desktop\\HotelesFrauduletes\\Back\\registrohuesped.json");
+        File fileRegistroHuesped = new File("registrohuesped.json");
 
         Archivos.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
 
@@ -220,5 +220,19 @@ public class Main {
             System.out.println(rh.toString());
         }
         */
+        /// --------------------------------------------------  MANTENIMIENTO --------------------------------------------------
+
+        File fileMantenimiento = new File("Mantenimiento.json");
+
+        Archivos.escribirArchivoMantenimiento(fileMantenimiento,(ArrayList<Mantenimiento>) hotel.getListaMantenimiento());
+
+        hotel2.setListaMantenimiento(Archivos.leerArchivoMantenimiento(fileMantenimiento));
+
+        for (Mantenimiento m : hotel2.getListaMantenimiento()){
+            System.out.println(m.toString());
+        }
+
+
+
     }
 }

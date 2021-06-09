@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import sample.back.*;
 
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -186,6 +187,7 @@ public class Controller implements Initializable {
     @FXML private AnchorPane panePago;
     @FXML private AnchorPane paneRecepcionistaCargado;
     @FXML private AnchorPane paneClienteCargado;
+    @FXML private AnchorPane paneListarClientes;
     //====================TABLA DE DETALLE DE CONSUMOS
     @FXML private TableView<Detalle> tableViewDetalle;
     //====================COLUMNAS DE TABLA DETALLE CONSUMO
@@ -196,6 +198,17 @@ public class Controller implements Initializable {
     @FXML private TableColumn<Detalle,Double > columCargos;
     @FXML private TableColumn<Detalle,Double > columAbono;
     @FXML private TableColumn<Detalle,Boolean > columEstado;
+    //====================TABLA DE DETALLE DE CLIENTES
+    @FXML private TableView<TableViewCliente> tableViewListadoClientes;
+    //====================COLUMNAS DE TABLA DETALLE CLIENTES
+    @FXML private TableColumn<Cliente, String> listaClienteColumDni;
+    @FXML private TableColumn<Cliente, String> listaClienteColumApellidoNombre;
+    @FXML private TableColumn<Cliente, String> listaClienteColumPais;
+    @FXML private TableColumn<Cliente, String> listaClienteColumProvincia;
+    @FXML private TableColumn<Cliente, String> listaClienteColumLocalidad;
+    @FXML private TableColumn<Cliente, String> listaClienteColumDomicilio;
+    @FXML private TableColumn<Cliente, String> listaClienteColumCorreoElect;
+    @FXML private TableColumn<Cliente, String> listaClienteColumTelefono;
 
     List<UsuarioHotel> listaUsuarioHotel=new ArrayList<>();
     List<Cliente> listaCliente=new ArrayList<>();
@@ -209,6 +222,13 @@ public class Controller implements Initializable {
     Hotel hotel=new Hotel();
 
 
+    File fileCliente = new File("Clientes.json");
+    File fileHabitaciones = new File("Habitaciones.json");
+    File fileUsuarioHotel = new File("UsuariosHotel.json");
+    File fileReservas = new File("Reservas.json");
+    File fileRegistroHuesped = new File("RegistroHuesped.json");
+    File fileMantenimiento = new File("Mantenimiento.json");
+
 
 
     @Override
@@ -218,7 +238,25 @@ public class Controller implements Initializable {
         this.mostrarPaneTopX(PaneElegido.paneTopAdmin);
         bloquearAccesoImegenesSup();
         mostrarFlechaX(FlechaElegida.arrowNinguna);
-        cargarDatos();
+
+        //cargarDatos();
+        /*
+        ///-----GENERACION DE ARCHIVOS---
+        Archivo.escribirArchivoClientes(fileCliente,(ArrayList<Cliente>) hotel.getListaCliente() );
+        Archivo.escribirArchivoHabitacion(fileHabitaciones,(ArrayList<Habitacion>) hotel.getListaHabitacion());
+        Archivo.escribirArchivoUsuarioHotel(fileUsuarioHotel,(ArrayList<UsuarioHotel>) hotel.getListaUsuarioHotel());
+        Archivo.escribirArchivoReservas(fileReservas,(ArrayList<Reserva>) hotel.getListaReserva());
+        Archivo.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
+        Archivo.escribirArchivoMantenimiento(fileMantenimiento,(ArrayList<Mantenimiento>) hotel.getListaMantenimiento());
+       */
+        ///-----CARGA DE ARCHIVOS---
+        hotel.setListaCliente(Archivo.leerArchivoClientes(fileCliente));
+        hotel.setListaHabitacion(Archivo.leerArchivoHabitacion(fileHabitaciones));
+        hotel.setRegistroHuespedes(Archivo.leerArchivoRegistroHuesped(fileRegistroHuesped));
+        hotel.setListaReserva(Archivo.leerArchivoReservas(fileReservas));
+        hotel.setListaUsuarioHotel(Archivo.leerArchivoUsuarioHotel(fileUsuarioHotel));
+        hotel.setListaMantenimiento(Archivo.leerArchivoMantenimiento(fileMantenimiento));
+
         initializeTextFieldOnlyText();
         initializeTextFieldOnlyNumber();
         initializeTextFieldOnlyDouble();
@@ -241,19 +279,19 @@ public class Controller implements Initializable {
         reservaAbonoAdelanto.addEventFilter(KeyEvent.ANY,handelerdouble(12));
     }
     public void initializeTextFieldOnlyNumber() {
-        consumoHuesped.addEventFilter(KeyEvent.ANY,handelernumber());
-        registroIDCliente.addEventFilter(KeyEvent.ANY,handelernumber());
-        reservaBusquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber());
-        busquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber());
-        mRecepcionistaDni.addEventFilter(KeyEvent.ANY,handelernumber());
-        busquedaIdRececionista.addEventFilter(KeyEvent.ANY,handelernumber());
-        mClienteDni.addEventFilter(KeyEvent.ANY,handelernumber());
-        recepcionistaDNI.addEventFilter(KeyEvent.ANY,handelernumber());
-        clienteDNI.addEventFilter(KeyEvent.ANY,handelernumber());
-        identificadorUsuario.addEventFilter(KeyEvent.ANY,handelernumber());
+        consumoHuesped.addEventFilter(KeyEvent.ANY,handelernumber);
+        registroIDCliente.addEventFilter(KeyEvent.ANY,handelernumber);
+        reservaBusquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber);
+        busquedaIdCliente.addEventFilter(KeyEvent.ANY,handelernumber);
+        mRecepcionistaDni.addEventFilter(KeyEvent.ANY,handelernumber);
+        busquedaIdRececionista.addEventFilter(KeyEvent.ANY,handelernumber);
+        mClienteDni.addEventFilter(KeyEvent.ANY,handelernumber);
+        recepcionistaDNI.addEventFilter(KeyEvent.ANY,handelernumber);
+        clienteDNI.addEventFilter(KeyEvent.ANY,handelernumber);
+        identificadorUsuario.addEventFilter(KeyEvent.ANY,handelernumber);
 
-        comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber());
-        comboConsumoOperacion.addEventFilter(KeyEvent.ANY,handelernumber());
+        comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber);
+        comboConsumoOperacion.addEventFilter(KeyEvent.ANY,handelernumber);
 
 
 
@@ -590,6 +628,36 @@ public class Controller implements Initializable {
         return aux;
     }
 
+EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
+
+    private boolean willConsume = false;
+    private int maxLength = 10;
+
+    @Override
+    public void handle(KeyEvent event){
+        TextField temp = (TextField) event.getSource();
+
+        if (willConsume){
+            event.consume();
+        }
+
+        if ((!event.getText().matches("[0-9]")) &&
+                (event.getCode() != KeyCode.BACK_SPACE) ){
+            if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                willConsume = true;
+            }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                willConsume=false;
+            }
+            if(temp.getText().length() > maxLength -1){
+                if (event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume = false;
+                }
+            }
+        }
+    }
+};
     public EventHandler<KeyEvent> handelerdouble(final Integer max_Lengh) {
         return new EventHandler<KeyEvent>() {
             @Override
@@ -755,6 +823,11 @@ public class Controller implements Initializable {
             paneConsumo2.setVisible(true);
         }else{
             paneConsumo2.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneListarCliente)){
+            paneListarClientes.setVisible(true);
+        }else{
+            paneListarClientes.setVisible(false);
         }
 
     }
@@ -1053,6 +1126,31 @@ public class Controller implements Initializable {
 
     }
 
+    public void onSeleccionarPaneListarClienteButtonClicked(MouseEvent event) {
+        this.mostrarPaneX(PaneElegido.paneListarCliente);
+    }
+    public ObservableList<TableViewCliente> getListaClienteTabla(){
+        ObservableList<TableViewCliente> listaClientesTabla = FXCollections.observableArrayList();
+        for(Cliente cl:hotel.getListaCliente()){
+            //String id, String nombreYapellido, String direccion, String correoElectronico, String telefono, String pais, String provincia, String localidad
+            listaClientesTabla.add(new TableViewCliente(cl.getId(),cl.getNombreYapellido(),cl.getDireccion(),cl.getCorreoElectronico(),cl.getTelefono(),cl.getPais(),cl.getProvincia(),cl.getLocalidad()));
+        }
+        return listaClientesTabla;
+    }
+    public void onSeleccionarListarClienteButtonClicked(MouseEvent event) {
+
+        listaClienteColumDni.setCellValueFactory(new PropertyValueFactory<Cliente,String>("id"));
+        listaClienteColumApellidoNombre.setCellValueFactory(new PropertyValueFactory<Cliente,String>("nombreYapellido"));
+        listaClienteColumPais.setCellValueFactory(new PropertyValueFactory<Cliente,String>("pais"));
+        listaClienteColumProvincia.setCellValueFactory(new PropertyValueFactory<Cliente,String>("provincia"));
+        listaClienteColumLocalidad.setCellValueFactory(new PropertyValueFactory<Cliente,String>("localidad"));
+        listaClienteColumDomicilio.setCellValueFactory(new PropertyValueFactory<Cliente,String>("direccion"));
+        listaClienteColumCorreoElect.setCellValueFactory(new PropertyValueFactory<Cliente,String>("correoElectronico"));
+        listaClienteColumTelefono.setCellValueFactory(new PropertyValueFactory<Cliente,String>("telefono"));
+
+        tableViewListadoClientes.setItems(getListaClienteTabla());
+
+    }
 
     public void onRegistrarElegirHabiButtonClicked(MouseEvent event){
         boolean val=false;

@@ -1,8 +1,9 @@
 package sample.back;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class RegistroHuesped implements Comparable<RegistroHuesped>{
+public class RegistroHuesped implements Comparable<RegistroHuesped>, Serializable {
 
     ///Atributos
     private int id;
@@ -72,6 +73,9 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>{
 
     public static int getContadorRegHuesped() {
         return contadorRegHuesped;
+    }
+    public static void setContadorRegHuesped(int contadorRegHuesped) {
+        RegistroHuesped.contadorRegHuesped = contadorRegHuesped;
     }
 
 
