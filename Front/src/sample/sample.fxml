@@ -894,7 +894,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onRegistroButtonClicked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
             <TableView fx:id="tableHabitacionesEstado" layoutX="13.0" layoutY="34.0" prefHeight="360.0" prefWidth="804.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0">
@@ -910,8 +910,7 @@
                   <TableColumn fx:id="fecha06" prefWidth="91.0" style="-fx-alignment: CENTER;" text="Fecha" />
               </columns>
             </TableView>
-            <DatePicker fx:id="datePickerHabitacionesEstado" layoutX="245.0" layoutY="2.0" />
-            <Button layoutX="467.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#onSeleccionarFechaHabitacionesEstado" text="Seleccionar" />
+            <DatePicker fx:id="datePickerHabitacionesEstado" layoutX="332.0" layoutY="2.0" onAction="#onSeleccionarFechaHabitacionesEstado" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneConsumo2" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -995,7 +994,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneMantenimiento" layoutX="10.0" layoutY="95.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneMantenimiento" layoutX="10.0" layoutY="95.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="10.0" layoutY="1.0" opacity="0.4" text="MANTENIMIENTO" textFill="WHITE">
                <font>
@@ -1026,22 +1025,22 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="88.0" layoutY="202.0" text="Detalle:">
+            <Label layoutX="251.0" layoutY="202.0" text="Detalle:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Separator layoutX="8.0" layoutY="108.0" opacity="0.4" prefHeight="3.0" prefWidth="811.0" />
-            <TextField fx:id="textDetalleManten" layoutX="186.0" layoutY="203.0" prefHeight="20.0" prefWidth="574.0" />
+            <TextField fx:id="textDetalleManten" layoutX="338.0" layoutY="198.0" prefHeight="35.0" prefWidth="292.0" />
             <Label fx:id="labelReservaErrorFechas1" layoutX="271.0" layoutY="215.0" prefHeight="17.0" prefWidth="370.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </Label>
             <Button fx:id="buttonConfirmarMantenimiento" layoutX="710.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#onBuscarFechasMantenimientoButtonClicked" text="CONFIRMAR" />
-            <Label fx:id="labelMantenimientoIngreseRangoFechas" layoutX="258.0" layoutY="18.0" prefHeight="20.0" prefWidth="361.0" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="labelMantenimientoIngreseRangoFechas" alignment="CENTER" layoutX="55.0" layoutY="257.0" prefHeight="27.0" prefWidth="717.0" textAlignment="CENTER" textFill="RED">
                <font>
-                  <Font name="System Italic" size="14.0" />
+                  <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
          </children>

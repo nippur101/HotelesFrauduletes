@@ -1,4 +1,5 @@
 package sample;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -276,6 +277,10 @@ public class Controller implements Initializable {
         reservaFechaEgreso.setDayCellFactory(callB);
         mantenimientoFechaInicio.setDayCellFactory(callB);
         mantenimientoFechaFin.setDayCellFactory(callB);
+
+
+        mantenimientoFechaInicio.setValue(LocalDate.now());
+        mantenimientoFechaFin.setValue(LocalDate.now());
     }
     public void initializeTextFieldOnlyDouble(){
         valor00Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
@@ -999,6 +1004,8 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         this.mostrarPaneX(PaneElegido.paneListaHabitacionesEstado);
 
         this.mostrarFlechaX(FlechaElegida.arrowHabitacion);
+        tableHabitacionesEstado.getItems().clear();
+        //datePickerHabitacionesEstado.setValue(LocalDate.now());
     }
 
     public ObservableList<TableViewHabEstado>getEstadosHabitFecha(LocalDate fecha){
@@ -1024,7 +1031,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         return  estadoHabitaciones;
     }
 
-    public void onSeleccionarFechaHabitacionesEstado(MouseEvent event){
+    public void onSeleccionarFechaHabitacionesEstado(ActionEvent event){
 
 
         columnaHabitacion.setCellValueFactory(new PropertyValueFactory<TableViewHabEstado,Integer>("nroHabitacion"));
@@ -1108,6 +1115,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         buttonConfirmarListaRegistro.setDisable(true);
         buttonRegistroElegirHabi.setDisable(true);
         buttonPagarAdelantoRegistro.setDisable(true);
+        tableViewRegistroReservasCliente.getItems().clear();
 
 
 
@@ -1172,6 +1180,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
 
     public void onSeleccionarPaneListarClienteButtonClicked(MouseEvent event) {
         this.mostrarPaneX(PaneElegido.paneListarCliente);
+        tableViewListadoClientes.getItems().clear();
     }
     public ObservableList<TableViewCliente> getListaClienteTabla(){
         ObservableList<TableViewCliente> listaClientesTabla = FXCollections.observableArrayList();
@@ -1340,13 +1349,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
 
     }
 
-    public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
 
-        Mantenimiento aux = new Mantenimiento(hotel.buscarIdPorNumeroDeHabitacion((int)mantenNroHabitacion.getValue()),
-                mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
-
-        hotel.getListaMantenimiento().add(aux);
-    }
 
     public void onReservaButtonCliked(MouseEvent event){
         reservaClienteNomebreyApellido.setDisable(false);
@@ -1382,6 +1385,8 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         reservaClienteNomebreyApellido.setDisable(true);
         reservaFechaIngreso.setDisable(false);
         reservaFechaEgreso.setDisable(false);
+        reservaFechaIngreso.setValue(LocalDate.now());
+        reservaFechaEgreso.setValue(LocalDate.now());
         buttonBuscarFechaReserva.setDisable(false);
     }
 
@@ -1457,6 +1462,16 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         }
     }
 
+    public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
+        try {
+            Mantenimiento aux = new Mantenimiento(hotel.buscarIdPorNumeroDeHabitacion((int)mantenNroHabitacion.getValue()),
+                    mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
 
+            hotel.getListaMantenimiento().add(aux);
+            buttonRegistrarManten.setDisable(true);
+            labelMantenimientoIngreseRangoFechas.setText("MANTENIMIENTO REGISTRADO DESDE "+mantenimientoFechaInicio.getValue().toString()+" hasta "+mantenimientoFechaFin.getValue().toString());
+          }catch (NullPointerException e){
+                labelMantenimientoIngreseRangoFechas.setText("INGRESE UNA HABITACION PARA MANTENIMIENTO"); }
+        }
 
 }
