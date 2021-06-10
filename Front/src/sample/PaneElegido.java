@@ -26,6 +26,7 @@ public final class PaneElegido {
     public static final String paneListaHabitacionesEstado="paneListaHabitacionesEstado";
     public static final String paneConsumo2="paneConsumo2";
     public static final String paneListarCliente="paneListarCliente";
+    public static final String paneMantenimiento="paneMantenimiento";
 
 
 

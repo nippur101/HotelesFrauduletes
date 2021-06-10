@@ -93,16 +93,21 @@ public class Controller implements Initializable {
     @FXML private Button buttonReservarReserva;
     @FXML private Button buttonPagarAdelantoReserva;
     @FXML private Button buttonConfirmarReserva;
+    @FXML private Button buttonRegistrarManten;
     @FXML private Label labelReservaGuardadaExitosamente;
     @FXML private Label labelHabitacionMuestra;
     @FXML private Label labelFechaEgresoMuestra;
     @FXML private Label labelFechaIngresoMuestra;
     @FXML private TextField reservaAbonoAdelanto;
     @FXML private ComboBox reservaNroHabitacion;
+    @FXML private ComboBox mantenNroHabitacion;
     @FXML private DatePicker reservaFechaIngreso;
     @FXML private DatePicker reservaFechaEgreso;
+    @FXML private DatePicker mantenimientoFechaInicio;
+    @FXML private DatePicker mantenimientoFechaFin;
     @FXML private TextField reservaBusquedaIdCliente;
     @FXML private TextField reservaClienteNomebreyApellido;
+    @FXML private TextField textDetalleManten;
 
 
     @FXML private TextField busquedaIdCliente;
@@ -157,6 +162,7 @@ public class Controller implements Initializable {
     @FXML private ImageView imagePago;
     @FXML private ImageView imageHabitacion;
     @FXML private ImageView imageExit;
+    @FXML private ImageView imagenMantenimiento;
     //====================IMAGENES FLECHAS DE MENU
     @FXML private ImageView arrowAdmin;
     @FXML private ImageView arrowClient;
@@ -165,6 +171,7 @@ public class Controller implements Initializable {
     @FXML private ImageView arrowPago;
     @FXML private ImageView arrowHabitacion;
     @FXML private ImageView arrowReserva;
+    @FXML private ImageView arrowMantenimiento;
     //====================PANELES
     @FXML private AnchorPane paneConsumo2;
     @FXML private AnchorPane paneListaHabitacionesEstado;
@@ -188,6 +195,7 @@ public class Controller implements Initializable {
     @FXML private AnchorPane paneRecepcionistaCargado;
     @FXML private AnchorPane paneClienteCargado;
     @FXML private AnchorPane paneListarClientes;
+    @FXML private AnchorPane paneMantenimiento;
     //====================TABLA DE DETALLE DE CONSUMOS
     @FXML private TableView<Detalle> tableViewDetalle;
     //====================COLUMNAS DE TABLA DETALLE CONSUMO
@@ -829,6 +837,11 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         }else{
             paneListarClientes.setVisible(false);
         }
+        if(pane.equals(PaneElegido.paneMantenimiento)){
+            paneMantenimiento.setVisible(true);
+        }else{
+            paneMantenimiento.setVisible(false);
+        }
 
     }
     //====================SELECTOR DE FLECHAS
@@ -868,6 +881,11 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
             arrowReserva.setVisible(true);
         }else{
             arrowReserva.setVisible(false);
+        }
+        if(flecha.equals(FlechaElegida.arrowMantenimiento)){
+            arrowMantenimiento.setVisible(true);
+        }else{
+            arrowMantenimiento.setVisible(false);
         }
 
     }
@@ -1306,6 +1324,19 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         this.mostrarFlechaX(FlechaElegida.arrowReserva);
 
 
+    }
+    public void onMantenimientoButtonCliked(MouseEvent event){
+
+        this.mostrarPaneX(PaneElegido.paneMantenimiento);
+        this.mostrarFlechaX(FlechaElegida.arrowMantenimiento);
+
+    }
+    public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
+
+        Mantenimiento aux = new Mantenimiento(mantenNroHabitacion.getValue(),
+                mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
+
+        hotel.getListaMantenimiento().add(aux);
     }
 
     public void onBuscarReservaClienteButtonClicked(MouseEvent event){
