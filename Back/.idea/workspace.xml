@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3fda26f-148f-4c09-8675-c53073971289" name="Default Changelist" comment="" />
+    <list default="true" id="b3fda26f-148f-4c09-8675-c53073971289" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Back.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/Front.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/Front.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/out/production/Front/sample/Detalle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/out/production/Front/sample/FlechaElegida.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/out/production/Front/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/out/production/Front/sample/PaneElegido.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/out/production/Front/sample/TableViewCliente.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +98,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Front" />
+    <property name="last_opened_file_path" value="C:/Program Files (x86)/Java/gson-2.8.7.jar" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -107,6 +116,17 @@
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,6 +161,7 @@
       <workItem from="1622897936669" duration="567000" />
       <workItem from="1622981750929" duration="2460000" />
       <workItem from="1623197192810" duration="1012000" />
+      <workItem from="1623337197788" duration="1824000" />
     </task>
     <servers />
   </component>

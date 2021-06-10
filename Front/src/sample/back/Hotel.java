@@ -13,6 +13,7 @@ public class Hotel implements Serializable {
     private List<RegistroHuesped> registroHuespedes;
     private List<Mantenimiento> listaMantenimiento;
 
+
     public Hotel() {
         this.listaUsuarioHotel = new ArrayList<UsuarioHotel>();
         this.listaCliente = new ArrayList<Cliente>();
@@ -217,18 +218,23 @@ public class Hotel implements Serializable {
         return validacion;
     }
     ///Dada una fecha,
-    public boolean habitacionLibreMantenimiento (LocalDate fecha, Habitacion habitacion){
+    public boolean habitacionLibreMantenimiento (LocalDate fechaIngreso,LocalDate fechaEgreso, Habitacion habitacion){
         boolean validacion=true;
+
         for(int i=0; (i<this.listaMantenimiento.size()&&validacion);i++){
-            if(habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()){
-                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)>0))) {
-                    validacion=true;
-                }else{
-                    validacion=false;
+
+                if (habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()) {
+                    if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fechaIngreso) < 0) && (this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fechaEgreso) < 0)) ||
+                            (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fechaIngreso) > 0) && (this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fechaEgreso) > 0)))) {
+                        validacion = true;
+                    } else {
+                        validacion = false;
+                    }
                 }
-            }
+
         }
         return validacion;
+
     }
     ///Busca mantenimiento por fecha y habitacion.
     public Mantenimiento buscarMantenimiento (LocalDate fecha, Habitacion habitacion){
@@ -250,6 +256,7 @@ public class Hotel implements Serializable {
 
 
 
+
     //busca y retona Id de habitacion ingresando el numero de la habitacion
     public int buscarIdPorNumeroDeHabitacion(int nroHabitacion){
         int idHabitacion=-1;
@@ -265,11 +272,43 @@ public class Hotel implements Serializable {
     public ArrayList<Habitacion> habitacionesLibres(LocalDate fechaIngreso,LocalDate fechaEgreso){
         List<Habitacion> habitacionesLibres=new ArrayList<>();
         for(Habitacion h:this.listaHabitacion){
-            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,h)){
+            if(habitacionLibreReserva(fechaIngreso,fechaEgreso,h) && habitacionLibreRegistro(fechaIngreso,fechaEgreso,h) && habitacionLibreMantenimiento(fechaIngreso,fechaEgreso,h)){
                 habitacionesLibres.add(h);
             }
         }
         return (ArrayList<Habitacion>) habitacionesLibres;
+    }
+
+    public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
+        boolean validacion=true;
+        Reserva r = new Reserva();
+        for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
+            if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
+                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                    validacion=true;
+                }else{
+                    validacion=false;
+                    r = this.listaReserva.get(i);
+                }
+            }
+        }
+        return r;
+    }
+
+    public RegistroHuesped buscarRegistroDiaHabitacion(LocalDate fecha,int idHabitacion){
+        boolean validacion=true;
+        RegistroHuesped r = new RegistroHuesped();
+        for(int i=0; (i<this.registroHuespedes.size()&&validacion);i++){
+            if(idHabitacion == this.registroHuespedes.get(i).getIdHabitacion()){
+                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                    validacion=true;
+                }else{
+                    validacion=false;
+                    r = this.registroHuespedes.get(i);
+                }
+            }
+        }
+        return r;
     }
 
     ///Agrupamiento de las habitaciones en un arry según su estado
@@ -277,12 +316,14 @@ public class Hotel implements Serializable {
         List<Habitacion> habitacionesPorEstado= new ArrayList<>();
         for(Habitacion h:this.listaHabitacion){
             if(!habitacionLibreReserva(fecha, fecha,h)){
-                h.setEstadoHabitacion(EstadoHabitacion.RESERVADA);
+                Reserva r=buscarReservaDiaHabitacion(fecha,h.getId());
+                h.setEstadoHabitacion(EstadoHabitacion.RESERVADA+ ' ' +'(' + buscarClientePorID(r.getIdCliente()).nombreYapellido + ')');
                 habitacionesPorEstado.add(h);
             }else if (!habitacionLibreRegistro(fecha, fecha,h)) {
-                h.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+                RegistroHuesped reg=buscarRegistroDiaHabitacion(fecha,h.getId());
+                h.setEstadoHabitacion(EstadoHabitacion.OCUPADA+ ' ' +'(' + buscarClientePorID(reg.getIdCliente()).nombreYapellido + ')');
                 habitacionesPorEstado.add(h);
-            }else if (!habitacionLibreMantenimiento(fecha, h)) {
+            }else if (!habitacionLibreMantenimiento(fecha, fecha,h)) {
                 Mantenimiento a = buscarMantenimiento(fecha, h);
                 h.setEstadoHabitacion(EstadoHabitacion.NODISPONIBLE + ' ' +'(' + (a.getDetalle()) + ')');
                 habitacionesPorEstado.add(h);
@@ -327,7 +368,13 @@ public class Hotel implements Serializable {
     }
     //busca cliente por ID, retona cliente
     public Cliente buscarClientePorID(String idCliente){
-        int indice=this.buscarIdCliente(idCliente);
+        int indice=0;
+        for(int i=0;i<listaCliente.size();i++){
+            if(listaCliente.get(i).getId().equals(idCliente)){
+                indice=i;
+            }
+        }
+
         Cliente cliente=listaCliente.get(indice);
         return cliente;
 

@@ -14,7 +14,12 @@ public class RegistroHuesped implements Comparable<RegistroHuesped>, Serializabl
     private String estado;
     private static int contadorRegHuesped = 0; ///Para generar el ID único
 
+
     ///Constructor
+
+    public RegistroHuesped() {
+    }
+
     ///Con el CheckIn se instancia con la fecha de ingreso, con el CheckOut se ingresarà la fecha de egreso.
     public RegistroHuesped(String idCliente, int idHabitacion, LocalDate fechaIngreso, LocalDate fechaEgreso) {
         contadorRegHuesped++;

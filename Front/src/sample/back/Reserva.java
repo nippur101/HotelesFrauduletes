@@ -16,6 +16,10 @@ public class Reserva implements Serializable {
     private static int contadorReservas = 0; ///Para generar el ID único
 
     ///Constructor
+
+    public Reserva() {
+    }
+
     public Reserva(int idHabitacion, String idCliente, LocalDate fechaIngreso, LocalDate fechaEgreso, double pagoReserva) {
         contadorReservas++;
         this.id = contadorReservas;

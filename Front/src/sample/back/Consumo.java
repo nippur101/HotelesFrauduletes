@@ -15,6 +15,10 @@ public class Consumo implements Serializable {
 
     ///Constructor
     ///El recepcionista genera el Consumo, y luego registra su pago.
+
+    public Consumo() {
+    }
+
     public Consumo(LocalDate fechaConsumo, String detalleConsumo, double monto, double pagoConsumo) {
         contadorConsumos++;
         this.id = contadorConsumos;

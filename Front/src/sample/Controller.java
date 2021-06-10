@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import sample.back.*;
 
 
@@ -33,7 +34,7 @@ public class Controller implements Initializable {
     @FXML private TableColumn<TableViewHabEstado,String > fecha04;
     @FXML private TableColumn<TableViewHabEstado,String > fecha05;
     @FXML private TableColumn<TableViewHabEstado,String > fecha06;
-
+    @FXML private Label labelMantenimientoIngreseRangoFechas;
     @FXML private Label labelConsumo2;
     @FXML private TextField valor00Consumo2;
     @FXML private TextField valor01Consumo2;
@@ -268,6 +269,13 @@ public class Controller implements Initializable {
         initializeTextFieldOnlyText();
         initializeTextFieldOnlyNumber();
         initializeTextFieldOnlyDouble();
+        initializeDatePickerAfter();
+    }
+    public void initializeDatePickerAfter(){
+        reservaFechaIngreso.setDayCellFactory(callB);
+        reservaFechaEgreso.setDayCellFactory(callB);
+        mantenimientoFechaInicio.setDayCellFactory(callB);
+        mantenimientoFechaFin.setDayCellFactory(callB);
     }
     public void initializeTextFieldOnlyDouble(){
         valor00Consumo2.addEventFilter(KeyEvent.ANY,handelerdouble(12));
@@ -498,6 +506,7 @@ public class Controller implements Initializable {
         imageRegistro.setDisable(true);
         imagePago.setDisable(true);
         imageHabitacion.setDisable(true);
+        imagenMantenimiento.setDisable(true);
 
     }
     public void habilitarAccesoImegenesSup(){
@@ -508,6 +517,7 @@ public class Controller implements Initializable {
         imageRegistro.setDisable(false);
         imagePago.setDisable(false);
         imageHabitacion.setDisable(false);
+        imagenMantenimiento.setDisable(false);
 
     }
     public void onPagoButtonClicked(MouseEvent event) {
@@ -598,6 +608,21 @@ public class Controller implements Initializable {
         }
     }
     //=====================================================================================================
+    Callback<DatePicker, DateCell> callB = new Callback<DatePicker, DateCell>() {
+        @Override
+        public DateCell call(final DatePicker param) {
+            return new DateCell() {
+                @Override
+                public void updateItem(LocalDate item, boolean empty) {
+                    super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+                    LocalDate today = LocalDate.now();
+                    setDisable(empty || item.compareTo(today) < 0);
+                }
+
+            };
+        }
+
+    };
 
 
     EventHandler<KeyEvent> handelerletters = new EventHandler<KeyEvent>(){
@@ -687,6 +712,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
         };
     }
     //=====================================================================================================
+
     public void onEjecutarConsumo2ButtonClicked(MouseEvent event){
 
 
@@ -1304,6 +1330,24 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
 
     }
 
+
+    public void onMantenimientoButtonCliked(MouseEvent event){
+
+        this.mostrarPaneX(PaneElegido.paneMantenimiento);
+        this.mostrarFlechaX(FlechaElegida.arrowMantenimiento);
+        mantenNroHabitacion.setDisable(true);
+        buttonRegistrarManten.setDisable(true);
+
+    }
+
+    public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
+
+        Mantenimiento aux = new Mantenimiento(hotel.buscarIdPorNumeroDeHabitacion((int)mantenNroHabitacion.getValue()),
+                mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
+
+        hotel.getListaMantenimiento().add(aux);
+    }
+
     public void onReservaButtonCliked(MouseEvent event){
         reservaClienteNomebreyApellido.setDisable(false);
         reservaAbonoAdelanto.setDisable(false);
@@ -1323,22 +1367,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
 
         this.mostrarFlechaX(FlechaElegida.arrowReserva);
 
-
     }
-    public void onMantenimientoButtonCliked(MouseEvent event){
-
-        this.mostrarPaneX(PaneElegido.paneMantenimiento);
-        this.mostrarFlechaX(FlechaElegida.arrowMantenimiento);
-
-    }
-    public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
-
-        Mantenimiento aux = new Mantenimiento(mantenNroHabitacion.getValue(),
-                mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
-
-        hotel.getListaMantenimiento().add(aux);
-    }
-
     public void onBuscarReservaClienteButtonClicked(MouseEvent event){
         int indiceCliente=hotel.buscarIdCliente(reservaBusquedaIdCliente.getText());
         if(indiceCliente!=-1) {
@@ -1407,4 +1436,27 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
     public void pagarAdelantoReservaButtonClicked(MouseEvent event){
         reservaAbonoAdelanto.setDisable(true);
     }
+
+    public void onBuscarFechasMantenimientoButtonClicked(MouseEvent event){
+        try {
+        List<Habitacion> habitacionesLibres=hotel.habitacionesLibres(mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue());
+        ObservableList<Integer> comboSoloHabitacionesLibres=FXCollections.observableArrayList();
+        for(int i=0;i<habitacionesLibres.size();i++){
+
+            comboSoloHabitacionesLibres.add(habitacionesLibres.get(i).getNumeroHabitacion());
+
+        }
+        mantenNroHabitacion.setItems(comboSoloHabitacionesLibres);
+        mantenNroHabitacion.setDisable(false);
+        labelMantenimientoIngreseRangoFechas.setText("");
+        buttonRegistrarManten.setDisable(false);
+
+
+        }catch (NullPointerException e){
+            labelMantenimientoIngreseRangoFechas.setText("INGRESE UN RANGO DE FECHAS");
+        }
+    }
+
+
+
 }

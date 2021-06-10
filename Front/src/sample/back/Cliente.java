@@ -13,6 +13,11 @@ public class Cliente extends Usuario implements Serializable {
     private List<Consumo> consumos;
 
     ///Constructor
+
+    public Cliente(String id, String nombreYapellido, String direccion, String correoElectronico, String telefono) {
+        super(id, nombreYapellido, direccion, correoElectronico, telefono);
+    }
+
     public Cliente(String id, String nombreYapellido, String direccion, String correoElectronico, String telefono, String pais, String provincia, String localidad) {
         super(id, nombreYapellido, direccion, correoElectronico, telefono);
         this.pais = pais;
