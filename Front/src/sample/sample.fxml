@@ -704,7 +704,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboConsumoOperacion" layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" promptText="ChekOut" />
+            <ComboBox fx:id="comboConsumoOperacion" layoutX="604.0" layoutY="93.0" prefHeight="27.0" prefWidth="102.0" />
             <Button layoutX="504.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoBuscarClienteClicked" text="OK" />
             <TextField fx:id="consumoNombreHuesped" layoutX="557.0" layoutY="51.0" />
             <Button layoutX="727.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onConsumoSeleccionarClienteButtonClicked" text="Seleccionar" />
@@ -894,7 +894,7 @@
             <Button layoutX="75.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onRegistroButtonClicked" text="VOLVER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="paneListaHabitacionesEstado" layoutX="2.0" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Separator layoutX="20.0" layoutY="26.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
             <TableView fx:id="tableHabitacionesEstado" layoutX="13.0" layoutY="34.0" prefHeight="360.0" prefWidth="804.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0">
@@ -1043,6 +1043,89 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneConsumoCheckout" layoutY="85.0" prefHeight="401.0" prefWidth="826.0" style="-fx-background-color: #47b2d6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="labelConsumoCheckout1" layoutX="23.0" layoutY="16.0" opacity="0.4" prefHeight="27.0" prefWidth="84.0" text="Cliente" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="23.0" layoutY="13.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
+            <Button layoutX="673.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#onCheckoutRealizarButtonClicked" text="EJECUTAR CHECKOUT" />
+            <Label layoutX="96.0" layoutY="43.0" text="Cargos" />
+            <Label layoutX="260.0" layoutY="43.0" text="Abonos" />
+            <Label layoutX="413.0" layoutY="43.0" text="Saldo Final" />
+            <TextField fx:id="textCargoChekoutFinal" editable="false" layoutX="40.0" layoutY="66.0" />
+            <TextField fx:id="textAbonoChekoutFinal" editable="false" layoutX="206.0" layoutY="66.0" />
+            <TextField fx:id="textSldoFinalChekoutFinal" editable="false" layoutX="368.0" layoutY="66.0" />
+            <TextField fx:id="textAbonoFinalChekoutFinal" layoutX="538.0" layoutY="66.0" />
+            <Label layoutX="581.0" layoutY="43.0" text="Abono Final" />
+            <Label layoutX="746.0" layoutY="43.0" text="Vuelto" />
+            <TextField fx:id="textVueltoChekoutFinal" editable="false" layoutX="715.0" layoutY="66.0" prefHeight="25.0" prefWidth="98.0" text="0.0" />
+            <Separator layoutX="15.0" layoutY="163.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
+            <Label fx:id="labelConsumoCheckout2" layoutX="18.0" layoutY="174.0" opacity="0.4" prefHeight="27.0" prefWidth="156.0" text="POR HABITACION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textIdClienteCheckout" layoutX="95.0" layoutY="17.0" />
+            <Label fx:id="lablelNombreClienteCheckout" layoutX="355.0" layoutY="16.0" prefHeight="17.0" prefWidth="378.0" textFill="#0055ff">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="255.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#onBuscarClienteCheckoutButtonClicked" text="OK" />
+            <Separator layoutX="15.0" layoutY="313.0" opacity="0.4" prefHeight="3.0" prefWidth="797.0" />
+            <Button layoutX="181.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#onHabilitarCheckoutButtonPorHabitacionClicked" text="Habilitar" />
+            <HBox alignment="CENTER" layoutX="111.0" layoutY="201.0" prefHeight="30.0" prefWidth="621.0">
+               <children>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="checkoutCheckBoxHabi0" ellipsisString="Habitacion" mnemonicParsing="false" prefHeight="17.0" prefWidth="65.0" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="checkoutCheckBoxHabi1" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="checkoutCheckBoxHabi2" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="checkoutCheckBoxHabi3" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+                  <CheckBox fx:id="checkoutCheckBoxHabi4" ellipsisString="Habitacion" mnemonicParsing="false" text="Habitacion" />
+                  <Separator prefWidth="200.0" visible="false" />
+               </children>
+            </HBox>
+            <Button fx:id="buttonElegirCheckoutPorHabitacion" layoutX="732.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#onCheckoutElegirHabiButtonClicked" text="Elegir" />
+            <Label fx:id="labelCheckoutCheckboxError" layoutX="211.0" layoutY="335.0" prefHeight="17.0" prefWidth="405.0" textFill="RED">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <GridPane alignment="CENTER" layoutX="23.0" layoutY="239.0" prefHeight="60.0" prefWidth="784.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="textCargoChekoutHab" editable="false" GridPane.rowIndex="1" />
+                  <TextField fx:id="textAbonoChekoutHab" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textSldoFinalChekoutHab" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="textAbonoFinalChekoutHab" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="textVueltoChekoutHab" editable="false" prefHeight="25.0" prefWidth="98.0" text="0.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label text="Cargos" />
+                  <Label text="Abonos" GridPane.columnIndex="1" />
+                  <Label text="Saldo Final" GridPane.columnIndex="2" />
+                  <Label text="Abono Final" GridPane.columnIndex="3" />
+                  <Label text="Vuelto" GridPane.columnIndex="4" />
+               </children>
+            </GridPane>
+            <Button layoutX="673.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#onCheckoutRealizarCompletoButtonClicked" text="EJECUTAR CHECKOUT" />
          </children>
       </AnchorPane>
    </children>

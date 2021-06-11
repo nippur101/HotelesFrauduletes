@@ -156,6 +156,18 @@ public class Hotel implements Serializable {
         }
         return (ArrayList<Reserva>) listaReservaPorCliente;
     }
+    ///Arreglo de Registros por Id de Cliente
+    public ArrayList<RegistroHuesped> buscarRegistroPorIdCliente (String id){
+        List<RegistroHuesped> listaRegistroPorCliente = new ArrayList<>();
+        for (RegistroHuesped h: this.registroHuespedes){
+            if ((h.getEstado().equals("Abierto"))&&(h.getIdCliente().equals(id))){
+                listaRegistroPorCliente.add(h);
+            }
+        }
+        return (ArrayList<RegistroHuesped>) listaRegistroPorCliente;
+    }
+
+
     public void borrarReservaPorIdCliente (String id){
 
         for (Reserva h: this.listaReserva){
@@ -388,6 +400,15 @@ public class Hotel implements Serializable {
         }
 
         return  nroHabitacion;
+    }
+    public List<RegistroHuesped> buscarRgistroDeCliente(String idCliente){
+        List<RegistroHuesped> listaRegistrosCliente=new ArrayList<>();
+        for(int i=0;i<registroHuespedes.size();i++){
+            if(registroHuespedes.get(i).getIdCliente().equals(idCliente) && registroHuespedes.get(i).getEstado().equals("Abierto")){
+                listaRegistrosCliente.add(registroHuespedes.get(i));
+            }
+        }
+        return listaRegistrosCliente;
     }
 
 }

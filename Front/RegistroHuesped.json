@@ -2,7 +2,7 @@
   {
     "id": 1,
     "idCliente": "35140802",
-    "idHabitacion": 1,
+    "idHabitacion": 12,
     "fechaIngreso": "2021-05-25",
     "fechaEgreso": "2021-07-10",
     "estado": "Abierto"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "idCliente": "34185634",
-    "idHabitacion": 6,
+    "idHabitacion": 11,
     "fechaIngreso": "2021-05-20",
     "fechaEgreso": "2021-07-01",
     "estado": "Abierto"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "idCliente": "38140802",
-    "idHabitacion": 8,
+    "idHabitacion": 16,
     "fechaIngreso": "2021-05-23",
     "fechaEgreso": "2021-06-15",
     "estado": "Abierto"

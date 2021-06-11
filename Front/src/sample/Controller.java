@@ -19,11 +19,33 @@ import sample.back.*;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.*;
 
 
 public class Controller implements Initializable {
+    //============CHECKOUT=======================
+    @FXML private Button buttonElegirCheckoutPorHabitacion;
+    @FXML private Label labelCheckoutCheckboxError;
+    @FXML private TextField textCargoChekoutFinal;
+    @FXML private TextField textAbonoChekoutFinal;
+    @FXML private TextField textSldoFinalChekoutFinal;
+    @FXML private TextField textAbonoFinalChekoutFinal;
+    @FXML private TextField textVueltoChekoutFinal;
+    @FXML private TextField textCargoChekoutHab;
+    @FXML private TextField textAbonoChekoutHab;
+    @FXML private TextField textSldoFinalChekoutHab;
+    @FXML private TextField textVueltoChekoutHab;
+    @FXML private TextField textAbonoFinalChekoutHab;
+    @FXML private TextField textIdClienteCheckout;
+    @FXML private Label lablelNombreClienteCheckout;
+    @FXML private CheckBox checkoutCheckBoxHabi0;
+    @FXML private CheckBox checkoutCheckBoxHabi1;
+    @FXML private CheckBox checkoutCheckBoxHabi2;
+    @FXML private CheckBox checkoutCheckBoxHabi3;
+    @FXML private CheckBox checkoutCheckBoxHabi4;
+
     @FXML private DatePicker datePickerHabitacionesEstado;
     @FXML private TableView<TableViewHabEstado> tableHabitacionesEstado;
     @FXML private TableColumn<TableViewHabEstado,Integer > columnaHabitacion;
@@ -175,6 +197,7 @@ public class Controller implements Initializable {
     @FXML private ImageView arrowReserva;
     @FXML private ImageView arrowMantenimiento;
     //====================PANELES
+    @FXML private AnchorPane paneConsumoCheckout;
     @FXML private AnchorPane paneConsumo2;
     @FXML private AnchorPane paneListaHabitacionesEstado;
     @FXML private AnchorPane paneTopUsuario;
@@ -229,6 +252,7 @@ public class Controller implements Initializable {
 
     List<RegistroHuesped> listaRegistroHuespedes=new ArrayList<>();
     List<CheckBox> comboRegistroHabitacion = new ArrayList<>();
+    List<CheckBox> checkBoxCheckoutHabit = new ArrayList<>();
     Hotel hotel=new Hotel();
 
 
@@ -349,7 +373,7 @@ public class Controller implements Initializable {
         }
         return numero;
     }
-
+/*
     public void cargarDatos(){
         RegistroHuesped h1 = new RegistroHuesped("35140802", 1, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 07, 10));
         RegistroHuesped h2 = new RegistroHuesped("34185634", 6, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 07, 01));
@@ -464,6 +488,8 @@ public class Controller implements Initializable {
 
 
     }
+
+ */
     public void onAdminPassButtonCliked(MouseEvent event){
 
         boolean validacion=false;
@@ -523,222 +549,6 @@ public class Controller implements Initializable {
         imagePago.setDisable(false);
         imageHabitacion.setDisable(false);
         imagenMantenimiento.setDisable(false);
-
-    }
-    public void onPagoButtonClicked(MouseEvent event) {
-
-        this.mostrarPaneX(PaneElegido.panePago);
-
-        this.mostrarFlechaX(FlechaElegida.arrowPago);
-
-    }
-
-    public ObservableList<Detalle>getDetalle(Cliente cliente){
-        List<Consumo> listaConsumo=cliente.getConsumos();
-        ObservableList<Detalle> detalles= FXCollections.observableArrayList();
-        int idClient=Integer.parseInt(cliente.getId());
-        for (Consumo co:listaConsumo) {
-            detalles.add(new Detalle(co.getFechaConsumo().toString(),co.getId() , co.getDetalleConsumo(),idClient, co.getDetalleConsumo(), co.getMonto(), co.getPagoConsumo(), true));
-        }
-        return detalles;
-    }
-
-    public void actualizarConsumoCliente(){
-        Cliente cliente=hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText()));
-        columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
-        columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
-
-        columReferencia.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Referencia"));
-        columDescripcion.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Descripcion"));
-        columCargos.setCellValueFactory(new PropertyValueFactory<Detalle,Double>("Cargos"));
-        columAbono.setCellValueFactory(new PropertyValueFactory<Detalle,Double>("Abono"));
-        columEstado.setCellValueFactory(new PropertyValueFactory<Detalle,Boolean>("Estado"));
-
-        tableViewDetalle.setItems(getDetalle(cliente));
-        consumoCargo.setText(String.valueOf(cliente.sumatoriaCargos()));
-        consumoAbono.setText(String.valueOf(cliente.sumatoriaPagos()));
-        consumoSaldo.setText(String.valueOf(cliente.calculoSaldo()));
-
-        ObservableList<String> comboOpcionesPago=FXCollections.observableArrayList();
-        comboOpcionesPago.add("CheckOut");
-        comboOpcionesPago.add("Consumo");
-        comboOpcionesPago.add("Servicio");
-        comboOpcionesPago.add("Otro");
-        comboConsumoOperacion.setItems(comboOpcionesPago);
-
-    }
-    public void onConsumoSeleccionarClienteButtonClicked(MouseEvent event){
-
-        actualizarConsumoCliente();
-
-    }
-
-    public void onConsumoBuscarClienteClicked(MouseEvent event){
-        int indiceCliente=hotel.buscarIdCliente(consumoHuesped.getText());
-        if(indiceCliente!=-1) {
-           consumoNombreHuesped.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
-        }else{
-            consumoNombreHuesped.setText("Cliente no registrado");
-        }
-    }
-
-
-    public void onRealizarConsumoButtonClicked(MouseEvent event){
-        valor00Consumo2.clear();
-        valor01Consumo2.clear();
-        valor02Consumo2.clear();
-        valor03Consumo2.clear();
-        detalle00Consumo2.clear();
-        detalle01Consumo2.clear();
-        detalle02Consumo2.clear();
-        detalle03Consumo2.clear();
-        abono00Consumo2.clear();
-        abono01Consumo2.clear();
-        abono02Consumo2.clear();
-        abono03Consumo2.clear();
-        try {
-            if (comboConsumoOperacion.getValue().equals("Consumo")) {
-                mostrarPaneX(PaneElegido.paneConsumo2);
-                mostrarFlechaX(FlechaElegida.arrowPago);
-                labelConsumo2.setText("COSUMO CLIENTE: " + consumoNombreHuesped.getText());
-            } else if (comboConsumoOperacion.getValue().equals("Servicio")) {
-
-            } else if (comboConsumoOperacion.getValue().equals("Otro")) {
-
-            } else {
-
-            }
-        }catch (Throwable e){
-            System.out.println(e);
-        }
-    }
-    //=====================================================================================================
-    Callback<DatePicker, DateCell> callB = new Callback<DatePicker, DateCell>() {
-        @Override
-        public DateCell call(final DatePicker param) {
-            return new DateCell() {
-                @Override
-                public void updateItem(LocalDate item, boolean empty) {
-                    super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
-                    LocalDate today = LocalDate.now();
-                    setDisable(empty || item.compareTo(today) < 0);
-                }
-
-            };
-        }
-
-    };
-
-
-    EventHandler<KeyEvent> handelerletters = new EventHandler<KeyEvent>(){
-
-        private boolean willConsume = false;
-
-        @Override
-        public void handle(KeyEvent event){
-            Object tempO = event.getSource();
-            if (willConsume){
-                event.consume();
-            }
-            String temp = event.getCode().toString();
-            if ((!event.getCode().toString().matches("[a-zA-Z]")) &&
-                    (event.getCode() != KeyCode.BACK_SPACE) &&
-                    (event.getCode() != KeyCode.SHIFT)){
-                if(event.getEventType() == KeyEvent.KEY_PRESSED){
-                    willConsume = true;
-                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
-                    willConsume=false;
-                }
-            }
-        }
-    };
-
-    public static EventHandler<KeyEvent> handelernumber() {
-
-        EventHandler<KeyEvent> aux = new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent keyEvent) {
-                if (!"0123456789".contains(keyEvent.getCharacter())) {
-                    keyEvent.consume();
-
-                }
-            }
-        };
-        return aux;
-    }
-
-EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
-
-    private boolean willConsume = false;
-    private int maxLength = 10;
-
-    @Override
-    public void handle(KeyEvent event){
-        TextField temp = (TextField) event.getSource();
-
-        if (willConsume){
-            event.consume();
-        }
-
-        if ((!event.getText().matches("[0-9]")) &&
-                (event.getCode() != KeyCode.BACK_SPACE) ){
-            if(event.getEventType() == KeyEvent.KEY_PRESSED){
-                willConsume = true;
-            }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
-                willConsume=false;
-            }
-            if(temp.getText().length() > maxLength -1){
-                if (event.getEventType() == KeyEvent.KEY_PRESSED){
-                    willConsume = true;
-                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
-                    willConsume = false;
-                }
-            }
-        }
-    }
-};
-    public EventHandler<KeyEvent> handelerdouble(final Integer max_Lengh) {
-        return new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                TextField txt_TextField = (TextField) e.getSource();
-                if (txt_TextField.getText().length() >= max_Lengh) {
-                    e.consume();
-                }
-                if(e.getCharacter().matches("[0-9.]")){
-                    if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
-                        e.consume();
-                    }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
-                        e.consume();
-                    }
-                }else{
-                    e.consume();
-                }
-            }
-        };
-    }
-    //=====================================================================================================
-
-    public void onEjecutarConsumo2ButtonClicked(MouseEvent event){
-
-
-        if(!detalle00Consumo2.getText().equals("")) {
-            Consumo c0 = new Consumo(LocalDate.now(), detalle00Consumo2.getText(), doubleEnTexto(valor00Consumo2), doubleEnTexto(abono00Consumo2));
-            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c0);
-        }
-        if(!detalle01Consumo2.getText().equals("")) {
-            Consumo c1 = new Consumo(LocalDate.now(), detalle01Consumo2.getText(), doubleEnTexto(valor01Consumo2), doubleEnTexto(abono01Consumo2));
-            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c1);
-        }
-        if(!detalle02Consumo2.getText().equals("")) {
-            Consumo c2 = new Consumo(LocalDate.now(), detalle02Consumo2.getText(), doubleEnTexto(valor02Consumo2), doubleEnTexto(abono02Consumo2));
-            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c2);
-        }
-        if(!detalle03Consumo2.getText().equals("")) {
-            Consumo c3 = new Consumo(LocalDate.now(), detalle03Consumo2.getText(), doubleEnTexto(valor03Consumo2), doubleEnTexto(abono03Consumo2));
-            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c3);
-        }
-        this.mostrarPaneX(PaneElegido.panePago);
-        actualizarConsumoCliente();
 
     }
 
@@ -872,6 +682,11 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
             paneMantenimiento.setVisible(true);
         }else{
             paneMantenimiento.setVisible(false);
+        }
+        if(pane.equals(PaneElegido.paneConsumoCheckout)){
+            paneConsumoCheckout.setVisible(true);
+        }else{
+            paneConsumoCheckout.setVisible(false);
         }
 
     }
@@ -1263,7 +1078,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
                 RegistroHuesped nuevoRegistro=new RegistroHuesped(cliente.getId(),hotel.buscarIdPorNumeroDeHabitacion(listReservasCliente.get(i).getNroHabitacion()),listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso() );
                 hotel.getRegistroHuespedes().add(nuevoRegistro);
 
-                hotel.getListaCliente().get(posCliente).setConsumos(new Consumo(nuevoRegistro.getFechaIngreso(),"Renta habitacion",hotel.montoHabitacionEstadia(listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso(),listReservasCliente.get(i).getNroHabitacion()),0.0));
+                hotel.getListaCliente().get(posCliente).setConsumos(new Consumo(nuevoRegistro.getFechaIngreso(),"Renta Habitacion",hotel.montoHabitacionEstadia(listaReservaCliente.get(i).getFechaIngreso(),listaReservaCliente.get(i).getFechaEgreso(),listReservasCliente.get(i).getNroHabitacion()),0.0));
 
             }
             adelanto=adelanto+listaReservaCliente.get(i).getPagoReserva();
@@ -1464,6 +1279,7 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
 
     public void onRegistrarMantenimientoButtonClicked(MouseEvent event) {
         try {
+
             Mantenimiento aux = new Mantenimiento(hotel.buscarIdPorNumeroDeHabitacion((int)mantenNroHabitacion.getValue()),
                     mantenimientoFechaInicio.getValue(),mantenimientoFechaFin.getValue(),textDetalleManten.getText());
 
@@ -1471,7 +1287,404 @@ EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
             buttonRegistrarManten.setDisable(true);
             labelMantenimientoIngreseRangoFechas.setText("MANTENIMIENTO REGISTRADO DESDE "+mantenimientoFechaInicio.getValue().toString()+" hasta "+mantenimientoFechaFin.getValue().toString());
           }catch (NullPointerException e){
-                labelMantenimientoIngreseRangoFechas.setText("INGRESE UNA HABITACION PARA MANTENIMIENTO"); }
+                labelMantenimientoIngreseRangoFechas.setText("INGRESE UNA HABITACION PARA MANTENIMIENTO");
         }
+    }
+
+    public void onPagoButtonClicked(MouseEvent event) {
+
+        this.mostrarPaneX(PaneElegido.panePago);
+
+        this.mostrarFlechaX(FlechaElegida.arrowPago);
+
+    }
+
+    public ObservableList<Detalle>getDetalle(Cliente cliente){
+        List<Consumo> listaConsumo=cliente.getConsumos();
+        ObservableList<Detalle> detalles= FXCollections.observableArrayList();
+        int idClient=Integer.parseInt(cliente.getId());
+        for (Consumo co:listaConsumo) {
+            detalles.add(new Detalle(co.getFechaConsumo().toString(),co.getId() , co.getDetalleConsumo(),idClient, co.getDetalleConsumo(), co.getMonto(), co.getPagoConsumo(), true));
+        }
+        return detalles;
+    }
+
+    public void actualizarConsumoCliente(){
+        Cliente cliente=hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText()));
+        columFecha.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Fecha"));
+        columCuenta.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Cuenta"));
+
+        columReferencia.setCellValueFactory(new PropertyValueFactory<Detalle,Integer>("Referencia"));
+        columDescripcion.setCellValueFactory(new PropertyValueFactory<Detalle,String>("Descripcion"));
+        columCargos.setCellValueFactory(new PropertyValueFactory<Detalle,Double>("Cargos"));
+        columAbono.setCellValueFactory(new PropertyValueFactory<Detalle,Double>("Abono"));
+        columEstado.setCellValueFactory(new PropertyValueFactory<Detalle,Boolean>("Estado"));
+
+        tableViewDetalle.setItems(getDetalle(cliente));
+        consumoCargo.setText(String.valueOf(cliente.sumatoriaCargos()));
+        consumoAbono.setText(String.valueOf(cliente.sumatoriaPagos()));
+        consumoSaldo.setText(String.valueOf(cliente.calculoSaldo()));
+
+        ObservableList<String> comboOpcionesPago=FXCollections.observableArrayList();
+        comboOpcionesPago.add("CheckOut");
+        comboOpcionesPago.add("Consumo");
+
+        comboConsumoOperacion.setItems(comboOpcionesPago);
+
+    }
+    public void onConsumoSeleccionarClienteButtonClicked(MouseEvent event){
+
+        actualizarConsumoCliente();
+
+    }
+
+    public void onConsumoBuscarClienteClicked(MouseEvent event){
+        int indiceCliente=hotel.buscarIdCliente(consumoHuesped.getText());
+        if(indiceCliente!=-1) {
+            consumoNombreHuesped.setText(hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
+        }else{
+            consumoNombreHuesped.setText("Cliente no registrado");
+        }
+    }
+
+
+    public void onRealizarConsumoButtonClicked(MouseEvent event){
+        valor00Consumo2.clear();
+        valor01Consumo2.clear();
+        valor02Consumo2.clear();
+        valor03Consumo2.clear();
+        detalle00Consumo2.clear();
+        detalle01Consumo2.clear();
+        detalle02Consumo2.clear();
+        detalle03Consumo2.clear();
+        abono00Consumo2.clear();
+        abono01Consumo2.clear();
+        abono02Consumo2.clear();
+        abono03Consumo2.clear();
+        try {
+            if (comboConsumoOperacion.getValue().equals("Consumo")) {
+                mostrarPaneX(PaneElegido.paneConsumo2);
+                mostrarFlechaX(FlechaElegida.arrowPago);
+                labelConsumo2.setText("COSUMO CLIENTE: " + consumoNombreHuesped.getText());
+            } else if (comboConsumoOperacion.getValue().equals("CheckOut")) {
+                checkoutCheckBoxHabi0.setVisible(false);
+                checkoutCheckBoxHabi1.setVisible(false);
+                checkoutCheckBoxHabi2.setVisible(false);
+                checkoutCheckBoxHabi3.setVisible(false);
+                checkoutCheckBoxHabi4.setVisible(false);
+                textCargoChekoutHab.setDisable(true);
+                textAbonoChekoutHab.setDisable(true);
+                textSldoFinalChekoutHab.setDisable(true);
+                textAbonoFinalChekoutHab.setDisable(true);
+                textVueltoChekoutHab.setDisable(true);
+                buttonElegirCheckoutPorHabitacion.setDisable(true);
+                mostrarPaneX(PaneElegido.paneConsumoCheckout);
+                mostrarFlechaX(FlechaElegida.arrowPago);
+
+            }
+        }catch (Throwable e){
+            System.out.println(e);
+        }
+    }
+
+    public void onEjecutarConsumo2ButtonClicked(MouseEvent event){
+
+
+        if(!detalle00Consumo2.getText().equals("")) {
+            Consumo c0 = new Consumo(LocalDate.now(), detalle00Consumo2.getText(), doubleEnTexto(valor00Consumo2), doubleEnTexto(abono00Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c0);
+        }
+        if(!detalle01Consumo2.getText().equals("")) {
+            Consumo c1 = new Consumo(LocalDate.now(), detalle01Consumo2.getText(), doubleEnTexto(valor01Consumo2), doubleEnTexto(abono01Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c1);
+        }
+        if(!detalle02Consumo2.getText().equals("")) {
+            Consumo c2 = new Consumo(LocalDate.now(), detalle02Consumo2.getText(), doubleEnTexto(valor02Consumo2), doubleEnTexto(abono02Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c2);
+        }
+        if(!detalle03Consumo2.getText().equals("")) {
+            Consumo c3 = new Consumo(LocalDate.now(), detalle03Consumo2.getText(), doubleEnTexto(valor03Consumo2), doubleEnTexto(abono03Consumo2));
+            hotel.getListaCliente().get(hotel.buscarIdCliente(consumoHuesped.getText())).setConsumos(c3);
+        }
+        this.mostrarPaneX(PaneElegido.panePago);
+        actualizarConsumoCliente();
+
+    }
+
+
+    public void onBuscarClienteCheckoutButtonClicked(MouseEvent event){
+        int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
+
+        if(indiceCliente!=-1) {
+
+            lablelNombreClienteCheckout.setText("Cliente: "+hotel.getListaCliente().get(indiceCliente).getNombreYapellido());
+            textCargoChekoutFinal.setText(String.valueOf(hotel.getListaCliente().get(indiceCliente).sumatoriaCargos()));
+            textAbonoChekoutFinal.setText(String.valueOf(hotel.getListaCliente().get(indiceCliente).sumatoriaPagos()));
+            textSldoFinalChekoutFinal.setText(String.valueOf(hotel.getListaCliente().get(indiceCliente).calculoSaldo()));
+        }else{
+            lablelNombreClienteCheckout.setText("Cliente no registrado");
+        }
+
+
+    }
+
+
+    public void onHabilitarCheckoutButtonPorHabitacionClicked(MouseEvent event){
+        textCargoChekoutHab.setDisable(false);
+        textAbonoChekoutHab.setDisable(false);
+        textSldoFinalChekoutHab.setDisable(false);
+        textAbonoFinalChekoutHab.setDisable(false);
+        textVueltoChekoutHab.setDisable(false);
+        buttonElegirCheckoutPorHabitacion.setDisable(false);
+        textAbonoFinalChekoutFinal.setDisable(true);
+        textCargoChekoutHab.clear();
+        textAbonoChekoutHab.clear();
+        textSldoFinalChekoutHab.clear();
+        textAbonoFinalChekoutHab.clear();
+        textVueltoChekoutHab.clear();
+        textAbonoFinalChekoutFinal.clear();
+        int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
+        Cliente cliente= hotel.getListaCliente().get(indiceCliente);
+        for(int i=0;i< hotel.getListaCliente().get(indiceCliente).getConsumos().size();i++) {
+            List<Consumo> consumoHabitacionCliente=new ArrayList<>();
+            if(cliente.getConsumos().get(i).getDetalleConsumo().equals("Renta Habitacion")){
+
+                consumoHabitacionCliente.add(cliente.getConsumos().get(i));
+            }
+        }
+
+
+        //buttonRegistroElegirHabi.setDisable(false);
+        checkBoxCheckoutHabit.add(checkoutCheckBoxHabi0);
+        checkBoxCheckoutHabit.add(checkoutCheckBoxHabi1);
+        checkBoxCheckoutHabit.add(checkoutCheckBoxHabi2);
+        checkBoxCheckoutHabit.add(checkoutCheckBoxHabi3);
+        checkBoxCheckoutHabit.add(checkoutCheckBoxHabi4);
+        List<RegistroHuesped> listRegistroCliente = hotel.buscarRegistroPorIdCliente(cliente.getId());
+        for (int i = 0; i < listRegistroCliente.size(); i++) {
+            checkBoxCheckoutHabit.get(i).setText(Integer.toString(hotel.buscarNumeroHabitacionPorId(listRegistroCliente.get(i).getIdHabitacion())));
+            checkBoxCheckoutHabit.get(i).setVisible(true);
+        }
+
+
+    }
+
+
+    public void onCheckoutElegirHabiButtonClicked(MouseEvent event){
+
+        int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
+        Double valorHabitaciones=0.0,cargos=0.0;
+        boolean val=false;
+        for(CheckBox ch:checkBoxCheckoutHabit){
+            if(ch.isSelected())
+                val=true;
+
+        }
+        if(val==true){
+            List<RegistroHuesped>listaRegistrocliente=hotel.buscarRegistroPorIdCliente(textIdClienteCheckout.getText());
+
+            for(int j=0;j<checkBoxCheckoutHabit.size();j++) {
+                for (int i = 0; i < listaRegistrocliente.size(); i++) {
+
+                    if (checkBoxCheckoutHabit.get(j).isSelected() && Integer.valueOf(checkBoxCheckoutHabit.get(j).getText())==hotel.buscarNumeroHabitacionPorId(listaRegistrocliente.get(i).getIdHabitacion())) {
+
+                        valorHabitaciones=valorHabitaciones+hotel.montoHabitacionEstadia(listaRegistrocliente.get(i).getFechaIngreso(),listaRegistrocliente.get(i).getFechaEgreso(),Integer.valueOf(checkBoxCheckoutHabit.get(j).getText()));
+
+                    }
+                }
+            }
+
+            textCargoChekoutHab.setText(valorHabitaciones.toString());
+            textAbonoChekoutHab.setText(String.valueOf(hotel.getListaCliente().get(indiceCliente).sumatoriaPagos()));
+            Double saldo=valorHabitaciones-hotel.getListaCliente().get(indiceCliente).sumatoriaPagos();
+            textSldoFinalChekoutHab.setText(String.valueOf(saldo));
+
+        }else{
+            labelCheckoutCheckboxError.setText("INGRESE AL MENOS UNA HABITACION");
+
+        }
+
+
+    }
+    public void onCheckoutRealizarButtonClicked(MouseEvent event){
+
+        Double vuelto=Double.parseDouble(textAbonoFinalChekoutHab.getText())-Double.parseDouble(textSldoFinalChekoutHab.getText());
+        System.out.println(vuelto);
+        if(vuelto>=0.0) {
+
+            List<RegistroHuesped> listaRegistrocliente = hotel.buscarRegistroPorIdCliente(textIdClienteCheckout.getText());
+            System.out.println(hotel.getRegistroHuespedes());
+            System.out.println(listaRegistrocliente);
+            for (int j = 0; j < checkBoxCheckoutHabit.size(); j++) {
+                for (int i = 0; i < listaRegistrocliente.size(); i++) {
+                    if (checkBoxCheckoutHabit.get(j).isSelected() && Integer.valueOf(checkBoxCheckoutHabit.get(j).getText()) == hotel.buscarNumeroHabitacionPorId(listaRegistrocliente.get(i).getIdHabitacion())) {
+                        for (int k = 0; k < hotel.getRegistroHuespedes().size(); k++) {
+
+                            if (hotel.getRegistroHuespedes().get(k).getFechaIngreso().equals(listaRegistrocliente.get(i).getFechaIngreso())  &&
+                                    hotel.getRegistroHuespedes().get(k).getFechaEgreso().equals(listaRegistrocliente.get(i).getFechaEgreso())) {
+                                hotel.getRegistroHuespedes().get(i).setEstado("Cerrado");
+                                labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
+                                textVueltoChekoutHab.setText(vuelto.toString());
+                            }
+                        }
+
+                    }
+                }
+            }
+        }else{
+            labelCheckoutCheckboxError.setText("EL CHECKOUT SE NO SE PUEDE RALIZAR, FALTA COMPLETAR SALDO");
+        }
+    }
+    public void onCheckoutRealizarCompletoButtonClicked(MouseEvent event) {
+        int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
+        Cliente cliente=hotel.getListaCliente().get(indiceCliente);
+        Double vuelto = Double.parseDouble(textAbonoFinalChekoutFinal.getText()) - Double.parseDouble(textSldoFinalChekoutFinal.getText());
+
+        if (vuelto >= 0.0) {
+            List<RegistroHuesped> listaRegistrocliente = hotel.buscarRegistroPorIdCliente(textIdClienteCheckout.getText());
+            for (int i = 0; i < listaRegistrocliente.size(); i++) {
+                for (int k = 0; k < hotel.getRegistroHuespedes().size(); k++) {
+
+                    if (hotel.getRegistroHuespedes().get(k).getFechaIngreso().equals(listaRegistrocliente.get(i).getFechaIngreso()) &&
+                            hotel.getRegistroHuespedes().get(k).getFechaEgreso().equals(listaRegistrocliente.get(i).getFechaEgreso())) {
+                       hotel.getListaCliente().get(indiceCliente).getConsumos().get(hotel.getListaCliente().get(indiceCliente).getConsumos().size()-1).setPagoConsumo(hotel.getListaCliente().get(indiceCliente).calculoSaldo());
+                        System.out.println(cliente.calculoSaldo());
+                        hotel.getListaUsuarioHotel().get(0).checkOut(hotel.getRegistroHuespedes().get(k),cliente);
+
+                        //hotel.getRegistroHuespedes().get(i).setEstado("Cerrado");
+                        System.out.println(hotel.getRegistroHuespedes().get(i).getEstado());
+                        labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
+                        textVueltoChekoutHab.setText(vuelto.toString());
+                    }
+                }
+            }
+        } else {
+            labelCheckoutCheckboxError.setText("EL CHECKOUT SE NO SE PUEDE RALIZAR, FALTA COMPLETAR SALDO");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //=====================================================================================================
+    Callback<DatePicker, DateCell> callB = new Callback<DatePicker, DateCell>() {
+        @Override
+        public DateCell call(final DatePicker param) {
+            return new DateCell() {
+                @Override
+                public void updateItem(LocalDate item, boolean empty) {
+                    super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+                    LocalDate today = LocalDate.now();
+                    setDisable(empty || item.compareTo(today) < 0);
+                }
+
+            };
+        }
+
+    };
+
+
+    EventHandler<KeyEvent> handelerletters = new EventHandler<KeyEvent>(){
+
+        private boolean willConsume = false;
+
+        @Override
+        public void handle(KeyEvent event){
+            Object tempO = event.getSource();
+            if (willConsume){
+                event.consume();
+            }
+            String temp = event.getCode().toString();
+            if ((!event.getCode().toString().matches("[a-zA-Z]")) &&
+                    (event.getCode() != KeyCode.BACK_SPACE) &&
+                    (event.getCode() != KeyCode.SHIFT)){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume=false;
+                }
+            }
+        }
+    };
+
+    public static EventHandler<KeyEvent> handelernumber() {
+
+        EventHandler<KeyEvent> aux = new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent keyEvent) {
+                if (!"0123456789".contains(keyEvent.getCharacter())) {
+                    keyEvent.consume();
+
+                }
+            }
+        };
+        return aux;
+    }
+
+    EventHandler<KeyEvent> handelernumber = new EventHandler<KeyEvent>(){
+
+        private boolean willConsume = false;
+        private int maxLength = 10;
+
+        @Override
+        public void handle(KeyEvent event){
+            TextField temp = (TextField) event.getSource();
+
+            if (willConsume){
+                event.consume();
+            }
+
+            if ((!event.getText().matches("[0-9]")) &&
+                    (event.getCode() != KeyCode.BACK_SPACE) ){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume=false;
+                }
+                if(temp.getText().length() > maxLength -1){
+                    if (event.getEventType() == KeyEvent.KEY_PRESSED){
+                        willConsume = true;
+                    }else if (event.getEventType() == KeyEvent.KEY_RELEASED){
+                        willConsume = false;
+                    }
+                }
+            }
+        }
+    };
+    public EventHandler<KeyEvent> handelerdouble(final Integer max_Lengh) {
+        return new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                TextField txt_TextField = (TextField) e.getSource();
+                if (txt_TextField.getText().length() >= max_Lengh) {
+                    e.consume();
+                }
+                if(e.getCharacter().matches("[0-9.]")){
+                    if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
+                        e.consume();
+                    }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
+                        e.consume();
+                    }
+                }else{
+                    e.consume();
+                }
+            }
+        };
+    }
+    //=====================================================================================================
+
 
 }

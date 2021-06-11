@@ -56,7 +56,7 @@ public abstract class UsuarioHotel extends Usuario implements Serializable {
     /// ---------------------- CHECK OUT ----------------------
     public void checkOut (RegistroHuesped r, Cliente c){
 
-        if (c.calculoSaldo()>0){
+        if (c.calculoSaldo()>=0){
             System.out.println("El Cliente tiene saldos pendientes de abono.");
         }else{
             if(r.getFechaEgreso().equals(LocalDate.now())) {
