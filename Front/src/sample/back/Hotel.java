@@ -242,7 +242,7 @@ public class Hotel implements Serializable {
         Mantenimiento m = new Mantenimiento();
         for(int i=0; (i<this.listaMantenimiento.size()&&validacion);i++){
             if(habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()){
-                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)<0))) {
                     validacion=true;
                 }else{
                     validacion=false;
