@@ -1365,7 +1365,7 @@ public class Controller implements Initializable {
             if (comboConsumoOperacion.getValue().equals("Consumo")) {
                 mostrarPaneX(PaneElegido.paneConsumo2);
                 mostrarFlechaX(FlechaElegida.arrowPago);
-                labelConsumo2.setText("COSUMO CLIENTE: " + consumoNombreHuesped.getText());
+                labelConsumo2.setText("CONSUMO CLIENTE: " + consumoNombreHuesped.getText());
             } else if (comboConsumoOperacion.getValue().equals("CheckOut")) {
                 checkoutCheckBoxHabi0.setVisible(false);
                 checkoutCheckBoxHabi1.setVisible(false);

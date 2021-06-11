@@ -296,7 +296,7 @@ public class Hotel implements Serializable {
         Reserva r = new Reserva();
         for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
             if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
-                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)<0))) {
                     validacion=true;
                 }else{
                     validacion=false;
@@ -312,7 +312,7 @@ public class Hotel implements Serializable {
         RegistroHuesped r = new RegistroHuesped();
         for(int i=0; (i<this.registroHuespedes.size()&&validacion);i++){
             if(idHabitacion == this.registroHuespedes.get(i).getIdHabitacion()){
-                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fecha)<0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fecha)>0))) {
+                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fecha)<0))) {
                     validacion=true;
                 }else{
                     validacion=false;
