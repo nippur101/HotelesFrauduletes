@@ -14,10 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
-
+    private double xoffset;
+    private double yoffset;
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        root.setOnMousePressed(event -> {
+            xoffset= event.getSceneX();
+            yoffset=event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX()-xoffset);
+            primaryStage.setY(event.getScreenY()-yoffset);
+        });
+
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Hotel Frauduletes");
         Scene scene=new Scene(root);
