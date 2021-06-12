@@ -26,234 +26,420 @@ import java.util.*;
 
 public class Controller implements Initializable {
     //============CHECKOUT=======================
-    @FXML private Button buttonElegirCheckoutPorHabitacion;
-    @FXML private Label labelCheckoutCheckboxError;
-    @FXML private TextField textCargoChekoutFinal;
-    @FXML private TextField textAbonoChekoutFinal;
-    @FXML private TextField textSldoFinalChekoutFinal;
-    @FXML private TextField textAbonoFinalChekoutFinal;
-    @FXML private TextField textVueltoChekoutFinal;
-    @FXML private TextField textCargoChekoutHab;
-    @FXML private TextField textAbonoChekoutHab;
-    @FXML private TextField textSldoFinalChekoutHab;
-    @FXML private TextField textVueltoChekoutHab;
-    @FXML private TextField textAbonoFinalChekoutHab;
-    @FXML private TextField textIdClienteCheckout;
-    @FXML private Label lablelNombreClienteCheckout;
-    @FXML private CheckBox checkoutCheckBoxHabi0;
-    @FXML private CheckBox checkoutCheckBoxHabi1;
-    @FXML private CheckBox checkoutCheckBoxHabi2;
-    @FXML private CheckBox checkoutCheckBoxHabi3;
-    @FXML private CheckBox checkoutCheckBoxHabi4;
+    @FXML
+    private Button buttonElegirCheckoutPorHabitacion;
+    @FXML
+    private Label labelCheckoutCheckboxError;
+    @FXML
+    private TextField textCargoChekoutFinal;
+    @FXML
+    private TextField textAbonoChekoutFinal;
+    @FXML
+    private TextField textSldoFinalChekoutFinal;
+    @FXML
+    private TextField textAbonoFinalChekoutFinal;
+    @FXML
+    private TextField textVueltoChekoutFinal;
+    @FXML
+    private TextField textCargoChekoutHab;
+    @FXML
+    private TextField textAbonoChekoutHab;
+    @FXML
+    private TextField textSldoFinalChekoutHab;
+    @FXML
+    private TextField textVueltoChekoutHab;
+    @FXML
+    private TextField textAbonoFinalChekoutHab;
+    @FXML
+    private TextField textIdClienteCheckout;
+    @FXML
+    private Label lablelNombreClienteCheckout;
+    @FXML
+    private CheckBox checkoutCheckBoxHabi0;
+    @FXML
+    private CheckBox checkoutCheckBoxHabi1;
+    @FXML
+    private CheckBox checkoutCheckBoxHabi2;
+    @FXML
+    private CheckBox checkoutCheckBoxHabi3;
+    @FXML
+    private CheckBox checkoutCheckBoxHabi4;
 
-    @FXML private DatePicker datePickerHabitacionesEstado;
-    @FXML private TableView<TableViewHabEstado> tableHabitacionesEstado;
-    @FXML private TableColumn<TableViewHabEstado,Integer > columnaHabitacion;
-    @FXML private TableColumn<TableViewHabEstado,String > fechaAnt;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha00;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha01;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha02;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha03;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha04;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha05;
-    @FXML private TableColumn<TableViewHabEstado,String > fecha06;
-    @FXML private Label labelMantenimientoIngreseRangoFechas;
-    @FXML private Label labelConsumo2;
-    @FXML private TextField valor00Consumo2;
-    @FXML private TextField valor01Consumo2;
-    @FXML private TextField valor02Consumo2;
-    @FXML private TextField valor03Consumo2;
-    @FXML private TextField detalle00Consumo2;
-    @FXML private TextField detalle01Consumo2;
-    @FXML private TextField detalle02Consumo2;
-    @FXML private TextField detalle03Consumo2;
-    @FXML private TextField abono00Consumo2;
-    @FXML private TextField abono01Consumo2;
-    @FXML private TextField abono02Consumo2;
-    @FXML private TextField abono03Consumo2;
-
-
-    @FXML private TextField consumoHuesped;
-    @FXML private ComboBox comboConsumoNroHabitacion;
-    @FXML private ComboBox comboConsumoOperacion;
-    @FXML private TextField consumoCargo;
-    @FXML private TextField consumoAbono;
-    @FXML private TextField consumoSaldo;
-    @FXML private TextField consumoNombreHuesped;
-
-    @FXML private TableView<ReservaCliente> tableViewRegistroReservasCliente;
-    @FXML private TableColumn<ReservaCliente,String > tableReservaColumFechaIngreso;
-    @FXML private TableColumn<ReservaCliente,String > tableReservaColumFechaEngreso;
-    @FXML private TableColumn<ReservaCliente,Integer > tablenReservaNroHabitacion;
-    @FXML private TableColumn<ReservaCliente,Double > tableReservaAbono;
-
-
-    @FXML private TextField registroIDCliente;
-
-    @FXML private CheckBox registroCheckBoxHabi0;
-    @FXML private CheckBox registroCheckBoxHabi1;
-    @FXML private CheckBox registroCheckBoxHabi2;
-    @FXML private CheckBox registroCheckBoxHabi3;
-    @FXML private CheckBox registroCheckBoxHabi4;
-
-    @FXML private Button buttonConfirmarListaRegistro;
-    @FXML private Button buttonRegistroElegirHabi;
-    @FXML private Button buttonPagarAdelantoRegistro;
-    @FXML private Label labelErrorRegistro;
-    @FXML private Button registroButtonRegistrar;
-    @FXML private Button registroFechasConfirmar;
-    @FXML private Button buttonConfirmarRegistro;
-    @FXML private Label labelRegistroGuardadoExitosamente;
-    @FXML private Label labelRegistroHabitacionMuestra;
-    @FXML private Label labelRegistroFechaEgresoMuestra;
-    @FXML private Label labelRegistroFechaIngresoMuestra;
-    @FXML private TextField registroAbonoAdelanto;
-    @FXML private TextField registroPagoAdelanto;
-    @FXML private TextField registroClienteNomebreyApellido;
-
-    @FXML private Label labelReservaErrorFechas;
-    @FXML private Button buttonSeleccionarReserva;
-    @FXML private Button buttonBuscarFechaReserva;
-    @FXML private Button buttonReservarReserva;
-    @FXML private Button buttonPagarAdelantoReserva;
-    @FXML private Button buttonConfirmarReserva;
-    @FXML private Button buttonRegistrarManten;
-    @FXML private Label labelReservaGuardadaExitosamente;
-    @FXML private Label labelHabitacionMuestra;
-    @FXML private Label labelFechaEgresoMuestra;
-    @FXML private Label labelFechaIngresoMuestra;
-    @FXML private TextField reservaAbonoAdelanto;
-    @FXML private ComboBox reservaNroHabitacion;
-    @FXML private ComboBox mantenNroHabitacion;
-    @FXML private DatePicker reservaFechaIngreso;
-    @FXML private DatePicker reservaFechaEgreso;
-    @FXML private DatePicker mantenimientoFechaInicio;
-    @FXML private DatePicker mantenimientoFechaFin;
-    @FXML private TextField reservaBusquedaIdCliente;
-    @FXML private TextField reservaClienteNomebreyApellido;
-    @FXML private TextField textDetalleManten;
+    @FXML
+    private DatePicker datePickerHabitacionesEstado;
+    @FXML
+    private TableView<TableViewHabEstado> tableHabitacionesEstado;
+    @FXML
+    private TableColumn<TableViewHabEstado, Integer> columnaHabitacion;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fechaAnt;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha00;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha01;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha02;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha03;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha04;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha05;
+    @FXML
+    private TableColumn<TableViewHabEstado, String> fecha06;
+    @FXML
+    private Label labelMantenimientoIngreseRangoFechas;
+    @FXML
+    private Label labelConsumo2;
+    @FXML
+    private TextField valor00Consumo2;
+    @FXML
+    private TextField valor01Consumo2;
+    @FXML
+    private TextField valor02Consumo2;
+    @FXML
+    private TextField valor03Consumo2;
+    @FXML
+    private TextField detalle00Consumo2;
+    @FXML
+    private TextField detalle01Consumo2;
+    @FXML
+    private TextField detalle02Consumo2;
+    @FXML
+    private TextField detalle03Consumo2;
+    @FXML
+    private TextField abono00Consumo2;
+    @FXML
+    private TextField abono01Consumo2;
+    @FXML
+    private TextField abono02Consumo2;
+    @FXML
+    private TextField abono03Consumo2;
 
 
-    @FXML private TextField busquedaIdCliente;
-    @FXML private TextField mClienteNomebreyAppellido;
-    @FXML private TextField mClienteDireccion;
-    @FXML private TextField mClienteTelefono;
-    @FXML private TextField mClienteDni;
-    @FXML private TextField mClienteLocalidad;
-    @FXML private TextField mClienteProvincia;
-    @FXML private TextField mClientePais;
+    @FXML
+    private TextField consumoHuesped;
+    @FXML
+    private ComboBox comboConsumoNroHabitacion;
+    @FXML
+    private ComboBox comboConsumoOperacion;
+    @FXML
+    private TextField consumoCargo;
+    @FXML
+    private TextField consumoAbono;
+    @FXML
+    private TextField consumoSaldo;
+    @FXML
+    private TextField consumoNombreHuesped;
 
-    @FXML private TextField busquedaIdRececionista;
-    @FXML private TextField mRecepcionistaNomebreyAppellido;
-    @FXML private TextField mRecepcionistaDireccion;
-    @FXML private TextField mRecepcionistaTelefono;
-    @FXML private TextField mRecepcionistaDni;
-    @FXML private TextField mRecepcionistaPassword;
-
-    @FXML private TextField identificadorUsuario;
-    @FXML private PasswordField passIdentificadorUsuario;
-    @FXML private Button botonAccesoUsuario;
-
-
+    @FXML
+    private TableView<ReservaCliente> tableViewRegistroReservasCliente;
+    @FXML
+    private TableColumn<ReservaCliente, String> tableReservaColumFechaIngreso;
+    @FXML
+    private TableColumn<ReservaCliente, String> tableReservaColumFechaEngreso;
+    @FXML
+    private TableColumn<ReservaCliente, Integer> tablenReservaNroHabitacion;
+    @FXML
+    private TableColumn<ReservaCliente, Double> tableReservaAbono;
 
 
+    @FXML
+    private TextField registroIDCliente;
 
-//=====================PANEL CLIENTE
-    @FXML private Label labelPaneClienteCargadoExitosamente;
-    @FXML private Label prueba;
-    @FXML private TextField clienteCorreoElectronico;
-    @FXML private TextField clienteLocalidad;
-    @FXML private TextField clienteProvincia;
-    @FXML private TextField clientePais;
-    @FXML private TextField clienteDNI;
-    @FXML private TextField clienteTelefono;
-    @FXML private TextField clienteDireccion;
-    @FXML private TextField clienteNombreApellido;
-//====================PANEL RECEPCIONISTA
-    @FXML private Label labelRecepcionitaCargadoExitosamente;
-    @FXML private TextField recepcionistaCorreoElectronico;
-    @FXML private TextField recepcionistaPassword;
-    @FXML private TextField recepcionistaDNI;
-    @FXML private TextField recepcionistaTelefono;
-    @FXML private TextField recepcionistaDireccion;
-    @FXML private TextField recepcionistaNombreApellido;
+    @FXML
+    private CheckBox registroCheckBoxHabi0;
+    @FXML
+    private CheckBox registroCheckBoxHabi1;
+    @FXML
+    private CheckBox registroCheckBoxHabi2;
+    @FXML
+    private CheckBox registroCheckBoxHabi3;
+    @FXML
+    private CheckBox registroCheckBoxHabi4;
+
+    @FXML
+    private Button buttonConfirmarListaRegistro;
+    @FXML
+    private Button buttonRegistroElegirHabi;
+    @FXML
+    private Button buttonPagarAdelantoRegistro;
+    @FXML
+    private Label labelErrorRegistro;
+    @FXML
+    private Button registroButtonRegistrar;
+    @FXML
+    private Button registroFechasConfirmar;
+    @FXML
+    private Button buttonConfirmarRegistro;
+    @FXML
+    private Label labelRegistroGuardadoExitosamente;
+    @FXML
+    private Label labelRegistroHabitacionMuestra;
+    @FXML
+    private Label labelRegistroFechaEgresoMuestra;
+    @FXML
+    private Label labelRegistroFechaIngresoMuestra;
+    @FXML
+    private TextField registroAbonoAdelanto;
+    @FXML
+    private TextField registroPagoAdelanto;
+    @FXML
+    private TextField registroClienteNomebreyApellido;
+
+    @FXML
+    private Label labelReservaErrorFechas;
+    @FXML
+    private Button buttonSeleccionarReserva;
+    @FXML
+    private Button buttonBuscarFechaReserva;
+    @FXML
+    private Button buttonReservarReserva;
+    @FXML
+    private Button buttonPagarAdelantoReserva;
+    @FXML
+    private Button buttonConfirmarReserva;
+    @FXML
+    private Button buttonRegistrarManten;
+    @FXML
+    private Label labelReservaGuardadaExitosamente;
+    @FXML
+    private Label labelHabitacionMuestra;
+    @FXML
+    private Label labelFechaEgresoMuestra;
+    @FXML
+    private Label labelFechaIngresoMuestra;
+    @FXML
+    private TextField reservaAbonoAdelanto;
+    @FXML
+    private ComboBox reservaNroHabitacion;
+    @FXML
+    private ComboBox mantenNroHabitacion;
+    @FXML
+    private DatePicker reservaFechaIngreso;
+    @FXML
+    private DatePicker reservaFechaEgreso;
+    @FXML
+    private DatePicker mantenimientoFechaInicio;
+    @FXML
+    private DatePicker mantenimientoFechaFin;
+    @FXML
+    private TextField reservaBusquedaIdCliente;
+    @FXML
+    private TextField reservaClienteNomebreyApellido;
+    @FXML
+    private TextField textDetalleManten;
+
+
+    @FXML
+    private TextField busquedaIdCliente;
+    @FXML
+    private TextField mClienteNomebreyAppellido;
+    @FXML
+    private TextField mClienteDireccion;
+    @FXML
+    private TextField mClienteTelefono;
+    @FXML
+    private TextField mClienteDni;
+    @FXML
+    private TextField mClienteLocalidad;
+    @FXML
+    private TextField mClienteProvincia;
+    @FXML
+    private TextField mClientePais;
+
+    @FXML
+    private TextField busquedaIdRececionista;
+    @FXML
+    private TextField mRecepcionistaNomebreyAppellido;
+    @FXML
+    private TextField mRecepcionistaDireccion;
+    @FXML
+    private TextField mRecepcionistaTelefono;
+    @FXML
+    private TextField mRecepcionistaDni;
+    @FXML
+    private TextField mRecepcionistaPassword;
+
+    @FXML
+    private TextField identificadorUsuario;
+    @FXML
+    private PasswordField passIdentificadorUsuario;
+    @FXML
+    private Button botonAccesoUsuario;
+
+
+    //=====================PANEL CLIENTE
+    @FXML
+    private Label labelPaneClienteCargadoExitosamente;
+    @FXML
+    private Label prueba;
+    @FXML
+    private TextField clienteCorreoElectronico;
+    @FXML
+    private TextField clienteLocalidad;
+    @FXML
+    private TextField clienteProvincia;
+    @FXML
+    private TextField clientePais;
+    @FXML
+    private TextField clienteDNI;
+    @FXML
+    private TextField clienteTelefono;
+    @FXML
+    private TextField clienteDireccion;
+    @FXML
+    private TextField clienteNombreApellido;
+    //====================PANEL RECEPCIONISTA
+    @FXML
+    private Label labelRecepcionitaCargadoExitosamente;
+    @FXML
+    private TextField recepcionistaCorreoElectronico;
+    @FXML
+    private TextField recepcionistaPassword;
+    @FXML
+    private TextField recepcionistaDNI;
+    @FXML
+    private TextField recepcionistaTelefono;
+    @FXML
+    private TextField recepcionistaDireccion;
+    @FXML
+    private TextField recepcionistaNombreApellido;
     //====================IMAGENES DE MENU
-    @FXML private ImageView imageAdmin;
-    @FXML private ImageView imageRecepcionist;
-    @FXML private ImageView imageClient;
-    @FXML private ImageView imageReserv;
-    @FXML private ImageView imageRegistro;
-    @FXML private ImageView imagePago;
-    @FXML private ImageView imageHabitacion;
-    @FXML private ImageView imageExit;
-    @FXML private ImageView imagenMantenimiento;
+    @FXML
+    private ImageView imageAdmin;
+    @FXML
+    private ImageView imageRecepcionist;
+    @FXML
+    private ImageView imageClient;
+    @FXML
+    private ImageView imageReserv;
+    @FXML
+    private ImageView imageRegistro;
+    @FXML
+    private ImageView imagePago;
+    @FXML
+    private ImageView imageHabitacion;
+    @FXML
+    private ImageView imageExit;
+    @FXML
+    private ImageView imagenMantenimiento;
     //====================IMAGENES FLECHAS DE MENU
-    @FXML private ImageView arrowAdmin;
-    @FXML private ImageView arrowClient;
-    @FXML private ImageView arrowRecepcionista;
-    @FXML private ImageView arrowRegistro;
-    @FXML private ImageView arrowPago;
-    @FXML private ImageView arrowHabitacion;
-    @FXML private ImageView arrowReserva;
-    @FXML private ImageView arrowMantenimiento;
+    @FXML
+    private ImageView arrowAdmin;
+    @FXML
+    private ImageView arrowClient;
+    @FXML
+    private ImageView arrowRecepcionista;
+    @FXML
+    private ImageView arrowRegistro;
+    @FXML
+    private ImageView arrowPago;
+    @FXML
+    private ImageView arrowHabitacion;
+    @FXML
+    private ImageView arrowReserva;
+    @FXML
+    private ImageView arrowMantenimiento;
     //====================PANELES
-    @FXML private AnchorPane paneConsumoCheckout;
-    @FXML private AnchorPane paneConsumo2;
-    @FXML private AnchorPane paneListaHabitacionesEstado;
-    @FXML private AnchorPane paneTopUsuario;
-    @FXML private AnchorPane paneTopAdmin;
-    @FXML private AnchorPane paneTopCliente;
-    @FXML private AnchorPane paneRegistroCargado;
-    @FXML private AnchorPane paneReservaCargada;
-    @FXML private AnchorPane paneErrorIngresoPassword;
-    @FXML private AnchorPane paneAdminPass;
-    @FXML private AnchorPane paneAccesoPermitido;
-    @FXML private AnchorPane paneManejoRecepcionist;
-    @FXML private AnchorPane paneAgregarRecepcionist;
-    @FXML private AnchorPane paneModificarRecepcionist;
-    @FXML private AnchorPane paneAgregarClient;
-    @FXML private AnchorPane paneManejoClient;
-    @FXML private AnchorPane paneRegistro;
-    @FXML private AnchorPane paneReserva;
-    @FXML private AnchorPane paneModificarClient;
-    @FXML private AnchorPane panePago;
-    @FXML private AnchorPane paneRecepcionistaCargado;
-    @FXML private AnchorPane paneClienteCargado;
-    @FXML private AnchorPane paneListarClientes;
-    @FXML private AnchorPane paneMantenimiento;
+    @FXML
+    private AnchorPane paneConsumoCheckout;
+    @FXML
+    private AnchorPane paneConsumo2;
+    @FXML
+    private AnchorPane paneListaHabitacionesEstado;
+    @FXML
+    private AnchorPane paneTopUsuario;
+    @FXML
+    private AnchorPane paneTopAdmin;
+    @FXML
+    private AnchorPane paneTopCliente;
+    @FXML
+    private AnchorPane paneRegistroCargado;
+    @FXML
+    private AnchorPane paneReservaCargada;
+    @FXML
+    private AnchorPane paneErrorIngresoPassword;
+    @FXML
+    private AnchorPane paneAdminPass;
+    @FXML
+    private AnchorPane paneAccesoPermitido;
+    @FXML
+    private AnchorPane paneManejoRecepcionist;
+    @FXML
+    private AnchorPane paneAgregarRecepcionist;
+    @FXML
+    private AnchorPane paneModificarRecepcionist;
+    @FXML
+    private AnchorPane paneAgregarClient;
+    @FXML
+    private AnchorPane paneManejoClient;
+    @FXML
+    private AnchorPane paneRegistro;
+    @FXML
+    private AnchorPane paneReserva;
+    @FXML
+    private AnchorPane paneModificarClient;
+    @FXML
+    private AnchorPane panePago;
+    @FXML
+    private AnchorPane paneRecepcionistaCargado;
+    @FXML
+    private AnchorPane paneClienteCargado;
+    @FXML
+    private AnchorPane paneListarClientes;
+    @FXML
+    private AnchorPane paneMantenimiento;
     //====================TABLA DE DETALLE DE CONSUMOS
-    @FXML private TableView<Detalle> tableViewDetalle;
+    @FXML
+    private TableView<Detalle> tableViewDetalle;
     //====================COLUMNAS DE TABLA DETALLE CONSUMO
-    @FXML private TableColumn<Detalle,String > columFecha;
-    @FXML private TableColumn<Detalle,Integer > columCuenta;
-    @FXML private TableColumn<Detalle,Integer > columReferencia;
-    @FXML private TableColumn<Detalle,String > columDescripcion;
-    @FXML private TableColumn<Detalle,Double > columCargos;
-    @FXML private TableColumn<Detalle,Double > columAbono;
-    @FXML private TableColumn<Detalle,Boolean > columEstado;
+    @FXML
+    private TableColumn<Detalle, String> columFecha;
+    @FXML
+    private TableColumn<Detalle, Integer> columCuenta;
+    @FXML
+    private TableColumn<Detalle, Integer> columReferencia;
+    @FXML
+    private TableColumn<Detalle, String> columDescripcion;
+    @FXML
+    private TableColumn<Detalle, Double> columCargos;
+    @FXML
+    private TableColumn<Detalle, Double> columAbono;
+    @FXML
+    private TableColumn<Detalle, Boolean> columEstado;
     //====================TABLA DE DETALLE DE CLIENTES
-    @FXML private TableView<TableViewCliente> tableViewListadoClientes;
+    @FXML
+    private TableView<TableViewCliente> tableViewListadoClientes;
     //====================COLUMNAS DE TABLA DETALLE CLIENTES
-    @FXML private TableColumn<Cliente, String> listaClienteColumDni;
-    @FXML private TableColumn<Cliente, String> listaClienteColumApellidoNombre;
-    @FXML private TableColumn<Cliente, String> listaClienteColumPais;
-    @FXML private TableColumn<Cliente, String> listaClienteColumProvincia;
-    @FXML private TableColumn<Cliente, String> listaClienteColumLocalidad;
-    @FXML private TableColumn<Cliente, String> listaClienteColumDomicilio;
-    @FXML private TableColumn<Cliente, String> listaClienteColumCorreoElect;
-    @FXML private TableColumn<Cliente, String> listaClienteColumTelefono;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumDni;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumApellidoNombre;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumPais;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumProvincia;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumLocalidad;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumDomicilio;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumCorreoElect;
+    @FXML
+    private TableColumn<Cliente, String> listaClienteColumTelefono;
 
-    List<UsuarioHotel> listaUsuarioHotel=new ArrayList<>();
-    List<Cliente> listaCliente=new ArrayList<>();
+    List<UsuarioHotel> listaUsuarioHotel = new ArrayList<>();
+    List<Cliente> listaCliente = new ArrayList<>();
 
-    List<Habitacion> listaHabitacion=new ArrayList<>();
-    List<Recepcionista> listaRececpcionista=new ArrayList<>();
-    List<Reserva> listaReserva=new ArrayList<>();
+    List<Habitacion> listaHabitacion = new ArrayList<>();
+    List<Recepcionista> listaRececpcionista = new ArrayList<>();
+    List<Reserva> listaReserva = new ArrayList<>();
 
-    List<RegistroHuesped> listaRegistroHuespedes=new ArrayList<>();
+    List<RegistroHuesped> listaRegistroHuespedes = new ArrayList<>();
     List<CheckBox> comboRegistroHabitacion = new ArrayList<>();
     List<CheckBox> checkBoxCheckoutHabit = new ArrayList<>();
-    Hotel hotel=new Hotel();
+    Hotel hotel = new Hotel();
 
 
     File fileCliente = new File("Clientes.json");
@@ -262,6 +448,9 @@ public class Controller implements Initializable {
     File fileReservas = new File("Reservas.json");
     File fileRegistroHuesped = new File("RegistroHuesped.json");
     File fileMantenimiento = new File("Mantenimiento.json");
+
+
+
 
 
 
@@ -781,6 +970,7 @@ public class Controller implements Initializable {
             labelRecepcionitaCargadoExitosamente.setText("RECEPCIONISTA CARGADO EXITOSAMENTE");
             mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
             hotel.getListaUsuarioHotel().add(recepcionistaNuevo);
+            Archivo.escribirArchivoUsuarioHotel(fileUsuarioHotel,(ArrayList<UsuarioHotel>) hotel.getListaUsuarioHotel());
         }else{
             mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
             labelRecepcionitaCargadoExitosamente.setText("EL RECEPCIONISTA YA SE ENCUENTRA REGISTRADO");
@@ -906,6 +1096,7 @@ public class Controller implements Initializable {
             mostrarPaneX(PaneElegido.paneClienteCargado);
             hotel.getListaCliente().add(clienteNuevo);
             labelPaneClienteCargadoExitosamente.setText("CLIENTE CARGADO EXITOSAMENTE");
+            Archivo.escribirArchivoClientes(fileCliente,(ArrayList<Cliente>) hotel.getListaCliente() );
 
 
         }else{
@@ -1079,6 +1270,8 @@ public class Controller implements Initializable {
             adelanto=adelanto+listaReservaCliente.get(i).getPagoReserva();
         }
         cliente.getConsumos().get(cliente.getConsumos().size()-1).setPagoConsumo(adelanto);
+        Archivo.escribirArchivoReservas(fileReservas,(ArrayList<Reserva>) hotel.getListaReserva());
+        Archivo.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
         labelRegistroGuardadoExitosamente.setText("EL REGISTRO FUE CARGADO EXITOSAMENTE");
         buttonConfirmarRegistro.setDisable(true);
         hotel.borrarReservaPorIdCliente(cliente.getId());
@@ -1114,7 +1307,9 @@ public class Controller implements Initializable {
             hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setTelefono(mRecepcionistaTelefono.getText());
             hotel.getListaUsuarioHotel().get(indiceUsuarioHotel).setClave(mRecepcionistaPassword.getText());
             mostrarPaneX(PaneElegido.paneRecepcionistaCargado);
+            Archivo.escribirArchivoUsuarioHotel(fileUsuarioHotel,(ArrayList<UsuarioHotel>) hotel.getListaUsuarioHotel());
         }
+
 
     }
 
@@ -1145,7 +1340,9 @@ public class Controller implements Initializable {
             hotel.getListaCliente().get(indiceCliente).setProvincia(mClienteProvincia.getText());
             hotel.getListaCliente().get(indiceCliente).setPais(mClientePais.getText());
             mostrarPaneX(PaneElegido.paneClienteCargado);
+            Archivo.escribirArchivoClientes(fileCliente,(ArrayList<Cliente>) hotel.getListaCliente() );
         }
+
 
     }
 
@@ -1249,6 +1446,7 @@ public class Controller implements Initializable {
         double adelanto=Double.parseDouble(reservaAbonoAdelanto.getText());
         Reserva reservaNueva=new Reserva(hotel.buscarIdPorNumeroDeHabitacion((int)reservaNroHabitacion.getValue()),reservaBusquedaIdCliente.getText(),reservaFechaIngreso.getValue(),reservaFechaEgreso.getValue(),adelanto);
         hotel.getListaReserva().add(reservaNueva);
+        Archivo.escribirArchivoReservas(fileReservas,(ArrayList<Reserva>) hotel.getListaReserva());
         buttonConfirmarReserva.setDisable(true);
     }
 
@@ -1284,6 +1482,7 @@ public class Controller implements Initializable {
 
             hotel.getListaMantenimiento().add(aux);
             buttonRegistrarManten.setDisable(true);
+            Archivo.escribirArchivoMantenimiento(fileMantenimiento,(ArrayList<Mantenimiento>) hotel.getListaMantenimiento());
             labelMantenimientoIngreseRangoFechas.setText("MANTENIMIENTO REGISTRADO DESDE "+mantenimientoFechaInicio.getValue().toString()+" hasta "+mantenimientoFechaFin.getValue().toString());
           }catch (NullPointerException e){
                 labelMantenimientoIngreseRangoFechas.setText("INGRESE UNA HABITACION PARA MANTENIMIENTO");
@@ -1468,7 +1667,22 @@ public class Controller implements Initializable {
 
 
     }
+    public Double valorHabitaciones(){
+        Double valorHabitaciones=0.0;
+        List<RegistroHuesped>listaRegistrocliente=hotel.buscarRegistroPorIdCliente(textIdClienteCheckout.getText());
 
+        for(int j=0;j<checkBoxCheckoutHabit.size();j++) {
+            for (int i = 0; i < listaRegistrocliente.size(); i++) {
+
+                if (checkBoxCheckoutHabit.get(j).isSelected() && Integer.valueOf(checkBoxCheckoutHabit.get(j).getText())==hotel.buscarNumeroHabitacionPorId(listaRegistrocliente.get(i).getIdHabitacion())) {
+
+                    valorHabitaciones=valorHabitaciones+hotel.montoHabitacionEstadia(listaRegistrocliente.get(i).getFechaIngreso(),listaRegistrocliente.get(i).getFechaEgreso(),Integer.valueOf(checkBoxCheckoutHabit.get(j).getText()));
+
+                }
+            }
+        }
+        return valorHabitaciones;
+    }
 
     public void onCheckoutElegirHabiButtonClicked(MouseEvent event){
 
@@ -1481,6 +1695,8 @@ public class Controller implements Initializable {
 
         }
         if(val==true){
+            valorHabitaciones=valorHabitaciones();
+           /*
             List<RegistroHuesped>listaRegistrocliente=hotel.buscarRegistroPorIdCliente(textIdClienteCheckout.getText());
 
             for(int j=0;j<checkBoxCheckoutHabit.size();j++) {
@@ -1494,6 +1710,8 @@ public class Controller implements Initializable {
                 }
             }
 
+
+            */
             textCargoChekoutHab.setText(valorHabitaciones.toString());
             textAbonoChekoutHab.setText(String.valueOf(hotel.getListaCliente().get(indiceCliente).sumatoriaPagos()));
             Double saldo=valorHabitaciones-hotel.getListaCliente().get(indiceCliente).sumatoriaPagos();
@@ -1507,7 +1725,7 @@ public class Controller implements Initializable {
 
     }
     public void onCheckoutRealizarButtonClicked(MouseEvent event){
-
+        int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
         Double vuelto=Double.parseDouble(textAbonoFinalChekoutHab.getText())-Double.parseDouble(textSldoFinalChekoutHab.getText());
         System.out.println(vuelto);
         if(vuelto>=0.0) {
@@ -1524,7 +1742,9 @@ public class Controller implements Initializable {
                                     hotel.getRegistroHuespedes().get(k).getFechaEgreso().equals(listaRegistrocliente.get(i).getFechaEgreso())) {
                                 hotel.getRegistroHuespedes().get(i).setFechaEgreso(LocalDate.now());
                                 hotel.getRegistroHuespedes().get(i).setEstado("Cerrado");
+                                hotel.getListaCliente().get(indiceCliente).getConsumos().get(hotel.getListaCliente().get(indiceCliente).getConsumos().size()-1).setPagoConsumo(valorHabitaciones());
                                 labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
+                                Archivo.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
                                 textVueltoChekoutHab.setText(vuelto.toString());
                             }
                         }
@@ -1553,6 +1773,7 @@ public class Controller implements Initializable {
                         hotel.getRegistroHuespedes().get(k).setFechaEgreso(LocalDate.now());
                         hotel.getRegistroHuespedes().get(k).setEstado("Cerrado");
                         labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
+                        Archivo.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
                         textVueltoChekoutFinal.setText(vuelto.toString());
 
                     }

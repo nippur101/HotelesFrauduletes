@@ -4,8 +4,8 @@
     "idCliente": "35140802",
     "idHabitacion": 12,
     "fechaIngreso": "2021-05-25",
-    "fechaEgreso": "2021-07-10",
-    "estado": "Abierto"
+    "fechaEgreso": "2021-06-11",
+    "estado": "Cerrado"
   },
   {
     "id": 2,
@@ -29,6 +29,38 @@
     "idHabitacion": 9,
     "fechaIngreso": "2021-05-24",
     "fechaEgreso": "2021-06-20",
+    "estado": "Abierto"
+  },
+  {
+    "id": 5,
+    "idCliente": "666",
+    "idHabitacion": 1,
+    "fechaIngreso": "2021-06-11",
+    "fechaEgreso": "2021-06-11",
+    "estado": "Cerrado"
+  },
+  {
+    "id": 6,
+    "idCliente": "11111111",
+    "idHabitacion": 5,
+    "fechaIngreso": "2021-06-06",
+    "fechaEgreso": "2021-07-16",
+    "estado": "Abierto"
+  },
+  {
+    "id": 7,
+    "idCliente": "11111111",
+    "idHabitacion": 7,
+    "fechaIngreso": "2021-06-06",
+    "fechaEgreso": "2021-06-13",
+    "estado": "Abierto"
+  },
+  {
+    "id": 8,
+    "idCliente": "777",
+    "idHabitacion": 1,
+    "fechaIngreso": "2021-06-11",
+    "fechaEgreso": "2021-07-09",
     "estado": "Abierto"
   }
 ]

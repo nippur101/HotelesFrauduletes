@@ -126,24 +126,6 @@ public class Hotel implements Serializable {
         }
         return i;
     }
-    ///Busca una Reserva por Id Cliente
-
-
-    /// retorna -1 si no se encontró.
-    /*public int buscarReservaPorIdCliente(String id){
-        boolean busqueda = false;
-        int i=(this.listaReserva.size()-1);;
-        while ((i>-1)&&(!busqueda)) {
-            if (this.listaReserva.get(i).getIdCliente().equals(id)&&(this.listaReserva.get(i).getBorradoLogico())) {
-                busqueda = true;
-            }else{
-                i--;
-            }
-        }
-        return i;
-    }
-
-     */
 
 
     ///Arreglo de Reservas por Id de Cliente
@@ -254,18 +236,17 @@ public class Hotel implements Serializable {
         Mantenimiento m = new Mantenimiento();
         for(int i=0; (i<this.listaMantenimiento.size()&&validacion);i++){
             if(habitacion.getId() == this.listaMantenimiento.get(i).getIdHabitacion()){
-                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)<0))) {
-                    validacion=true;
-                }else{
+                if (((this.listaMantenimiento.get(i).getFechaIngreso().compareTo(fecha)<=0)&&
+                        (this.listaMantenimiento.get(i).getFechaEgreso().compareTo(fecha)>=0))) {
                     validacion=false;
                     m = this.listaMantenimiento.get(i);
+                }else{
+                    validacion=true;
                 }
             }
         }
         return m;
     }
-
-
 
 
 
@@ -290,49 +271,39 @@ public class Hotel implements Serializable {
         }
         return (ArrayList<Habitacion>) habitacionesLibres;
     }
-/*
+
+
     public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
         boolean validacion=true;
         Reserva r = new Reserva();
         for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
             if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
-                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)<0))) {
-                    validacion=true;
-                }else{
+                if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)<=0)&&
+                        (this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)>=0))) {
                     validacion=false;
                     r = this.listaReserva.get(i);
+                }else{
+
+                    validacion=true;
+
                 }
             }
         }
         return r;
     }
 
- */
-public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
-    boolean validacion=true;
-    Reserva r = new Reserva();
-    for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
-        if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
-            if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)<0))) {
-                validacion=true;
-            }else{
-                validacion=false;
-                r = this.listaReserva.get(i);
-            }
-        }
-    }
-    return r;
-}
+
     public RegistroHuesped buscarRegistroDiaHabitacion(LocalDate fecha,int idHabitacion){
         boolean validacion=true;
         RegistroHuesped r = new RegistroHuesped();
         for(int i=0; (i<this.registroHuespedes.size()&&validacion);i++){
             if(idHabitacion == this.registroHuespedes.get(i).getIdHabitacion()){
-                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.registroHuespedes.get(i).getFechaEgreso().compareTo(fecha)<0))) {
-                    validacion=true;
-                }else{
+                if (((this.registroHuespedes.get(i).getFechaIngreso().compareTo(fecha)<=0)&&
+                        (this.registroHuespedes.get(i).getFechaEgreso().compareTo(fecha)>=0))) {
                     validacion=false;
                     r = this.registroHuespedes.get(i);
+                }else{
+                    validacion=true;
                 }
             }
         }
