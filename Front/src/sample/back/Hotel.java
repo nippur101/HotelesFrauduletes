@@ -290,7 +290,7 @@ public class Hotel implements Serializable {
         }
         return (ArrayList<Habitacion>) habitacionesLibres;
     }
-
+/*
     public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
         boolean validacion=true;
         Reserva r = new Reserva();
@@ -307,6 +307,22 @@ public class Hotel implements Serializable {
         return r;
     }
 
+ */
+public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
+    boolean validacion=true;
+    Reserva r = new Reserva();
+    for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
+        if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
+            if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)<0))) {
+                validacion=true;
+            }else{
+                validacion=false;
+                r = this.listaReserva.get(i);
+            }
+        }
+    }
+    return r;
+}
     public RegistroHuesped buscarRegistroDiaHabitacion(LocalDate fecha,int idHabitacion){
         boolean validacion=true;
         RegistroHuesped r = new RegistroHuesped();
