@@ -456,22 +456,13 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location,ResourceBundle resource){
-       // registroNroHabitacion.setItems(comboNroHabitaciones);
+
         this.mostrarPaneX(PaneElegido.paneAdminPass);
         this.mostrarPaneTopX(PaneElegido.paneTopAdmin);
         bloquearAccesoImegenesSup();
         mostrarFlechaX(FlechaElegida.arrowNinguna);
 
-        //cargarDatos();
-        /*
-        ///-----GENERACION DE ARCHIVOS---
-        Archivo.escribirArchivoClientes(fileCliente,(ArrayList<Cliente>) hotel.getListaCliente() );
-        Archivo.escribirArchivoHabitacion(fileHabitaciones,(ArrayList<Habitacion>) hotel.getListaHabitacion());
-        Archivo.escribirArchivoUsuarioHotel(fileUsuarioHotel,(ArrayList<UsuarioHotel>) hotel.getListaUsuarioHotel());
-        Archivo.escribirArchivoReservas(fileReservas,(ArrayList<Reserva>) hotel.getListaReserva());
-        Archivo.escribirArchivoRegistroHuesped(fileRegistroHuesped,(ArrayList<RegistroHuesped>) hotel.getRegistroHuespedes());
-        Archivo.escribirArchivoMantenimiento(fileMantenimiento,(ArrayList<Mantenimiento>) hotel.getListaMantenimiento());
-       */
+
         ///-----CARGA DE ARCHIVOS---
         hotel.setListaCliente(Archivo.leerArchivoClientes(fileCliente));
         hotel.setListaHabitacion(Archivo.leerArchivoHabitacion(fileHabitaciones));
@@ -523,11 +514,7 @@ public class Controller implements Initializable {
         recepcionistaDNI.addEventFilter(KeyEvent.ANY,handelernumber);
         clienteDNI.addEventFilter(KeyEvent.ANY,handelernumber);
         identificadorUsuario.addEventFilter(KeyEvent.ANY,handelernumber);
-
-        //comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber);
         comboConsumoOperacion.addEventFilter(KeyEvent.ANY,handelernumber);
-
-
 
     }
 
@@ -562,123 +549,7 @@ public class Controller implements Initializable {
         }
         return numero;
     }
-/*
-    public void cargarDatos(){
-        RegistroHuesped h1 = new RegistroHuesped("35140802", 1, LocalDate.of(2021, 05, 25),LocalDate.of(2021, 07, 10));
-        RegistroHuesped h2 = new RegistroHuesped("34185634", 6, LocalDate.of(2021, 05, 20),LocalDate.of(2021, 07, 01));
-        RegistroHuesped h3 = new RegistroHuesped("38140802", 8, LocalDate.of(2021, 05, 23),LocalDate.of(2021, 06, 15));
-        RegistroHuesped h4 = new RegistroHuesped("37415963", 9, LocalDate.of(2021, 05, 24),LocalDate.of(2021, 06, 20));
 
-
-
-        Reserva r1=new Reserva(2,"25546465",LocalDate.of(2021, 06, 25),LocalDate.of(2021, 06, 29),0.0);
-        Reserva r2=new Reserva(3,"46432210",LocalDate.of(2021, 07, 01),LocalDate.of(2021, 07, 12),0.0);
-        Reserva r3=new Reserva(3,"5345656",LocalDate.of(2021, 07, 15),LocalDate.of(2021, 07, 22),0.0);
-        Reserva r4=new Reserva(4,"32222963",LocalDate.of(2021, 07, 05),LocalDate.of(2021, 07, 15),1000.0);
-        Reserva r5=new Reserva(5,"11111111",LocalDate.of(2021, 06, 06),LocalDate.of(2021, 07, 16),1000.0);
-        Reserva r6=new Reserva(7,"11111111",LocalDate.of(2021, 06, 06),LocalDate.of(2021, 07, 16),1000.0);
-
-        Cliente c1=new Cliente("35140802","Norberto Alonzo","Corriente 3421","alonzo@gmail.com","011-5897587","Argentina","Buenos Aires","Capial Federal");
-        Cliente c2=new Cliente("34185634","Osvaldo Ardiles","General Paz 3221","ardiles@gmail.com","011-3244587","Argentina","Buenos Aires","Capial Federal");
-        Cliente c3=new Cliente("38140802","Hector Baley","Yrigoyen 1231","Baley@gmail.com","011-3653433","Argentina","Buenos Aires","Capial Federal");
-        Cliente c4=new Cliente("37415963","Daniel Bertoni","Cordoba 4323","bertoni@gmail.com","011-6586856","Argentina","Buenos Aires","La Plata");
-        Cliente c5=new Cliente("25546465","Ubaldo Filiol","Acha 623","filiol@gmail.com","011-3286856","Argentina","Buenos Aires","Necochea");
-        Cliente c6=new Cliente("46432210","Americo Gallego","Chile 323","gallego@gmail.com","011-345856","Argentina","Cordoba","Cordoba");
-        Cliente c7=new Cliente("5345656","Luis Galvan","Ilia 3223","galvan@gmail.com","011-653546","Argentina","Buenos Aires","Balcarce");
-        Cliente c8=new Cliente("32222963","rene Houseman","Libertad 387","rene@gmail.com","011-64545856","Argentina","Buenos Aires","La Plata");
-        Cliente c9=new Cliente("11111111","Nippur de Lagash","Libertad 387","rene@gmail.com","011-64545856","Argentina","Buenos Aires","La Plata");
-        //Consumo cc1=new Consumo(LocalDate.of(2021,6,5),"Renta Habitacion",1500,0.0);
-        //Consumo cc2=new Consumo(LocalDate.of(2021,6,5),"Renta CunaBebe",500,500);
-
-
-        //c9.setConsumos(cc1);
-        //c9.setConsumos(cc2);
-
-        Administrador admin = new Administrador("35140802", "Mariano Lopez", "3 de Febrero 4070","mariano@gmail.com", "2235-166113","1234");
-        Administrador admin2=new Administrador("1111","admin","adminDir","admin@gmail.com","0800-admin","1234");
-
-        Recepcionista recep1 = new Recepcionista("34159762", "Matias Moreno", "Catelli 4561","matias@gmail.com", "2235-154689","1234");
-        Recepcionista recep2 = new Recepcionista("16465112", "Wanda nara", "San Martin 61","wnada@gmail.com", "011-696969","1234");
-        Recepcionista recep3 = new Recepcionista("45676845", "Carorl G", "Santiago del estero 361","karol@gmail.com", "011-77777","1234");
-
-        Habitacion habita1=new Habitacion(101,"Simple","Dos personas",1500);
-        Habitacion habita2=new Habitacion(102,"Simple","Dos personas",1500);
-        Habitacion habita3=new Habitacion(103,"Simple","Dos personas",1500);
-        Habitacion habita4=new Habitacion(104,"Simple","Dos personas",1500);
-        Habitacion habita5=new Habitacion(105,"Simple","Dos personas",1500);
-        Habitacion habita6=new Habitacion(106,"Simple","Dos personas",1500);
-        Habitacion habita7=new Habitacion(201,"Doble","Tres personas",2500);
-        Habitacion habita8=new Habitacion(202,"Doble","Tres personas",2500);
-        Habitacion habita9=new Habitacion(203,"Doble","Tres personas",2500);
-        Habitacion habita10=new Habitacion(204,"Doble","Tres personas",2500);
-        Habitacion habita11=new Habitacion(205,"Doble","Tres personas",2500);
-        Habitacion habita12=new Habitacion(206,"Doble","Tres personas",2500);
-        Habitacion habita13=new Habitacion(301,"Triple","Cuatro personas",3500);
-        Habitacion habita14=new Habitacion(302,"Triple","Cuatro personas",3500);
-        Habitacion habita15=new Habitacion(303,"Triple","Cuatro personas",3500);
-        Habitacion habita16=new Habitacion(304,"Triple","Cuatro personas",3500);
-        Habitacion habita17=new Habitacion(305,"Triple","Cuatro personas",3500);
-        Habitacion habita18=new Habitacion(306,"Triple","Cuatro personas",3500);
-        //List<RegistroHuesped> registros=new ArrayList<>();
-
-        listaRegistroHuespedes.add(h1);
-        listaRegistroHuespedes.add(h2);
-        listaRegistroHuespedes.add(h3);
-        listaRegistroHuespedes.add(h4);
-        //List<Habitacion> habitaciones=new ArrayList<>();
-        listaHabitacion.add(habita1);
-        listaHabitacion.add(habita2);
-        listaHabitacion.add(habita3);
-        listaHabitacion.add(habita4);
-        listaHabitacion.add(habita5);
-        listaHabitacion.add(habita6);
-        listaHabitacion.add(habita7);
-        listaHabitacion.add(habita8);
-        listaHabitacion.add(habita9);
-        listaHabitacion.add(habita10);
-        listaHabitacion.add(habita11);
-        listaHabitacion.add(habita12);
-        listaHabitacion.add(habita13);
-        listaHabitacion.add(habita14);
-        listaHabitacion.add(habita15);
-        listaHabitacion.add(habita16);
-        listaHabitacion.add(habita17);
-        listaHabitacion.add(habita18);
-
-        //List<Reserva> reservas=new ArrayList<>();
-        listaReserva.add(r1);
-        listaReserva.add(r2);
-        listaReserva.add(r3);
-        listaReserva.add(r4);
-        listaReserva.add(r5);
-        listaReserva.add(r6);
-        //List<Cliente> clientes=new ArrayList<>();
-        listaCliente.add(c1);
-        listaCliente.add(c2);
-        listaCliente.add(c3);
-        listaCliente.add(c4);
-        listaCliente.add(c5);
-        listaCliente.add(c6);
-        listaCliente.add(c7);
-        listaCliente.add(c8);
-        listaCliente.add(c9);
-        //List<UsuarioHotel> usuariosHotel=new ArrayList<>();
-        listaUsuarioHotel.add(admin);
-        listaUsuarioHotel.add(admin2);
-
-        listaUsuarioHotel.add(recep1);
-        listaUsuarioHotel.add(recep2);
-        listaUsuarioHotel.add(recep3);
-        hotel.setListaCliente(listaCliente);
-        hotel.setListaHabitacion(listaHabitacion);
-        hotel.setListaReserva(listaReserva);
-        hotel.setListaUsuarioHotel(listaUsuarioHotel);
-        hotel.setRegistroHuespedes(listaRegistroHuespedes);
-
-
-    }
-
- */
     public void onAdminPassButtonCliked(MouseEvent event){
 
         boolean validacion=false;
@@ -1832,7 +1703,7 @@ public class Controller implements Initializable {
             String temp = event.getCode().toString();
             if ((!event.getCode().toString().matches("[a-zA-Z]")) &&
                     (event.getCode() != KeyCode.BACK_SPACE) &&
-                    (event.getCode() != KeyCode.SHIFT)){
+                    (event.getCode() != KeyCode.SHIFT)&&(event.getCode() != KeyCode.SPACE)){
                 if(event.getEventType() == KeyEvent.KEY_PRESSED){
                     willConsume = true;
                 }else if (event.getEventType() == KeyEvent.KEY_RELEASED){

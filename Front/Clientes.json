@@ -97,49 +97,5 @@
     "direccion": "Libertad 387",
     "correoElectronico": "rene@gmail.com",
     "telefono": "011-64545856"
-  },
-  {
-    "pais": "Argentina",
-    "provincia": "BuenosAires",
-    "localidad": "MardelPlata",
-    "consumos": [],
-    "id": "666",
-    "nombreYapellido": "Javier",
-    "direccion": "acevedo3170",
-    "correoElectronico": "a@b",
-    "telefono": "3123131"
-  },
-  {
-    "pais": "Argentina",
-    "provincia": "BuenosAires",
-    "localidad": "MardelPlata",
-    "consumos": [],
-    "id": "666",
-    "nombreYapellido": "Javier",
-    "direccion": "acevedo3170",
-    "correoElectronico": "a@b",
-    "telefono": "3123131"
-  },
-  {
-    "pais": "lklkl",
-    "provincia": "lljiiol",
-    "localidad": "lnjo",
-    "consumos": [],
-    "id": "777",
-    "nombreYapellido": "javier",
-    "direccion": "bjnuñk",
-    "correoElectronico": "dmalks",
-    "telefono": "312312"
-  },
-  {
-    "pais": "lklkl",
-    "provincia": "lljiiol",
-    "localidad": "lnjo",
-    "consumos": [],
-    "id": "777",
-    "nombreYapellido": "javier",
-    "direccion": "bjnuñk",
-    "correoElectronico": "dmalks",
-    "telefono": "312312"
   }
 ]
