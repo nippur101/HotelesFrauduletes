@@ -335,7 +335,7 @@ public class Controller implements Initializable {
         clienteDNI.addEventFilter(KeyEvent.ANY,handelernumber);
         identificadorUsuario.addEventFilter(KeyEvent.ANY,handelernumber);
 
-        comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber);
+        //comboConsumoNroHabitacion.addEventFilter(KeyEvent.ANY,handelernumber);
         comboConsumoOperacion.addEventFilter(KeyEvent.ANY,handelernumber);
 
 
@@ -930,6 +930,8 @@ public class Controller implements Initializable {
         buttonConfirmarListaRegistro.setDisable(true);
         buttonRegistroElegirHabi.setDisable(true);
         buttonPagarAdelantoRegistro.setDisable(true);
+        registroPagoAdelanto.setText("0.0");
+
         tableViewRegistroReservasCliente.getItems().clear();
 
 
@@ -1038,9 +1040,6 @@ public class Controller implements Initializable {
     }
 
 
-
-
-
     public void guardarRegistro(MouseEvent event){
         String labelTexto="";
         buttonConfirmarRegistro.setDisable(false);
@@ -1059,11 +1058,7 @@ public class Controller implements Initializable {
             }
         }
 
-
-
         labelRegistroHabitacionMuestra.setText(labelTexto);
-        //labelRegistroFechaEgresoMuestra.setText(registroFechaEgreso.getValue().toString());
-        //labelRegistroFechaIngresoMuestra.setText(registroFechaIngreso.getValue().toString());
 
     }
     public void onConfirmarRegistroButtonClicked(MouseEvent event){
@@ -1180,6 +1175,8 @@ public class Controller implements Initializable {
         buttonBuscarFechaReserva.setDisable(true);
         buttonReservarReserva.setDisable(true);
         buttonPagarAdelantoReserva.setDisable(true);
+        reservaAbonoAdelanto.setDisable(true);
+        reservaAbonoAdelanto.setText("0.0");
 
         this.mostrarPaneX(PaneElegido.paneReserva);
 
@@ -1219,6 +1216,7 @@ public class Controller implements Initializable {
             buttonReservarReserva.setDisable(false);
             labelReservaErrorFechas.setText("");
             buttonPagarAdelantoReserva.setDisable(false);
+            reservaAbonoAdelanto.setDisable(false);
         }catch (NullPointerException e){
             labelReservaErrorFechas.setText("INGRESE UN RANGO DE FECHAS");
         }
@@ -1238,6 +1236,7 @@ public class Controller implements Initializable {
             labelFechaEgresoMuestra.setText(reservaFechaEgreso.getValue().toString());
             labelFechaIngresoMuestra.setText(reservaFechaIngreso.getValue().toString());
             labelReservaErrorFechas.setText("");
+
             mostrarPaneX(PaneElegido.paneReservaCargada);
         }catch (NullPointerException e){
             labelReservaErrorFechas.setText("SELECCIONE UNA HABITACION");
@@ -1365,7 +1364,7 @@ public class Controller implements Initializable {
             if (comboConsumoOperacion.getValue().equals("Consumo")) {
                 mostrarPaneX(PaneElegido.paneConsumo2);
                 mostrarFlechaX(FlechaElegida.arrowPago);
-                labelConsumo2.setText("CONSUMO CLIENTE: " + consumoNombreHuesped.getText());
+                labelConsumo2.setText("COSUMO CLIENTE: " + consumoNombreHuesped.getText());
             } else if (comboConsumoOperacion.getValue().equals("CheckOut")) {
                 checkoutCheckBoxHabi0.setVisible(false);
                 checkoutCheckBoxHabi1.setVisible(false);
@@ -1380,6 +1379,7 @@ public class Controller implements Initializable {
                 buttonElegirCheckoutPorHabitacion.setDisable(true);
                 mostrarPaneX(PaneElegido.paneConsumoCheckout);
                 mostrarFlechaX(FlechaElegida.arrowPago);
+                textIdClienteCheckout.setText(consumoHuesped.getText());
 
             }
         }catch (Throwable e){
@@ -1522,6 +1522,7 @@ public class Controller implements Initializable {
 
                             if (hotel.getRegistroHuespedes().get(k).getFechaIngreso().equals(listaRegistrocliente.get(i).getFechaIngreso())  &&
                                     hotel.getRegistroHuespedes().get(k).getFechaEgreso().equals(listaRegistrocliente.get(i).getFechaEgreso())) {
+                                hotel.getRegistroHuespedes().get(i).setFechaEgreso(LocalDate.now());
                                 hotel.getRegistroHuespedes().get(i).setEstado("Cerrado");
                                 labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
                                 textVueltoChekoutHab.setText(vuelto.toString());
@@ -1537,7 +1538,7 @@ public class Controller implements Initializable {
     }
     public void onCheckoutRealizarCompletoButtonClicked(MouseEvent event) {
         int indiceCliente=hotel.buscarIdCliente(textIdClienteCheckout.getText());
-        Cliente cliente=hotel.getListaCliente().get(indiceCliente);
+
         Double vuelto = Double.parseDouble(textAbonoFinalChekoutFinal.getText()) - Double.parseDouble(textSldoFinalChekoutFinal.getText());
 
         if (vuelto >= 0.0) {
@@ -1547,14 +1548,13 @@ public class Controller implements Initializable {
 
                     if (hotel.getRegistroHuespedes().get(k).getFechaIngreso().equals(listaRegistrocliente.get(i).getFechaIngreso()) &&
                             hotel.getRegistroHuespedes().get(k).getFechaEgreso().equals(listaRegistrocliente.get(i).getFechaEgreso())) {
-                       hotel.getListaCliente().get(indiceCliente).getConsumos().get(hotel.getListaCliente().get(indiceCliente).getConsumos().size()-1).setPagoConsumo(hotel.getListaCliente().get(indiceCliente).calculoSaldo());
-                        System.out.println(cliente.calculoSaldo());
-                        hotel.getListaUsuarioHotel().get(0).checkOut(hotel.getRegistroHuespedes().get(k),cliente);
 
-                        //hotel.getRegistroHuespedes().get(i).setEstado("Cerrado");
-                        System.out.println(hotel.getRegistroHuespedes().get(i).getEstado());
+                        hotel.getListaCliente().get(indiceCliente).getConsumos().get(hotel.getListaCliente().get(indiceCliente).getConsumos().size()-1).setPagoConsumo(hotel.getListaCliente().get(indiceCliente).calculoSaldo());
+                        hotel.getRegistroHuespedes().get(k).setFechaEgreso(LocalDate.now());
+                        hotel.getRegistroHuespedes().get(k).setEstado("Cerrado");
                         labelCheckoutCheckboxError.setText("EL CHECKOUT SE REALIZO CORRECTAMENTE");
-                        textVueltoChekoutHab.setText(vuelto.toString());
+                        textVueltoChekoutFinal.setText(vuelto.toString());
+
                     }
                 }
             }
