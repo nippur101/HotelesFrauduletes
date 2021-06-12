@@ -313,11 +313,14 @@ public Reserva buscarReservaDiaHabitacion(LocalDate fecha,int idHabitacion){
     Reserva r = new Reserva();
     for(int i=0; (i<this.listaReserva.size()&&validacion);i++){
         if(idHabitacion == this.listaReserva.get(i).getIdHabitacion()){
-            if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)>0)&&(this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)<0))) {
-                validacion=true;
-            }else{
+            if (((this.listaReserva.get(i).getFechaIngreso().compareTo(fecha)<=0)&&
+                    (this.listaReserva.get(i).getFechaEgreso().compareTo(fecha)>=0))) {
                 validacion=false;
                 r = this.listaReserva.get(i);
+            }else{
+
+                validacion=true;
+
             }
         }
     }
