@@ -248,7 +248,7 @@ public class Hotel implements Serializable {
         return m;
     }
 
-
+//hola
 
     //busca y retona Id de habitacion ingresando el numero de la habitacion
     public int buscarIdPorNumeroDeHabitacion(int nroHabitacion){
